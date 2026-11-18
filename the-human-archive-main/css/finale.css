@@ -1,0 +1,38 @@
+/* ============================================================================
+   CHAPTER EIGHT — THE FINALE / QUIET GREEN EPILOGUE
+   ============================================================================ */
+.tha-finale-screen{--finale-ink:#e7ffeb;--finale-green:#a7edb5;position:relative;isolation:isolate;min-height:100vh;min-height:100dvh;overflow:hidden;color:var(--finale-ink);background:radial-gradient(ellipse at 50% 32%,rgba(25,81,37,.24),transparent 47%),#020704;font-family:var(--tha-font-mono,"Fira Code",monospace);transition:background 1.8s ease}.tha-finale-stars{position:absolute;inset:0;z-index:-1;opacity:.28;pointer-events:none;background-image:radial-gradient(circle,rgba(197,255,205,.8) .7px,transparent 1.3px),radial-gradient(circle,rgba(109,205,129,.7) .7px,transparent 1.3px);background-size:113px 113px,173px 173px;background-position:19px 23px,67px 51px}.tha-finale-topbar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:58px;padding:12px clamp(18px,4vw,58px);border-bottom:1px solid rgba(137,225,153,.15);background:rgba(2,9,4,.64)}.tha-finale-brand{color:#c3f6cd;font-size:.7rem;letter-spacing:.16em}.tha-finale-chapter{color:#739c7c;font-size:.56rem;letter-spacing:.14em;text-align:right}.tha-finale-main{position:relative;width:100%;}.tha-finale-stage{display:grid;place-items:center;min-height:calc(100vh - 58px);min-height:calc(100dvh - 58px);padding:clamp(32px,7vh,78px) 22px;text-align:center;transition:opacity 1.8s ease,filter 1.8s ease}.tha-finale-stage-opening{align-content:center;gap:22px}.tha-finale-overline{margin:0 0 18px;color:#7faf89;font-size:.57rem;letter-spacing:.23em;opacity:.8}.tha-finale-opening-lines,.tha-finale-reflection,.tha-finale-thesis{display:grid;gap:clamp(8px,1.7vh,16px);width:min(760px,100%);margin:0 auto}.tha-finale-line{margin:0;color:#d9f2de;font:500 clamp(.88rem,2vw,1.15rem)/1.75 var(--tha-font-display);letter-spacing:.035em;opacity:0;filter:blur(5px);transform:translateY(8px);transition:opacity 1.15s ease,filter 1.15s ease,transform 1.15s ease}.tha-finale-line.is-visible{opacity:1;filter:blur(0);transform:translateY(0)}.tha-finale-stage-reflection{background:radial-gradient(ellipse at 50% 50%,rgba(27,82,38,.13),transparent 58%)}.tha-finale-reflection .tha-finale-line{color:#d0e9d6;font-size:clamp(1rem,2.25vw,1.35rem);letter-spacing:.045em}.tha-finale-stage-thesis{background:radial-gradient(ellipse at 50% 48%,rgba(35,112,51,.18),transparent 53%)}.tha-finale-thesis{gap:12px}.tha-finale-thesis .tha-finale-line{color:#eefff0;font:700 clamp(1.4rem,4.2vw,3rem)/1.45 var(--tha-font-display);letter-spacing:.16em;text-shadow:0 0 36px rgba(133,232,151,.19)}.tha-finale-stage-motto{min-height:78vh;min-height:78dvh}.tha-finale-motto{margin:0;color:#b8efc3;font:600 clamp(1rem,3vw,1.65rem)/1.6 var(--tha-font-display);letter-spacing:.18em;opacity:0;filter:blur(5px);transform:translateY(10px);transition:opacity 1.8s ease,filter 1.8s ease,transform 1.8s ease;text-shadow:0 0 38px rgba(133,232,151,.16)}.tha-finale-motto.is-visible{opacity:1;filter:blur(0);transform:translateY(0)}.tha-finale-stage-restart{min-height:76vh;min-height:76dvh;padding-bottom:10vh}.tha-finale-restart-wrap{display:grid;justify-items:center;gap:18px;opacity:0;transform:translateY(10px);transition:opacity 1.1s ease,transform 1.1s ease}.tha-finale-restart-wrap.is-visible{opacity:1;transform:translateY(0)}.tha-finale-restart{min-width:220px;padding:17px 27px;border:1px solid rgba(162,244,177,.7);color:#e8ffeb;background:rgba(14,54,24,.72);font:600 .69rem var(--tha-font-display);letter-spacing:.2em;cursor:pointer;box-shadow:0 0 35px rgba(104,222,127,.12),inset 0 0 24px rgba(104,222,127,.06);transition:background .25s ease,box-shadow .25s ease,transform .25s ease}.tha-finale-restart:hover{background:rgba(33,91,44,.8);box-shadow:0 0 48px rgba(104,222,127,.23);transform:translateY(-2px)}.tha-finale-signal-copy{margin:8px 0 0;color:#89bd94;font-size:.7rem;letter-spacing:.07em}.tha-finale-end-note{margin:0;color:#668e70;font-size:.63rem;line-height:1.7;letter-spacing:.05em}.tha-finale-screen.is-fading-to-black{background:#000}.tha-finale-screen.is-fading-to-black .tha-finale-topbar,.tha-finale-screen.is-fading-to-black .tha-finale-stars{opacity:0;transition:opacity 1.4s ease}.tha-finale-screen.is-fading-to-black .tha-finale-stage:not(.tha-finale-stage-restart){opacity:0;filter:blur(3px)}.tha-finale-screen.is-fading-to-black .tha-finale-stage-restart{min-height:100vh;min-height:100dvh;padding-top:15vh}.tha-finale-screen.is-fading-to-black .tha-finale-restart-wrap{opacity:1;transform:none}
+@media(max-width:700px){.tha-finale-topbar{align-items:flex-start;flex-direction:column;gap:6px;padding:11px 15px}.tha-finale-brand{font-size:.62rem}.tha-finale-chapter{font-size:.49rem;text-align:left}.tha-finale-stage{min-height:calc(100dvh - 76px);padding:38px 18px}.tha-finale-overline{font-size:.49rem}.tha-finale-line{font-size:clamp(.8rem,3.7vw,.98rem);line-height:1.8}.tha-finale-reflection .tha-finale-line{font-size:clamp(.92rem,4vw,1.1rem)}.tha-finale-thesis .tha-finale-line{font-size:clamp(1.12rem,5.1vw,1.65rem);letter-spacing:.1em}.tha-finale-stage-motto{min-height:70vh;min-height:70dvh}.tha-finale-motto{font-size:clamp(.9rem,4vw,1.15rem);letter-spacing:.11em}.tha-finale-stage-restart{min-height:70vh;min-height:70dvh}.tha-finale-screen.is-fading-to-black .tha-finale-stage-restart{min-height:100dvh;padding-top:20vh}}
+@media(prefers-reduced-motion:reduce){.tha-finale-line,.tha-finale-motto,.tha-finale-restart-wrap,.tha-finale-stage,.tha-finale-screen{transition:none!important}.tha-finale-restart{transition:none!important}}
+
+/* Finale topbar is shared with the Main Menu archive map. */
+.tha-finale-menu-header{position:sticky;top:0;z-index:30;width:100%;}
+.tha-finale-menu-header .tha-menu-system{white-space:nowrap;}
+.tha-finale-line{scroll-margin-top:84px;}
+.tha-finale-screen.is-fading-to-black{overflow:hidden;}
+body.tha-finale-scroll-locked{overflow:hidden !important;overscroll-behavior:none;}
+html:has(body.tha-finale-scroll-locked){overflow:hidden !important;}
+@media(max-width:700px){
+  .tha-finale-menu-header{align-items:flex-start;flex-direction:column;gap:7px;padding:11px 15px;}
+  .tha-finale-menu-header .tha-menu-system{font-size:.51rem;white-space:normal;}
+}
+.tha-finale-screen{overflow-x:clip;overflow-y:visible;}
+.tha-finale-screen.is-fading-to-black .tha-finale-menu-header{opacity:0;transition:opacity 1.4s ease;}
+
+/* Chapter Eight has no branded header: only the persistent identity badge is
+   retained at the upper-right of the viewport. The opening text stays still. */
+.tha-finale-stage {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.tha-finale-stage-opening {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: clamp(76px, 10vh, 112px);
+  padding-bottom: clamp(28px, 6vh, 58px);
+}
+.tha-finale-opening-lines .tha-finale-line { scroll-margin-top: 0; }
+@media (max-width: 700px) {
+  .tha-finale-stage { min-height: 100dvh; padding: 40px 16px; }
+  .tha-finale-stage-opening { min-height: 100dvh; padding-top: 76px; padding-bottom: 30px; }
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#020604">
+    <meta name="application-name" content="The Human Archive">
+    <meta name="apple-mobile-web-app-title" content="The Human Archive">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preload" href="assets/audio/low-frequency-ambient.mp3" as="audio" type="audio/mpeg" fetchpriority="low">
+    <meta name="description" content="Explore 11 human-made traces across the Moon, Mars, and deep space in The Human Archive, an interactive space-archaeology experience for ages 10–18.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Human Archive | NASA Space Apps Challenge 2026">
+    <meta property="og:description" content="Explore 11 human-made traces across the Moon, Mars, and deep space in an interactive space-archaeology experience for ages 10–18.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Human Archive | NASA Space Apps Challenge 2026">
+    <meta name="twitter:description" content="Explore 11 human-made traces across the Moon, Mars, and deep space in an interactive space-archaeology experience for ages 10–18.">
+    <title>The Human Archive | NASA Space Apps Challenge 2026</title>
+
+    <!-- Shared fonts used by the global design system and screen-specific styles. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Shared foundations and route transitions. -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/route-bridge.css">
+
+    <!-- Opening experience. -->
+    <link rel="stylesheet" href="css/splash.css">
+    <link rel="stylesheet" href="css/terminal.css">
+    <link rel="stylesheet" href="css/menu.css">
+
+    <!-- Shared exploration mechanics and chapter-specific styling. -->
+    <link rel="stylesheet" href="css/templates.css">
+    <link rel="stylesheet" href="css/maps.css">
+    <link rel="stylesheet" href="css/moon.css">
+    <link rel="stylesheet" href="css/mars.css">
+    <link rel="stylesheet" href="css/other-traces.css">
+    <link rel="stylesheet" href="css/hidden-records.css">
+    <!-- Final three chapters each own an independent style sheet. -->
+    <link rel="stylesheet" href="css/99.css">
+    <link rel="stylesheet" href="css/your-archive.css">
+    <link rel="stylesheet" href="css/finale.css">
+</head>
+<body>
+    <!-- The SPA router mounts every screen inside this container. -->
+    <main id="app" aria-live="off"></main>
+
+    <!-- Keep your existing data layer before pages that read it. -->
+    <script src="js/data/records.js" defer></script>
+
+    <!-- Shared dependencies are required by the screen modules. -->
+    <script src="js/shared/identity.js" defer></script>
+    <script src="js/shared/navigation.js" defer></script>
+    <script src="js/shared/image-preloader.js" defer></script>
+    <script src="js/audio.js" defer></script>
+
+    <!-- Main cinematic screens. -->
+    <script src="js/pages/splash.js" defer></script>
+    <script src="js/pages/terminal.js" defer></script>
+    <script src="js/pages/menu.js" defer></script>
+
+    <!-- Keep the remaining screen modules from your existing project. -->
+    <script src="js/pages/moon.js" defer></script>
+    <script src="js/pages/marsMap.js" defer></script>
+    <script src="js/pages/otherTraces.js" defer></script>
+    <script src="js/templates/templateA.js" defer></script>
+    <script src="js/templates/templateB.js" defer></script>
+    <script src="js/templates/templateC.js" defer></script>
+
+    <!-- Completed story chapters after Other Traces. -->
+    <script src="js/pages/hiddenRecords.js" defer></script>
+
+    <!-- Chapter Six, Seven and Eight are separate screen modules. -->
+    <script src="js/pages/99.js" defer></script>
+    <script src="js/pages/your-archive.js" defer></script>
+    <script src="js/pages/finale.js" defer></script>
+
+    <!-- Load the router before the startup script. -->
+    <script src="js/router.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>

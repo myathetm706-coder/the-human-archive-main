@@ -1,0 +1,1830 @@
+/* =============================================================
+
+   THE HUMAN ARCHIVE — TERMINAL
+
+   An old orbital-station CRT, not a floating web card.
+
+   Story text remains inside the glass; all setting text is visual-only.
+
+\============================================================= */
+
+.terminal-screen {
+
+    --crt-green: #c4f4ce;
+
+    --crt-soft: #a5dcb0;
+
+    --crt-bright: #e2ffe8;
+
+    position: fixed;
+
+    z-index: 20;
+
+    isolation: isolate;
+
+    inset: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    width: 100%;
+
+    height: 100vh;
+
+    height: 100dvh;
+
+    padding: 0;
+
+    color: var(--crt-green);
+
+    background:
+
+        repeating-linear-gradient(90deg, transparent 0 79px, rgba(128, 174, 137, .025) 80px, transparent 81px 160px),
+
+        linear-gradient(135deg, #07100a 0%, #0b120d 32%, #040805 70%, #020403 100%);
+
+    font-family: var(--tha-font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+
+    letter-spacing: .012em;
+
+}
+
+.terminal-room { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+
+.terminal-room > div { position: absolute; }
+
+.terminal-wall-seams,
+
+.terminal-room-haze,
+
+.terminal-dust { inset: 0; }
+
+.terminal-room::before {
+
+    content: "";
+
+    opacity: .52;
+
+    background:
+
+        linear-gradient(90deg, transparent 0 6%, rgba(172, 205, 173, .035) 6.1%, transparent 6.5% 18%, rgba(0,0,0,.2) 18.2%, transparent 18.5% 83%, rgba(191,211,188,.025) 83.1%, transparent 83.4%),
+
+        repeating-linear-gradient(90deg, transparent 0 19.5%, rgba(177,207,178,.022) 19.7%, transparent 20% 39.7%),
+
+        linear-gradient(180deg, rgba(135,162,138,.055), transparent 35%, rgba(0,0,0,.16));
+
+}
+
+.terminal-room::after {
+
+    content: "";
+
+    opacity: .32;
+
+    background: repeating-linear-gradient(0deg, transparent 0 78px, rgba(174,201,174,.028) 79px, transparent 81px 158px);
+
+}
+
+.terminal-wall-seams {
+
+    opacity: .4;
+
+    background:
+
+        linear-gradient(90deg, transparent 0 2.8%, rgba(0,0,0,.32) 2.9% 3.1%, transparent 3.2% 97%, rgba(0,0,0,.35) 97.1% 97.3%, transparent 97.4%),
+
+        linear-gradient(180deg, transparent 0 13%, rgba(0,0,0,.28) 13.2% 13.4%, transparent 13.6% 87%, rgba(0,0,0,.3) 87.2% 87.4%, transparent 87.6%);
+
+}
+
+.terminal-room-haze {
+
+    opacity: .6;
+
+    background:
+
+        linear-gradient(90deg, transparent, rgba(86,141,94,.035) 22%, transparent 24% 72%, rgba(86,141,94,.025) 74%, transparent),
+
+        linear-gradient(180deg, rgba(91,129,96,.035), transparent 42%, rgba(0,0,0,.12));
+
+    animation: thaRoomBreath 11s ease-in-out infinite alternate;
+
+}
+
+.terminal-floor-grille {
+
+    inset: auto -10% -19%;
+
+    height: 36%;
+
+    opacity: .24;
+
+    transform: perspective(270px) rotateX(59deg);
+
+    transform-origin: center top;
+
+    background:
+
+        repeating-linear-gradient(90deg, rgba(148,171,148,.10) 0 1px, transparent 1px 54px),
+
+        repeating-linear-gradient(0deg, rgba(148,171,148,.08) 0 1px, transparent 1px 28px),
+
+        linear-gradient(180deg, rgba(0,0,0,.05), #020403 88%);
+
+    mask-image: linear-gradient(to bottom, #000 4%, transparent 96%);
+
+}
+
+.terminal-dust {
+
+    opacity: .23;
+
+    background-image:
+
+        radial-gradient(circle, rgba(219,243,220,.45) .6px, transparent 1.2px),
+
+        radial-gradient(circle, rgba(153,189,157,.3) .6px, transparent 1.1px);
+
+    background-size: 107px 111px, 173px 167px;
+
+    background-position: 9px 18px, 63px 79px;
+
+    animation: thaDustDrift 32s linear infinite;
+
+}
+
+/* Heavy housing, beveled steel and tiny mechanical details. */
+
+.terminal-monitor-frame {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-rows: clamp(25px, 3.6vh, 35px) minmax(0, 1fr) clamp(26px, 3.8vh, 38px);
+
+    width: min(1120px, calc(100vw - 30px));
+
+    height: min(820px, calc(100svh - 30px));
+
+    min-height: 420px;
+
+    padding: clamp(7px, 1.05vw, 13px);
+
+    border: 1px solid #4a554c;
+
+    border-radius: clamp(10px, 1.6vw, 18px);
+
+    background:
+
+        repeating-linear-gradient(117deg, rgba(255,255,255,.018) 0 1px, transparent 1px 5px),
+
+        linear-gradient(145deg, #515b52 0%, #303a31 7%, #1b241d 24%, #101811 52%, #283229 81%, #101710 100%);
+
+    box-shadow:
+
+        0 34px 86px rgba(0,0,0,.72),
+
+        0 9px 20px rgba(0,0,0,.5),
+
+        inset 0 2px 2px rgba(234,255,235,.11),
+
+        inset 0 -3px 8px rgba(0,0,0,.7),
+
+        0 0 0 1px rgba(0,0,0,.9);
+
+    animation: none;
+
+}
+
+.terminal-monitor-frame::before,
+
+.terminal-monitor-frame::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: 4;
+
+    top: 9%;
+
+    bottom: 9%;
+
+    width: 3px;
+
+    border-radius: 3px;
+
+    background: linear-gradient(180deg, transparent, rgba(198,223,198,.13) 18%, rgba(0,0,0,.28) 52%, rgba(183,211,185,.08) 80%, transparent);
+
+    pointer-events: none;
+
+}
+
+.terminal-monitor-frame::before { left: 4px; }
+
+.terminal-monitor-frame::after { right: 4px; }
+
+.terminal-monitor-bezel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-width: 0;
+
+    padding: 0 clamp(8px, 1.5vw, 19px);
+
+    color: #87958a;
+
+}
+
+.terminal-monitor-bezel-top { border-radius: 7px 7px 0 0; }
+
+.terminal-monitor-bezel-bottom { border-radius: 0 0 7px 7px; }
+
+.terminal-frame-screw {
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 7px;
+
+    height: 7px;
+
+    border: 1px solid #6b756b;
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle at 35% 30%, #7c877c, #172019 73%);
+
+    box-shadow: inset 0 1px 1px rgba(255,255,255,.16), 0 1px 2px rgba(0,0,0,.6);
+
+    transform: translateY(-50%);
+
+}
+
+.terminal-frame-screw::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 2px;
+
+    left: 1px;
+
+    width: 3px;
+
+    height: 1px;
+
+    background: #1a211b;
+
+    transform: rotate(-32deg);
+
+}
+
+.screw-left { left: 8px; }
+
+.screw-right { right: 8px; }
+
+.terminal-hardware-ports { display: flex; align-items: center; gap: 4px; margin-left: 14px; }
+
+.terminal-hardware-ports i { width: clamp(9px, 1.2vw, 15px); height: 3px; border-radius: 4px; background: #111912; box-shadow: inset 0 1px 1px rgba(0,0,0,.9), 0 1px 0 rgba(223,244,224,.07); }
+
+.terminal-power-cluster { display: flex; gap: 6px; align-items: center; margin-right: 13px; }
+
+.power-led { width: 4px; height: 4px; border-radius: 50%; background: #7bc58b; box-shadow: 0 0 7px rgba(118,221,139,.6); }
+
+.power-led-dim { background: #304634; box-shadow: none; }
+
+.terminal-vent-group { display: flex; align-items: center; gap: 3px; margin-left: 13px; }
+
+.terminal-vent-group i { display: block; width: 3px; height: 10px; border-radius: 2px; background: #111812; box-shadow: inset 0 1px 2px rgba(0,0,0,.9), 0 1px 0 rgba(226,249,228,.06); }
+
+.terminal-bezel-mark { position: absolute; left: 50%; color: #8b978d; font-size: .52rem; letter-spacing: .32em; text-shadow: 0 1px #000; transform: translateX(-50%); }
+
+.terminal-control-group { display: flex; align-items: center; gap: 6px; margin-right: 14px; }
+
+.terminal-control-group i { width: 5px; height: 5px; border: 1px solid #7e887f; border-radius: 50%; background: #202921; }
+
+.terminal-control-group b { display: block; width: 12px; height: 6px; border: 1px solid #758176; border-radius: 5px; background: #202921; }
+
+/* The CRT glass is deliberately darker at the edges and softly glowing at its centre. */
+
+.terminal-glass {
+
+    position: relative;
+
+    z-index: 1;
+
+    min-width: 0;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(119,160,127,.45);
+
+    border-radius: 5px;
+
+    isolation: isolate;
+
+    background:
+
+        radial-gradient(ellipse at 48% 43%, rgba(25,70,35,.28), transparent 64%),
+
+        linear-gradient(145deg, #071209 0%, #020703 57%, #010301 100%);
+
+    box-shadow:
+
+        inset 0 1px 3px rgba(0,0,0,.95),
+
+        inset 0 0 55px rgba(0,0,0,.94),
+
+        0 0 0 2px rgba(0,0,0,.65);
+
+    transition: border-color 500ms ease, background 500ms ease, box-shadow 500ms ease;
+
+}
+
+
+/* The story describes the old terminal screen as slowly flickering, like a machine breathing.
+   This is a visible phosphor brightness drift with occasional uneven dips—not a glitch,
+   screen shake, power-on, or power-off effect. It changes no geometry, colors, or typography.
+   The existing reduced-motion rules below disable these continuous animations when requested. */
+.terminal-screen:not(.is-silent) .terminal-glass {
+    animation: thaTerminalSlowFlicker 6.4s ease-in-out infinite;
+}
+
+.terminal-screen:not(.is-silent) .terminal-glass-glow {
+    animation: thaTerminalPhosphorBreath 6.4s ease-in-out infinite;
+}
+
+@keyframes thaTerminalSlowFlicker {
+    0%, 31%, 67%, 100% { filter: brightness(1); }
+    13% { filter: brightness(.90); }
+    18% { filter: brightness(.97); }
+    48% { filter: brightness(.86); }
+    53% { filter: brightness(.95); }
+    82% { filter: brightness(.90); }
+    88% { filter: brightness(.98); }
+}
+
+@keyframes thaTerminalPhosphorBreath {
+    0%, 31%, 67%, 100% { opacity: .52; }
+    13% { opacity: .40; }
+    18% { opacity: .49; }
+    48% { opacity: .38; }
+    53% { opacity: .48; }
+    82% { opacity: .41; }
+    88% { opacity: .50; }
+}
+
+.terminal-glass::before {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: 5;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .10;
+
+    background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,.45) 3px, transparent 4px 5px);
+
+    mix-blend-mode: multiply;
+
+}
+
+.terminal-glass::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: 6;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .18;
+
+    background:
+
+        linear-gradient(118deg, rgba(224,255,228,.055) 0%, transparent 20% 62%, rgba(177,236,187,.018) 73%, transparent 90%),
+
+        radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.22) 100%);
+
+}
+
+.terminal-glass-glow {
+
+    position: absolute;
+
+    z-index: 0;
+
+    inset: -20%;
+
+    pointer-events: none;
+
+    opacity: .52;
+
+    background: radial-gradient(ellipse at 49% 47%, rgba(89,195,108,.09), transparent 50%);
+
+    filter: blur(18px);
+
+    transition: opacity .6s ease;
+
+}
+
+.terminal-glass-reflection {
+
+    position: absolute;
+
+    z-index: 4;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .32;
+
+    background: linear-gradient(126deg, rgba(221,255,226,.055) 0 8%, transparent 8.5% 35%, rgba(222,255,227,.015) 43%, transparent 50% 100%);
+
+    mix-blend-mode: screen;
+
+}
+
+.terminal-stage {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    justify-content: flex-start;
+
+    width: 100%;
+
+    max-width: none;
+
+    height: 100%;
+
+    min-height: 0;
+
+    min-width: 0;
+
+    margin: 0;
+
+    padding: clamp(18px, 2.8vh, 30px) clamp(18px, 3.5vw, 48px) 12px;
+
+    border: 0;
+
+    border-radius: 0;
+
+    background: transparent;
+
+    box-shadow: none;
+
+    text-align: left;
+
+}
+
+.terminal-console {
+
+    position: relative;
+
+    display: flex;
+
+    flex: 0 1 auto;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    max-width: none;
+
+    min-width: 0;
+
+    min-height: 0;
+
+    height: auto;
+
+    max-height: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    text-align: left;
+
+    border: 0;
+
+    border-radius: 0;
+
+    background: transparent;
+
+    box-shadow: none;
+
+    transition: opacity .7s ease, filter .7s ease, transform .7s ease;
+
+}
+
+.terminal-output {
+
+    flex: 0 1 auto;
+
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 0;
+
+    max-height: min(70dvh, 670px);
+
+    overflow: auto;
+
+    overscroll-behavior: contain;
+
+    scrollbar-width: thin;
+
+    scrollbar-color: rgba(99,159,109,.36) rgba(0,0,0,.2);
+
+    padding: 0 6px 2px 0;
+
+    color: var(--crt-soft);
+
+    font-size: clamp(.78rem, 1.14vw, .97rem);
+
+    line-height: 1.58;
+
+    letter-spacing: .012em;
+
+    overflow-wrap: anywhere;
+
+    text-shadow: 0 0 8px rgba(152,255,171,.16), 0 0 1px rgba(219,255,226,.24);
+
+    transition: opacity .76s ease, filter .76s ease, transform .76s ease;
+
+}
+
+.terminal-output::-webkit-scrollbar { width: 4px; }
+
+.terminal-output::-webkit-scrollbar-track { background: rgba(0,0,0,.22); }
+
+.terminal-output::-webkit-scrollbar-thumb { background: rgba(99,159,109,.36); border-radius: 4px; }
+
+.terminal-output > div { min-height: 1.45em; }
+
+.terminal-line-text { white-space: pre-wrap; }
+
+.terminal-line-spacer { min-height: .68em !important; }
+
+.terminal-year-line {
+
+    margin: 0 0 8px;
+
+    color: var(--crt-bright);
+
+    font-size: clamp(1.35rem, 2.4vw, 2.02rem);
+
+    font-weight: 500;
+
+    letter-spacing: .13em;
+
+    line-height: 1.35;
+
+    text-shadow: 0 0 18px rgba(154,255,173,.3), 0 0 2px rgba(228,255,233,.3);
+
+}
+
+.terminal-story-line { color: #b6e9c0; }
+
+.terminal-final-story-line { color: #e2ffe8; text-shadow: 0 0 13px rgba(154,255,173,.25); }
+
+.terminal-recovery-line { color: #c0ebc9; }
+
+.terminal-years-line { color: #d6f7dd; font-size: clamp(1.06rem, 1.8vw, 1.35rem); letter-spacing: .035em; }
+
+.terminal-discovered-line { color: #e7ffeb; text-shadow: 0 0 16px rgba(164,255,178,.2); }
+
+.terminal-inline-caret {
+
+    display: inline-block;
+
+    width: .48em;
+
+    height: 1.02em;
+
+    margin-left: 2px;
+
+    vertical-align: -.14em;
+
+    background: #adf6bb;
+
+    box-shadow: 0 0 9px rgba(153,255,171,.35);
+
+    animation: thaTerminalCursor .95s steps(2, end) infinite;
+
+}
+
+/* Archive layout mirrors the terminal's monospaced source script. */
+
+.archive-divider-line {
+
+    width: 100%;
+
+    height: 1px;
+
+    min-height: 1px !important;
+
+    margin: 4px 0;
+
+    border: 0;
+
+    color: transparent;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    line-height: 1px !important;
+
+    font-size: 0;
+
+    background: linear-gradient(90deg, transparent 0%, rgba(97,170,111,.16) 4%, rgba(97,170,111,.56) 50%, rgba(97,170,111,.16) 96%, transparent 100%);
+
+    box-shadow: 0 0 8px rgba(97,192,112,.08);
+
+}
+
+.archive-title-line {
+
+    display: block;
+
+    width: 100%;
+
+    color: #e4ffe9;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    font-size: clamp(.9rem, 1.85vw, 1.42rem);
+
+    font-weight: 600;
+
+    letter-spacing: clamp(.035em, .4vw, .11em);
+
+    line-height: 1.4 !important;
+
+    text-shadow: 0 0 21px rgba(147,255,169,.24);
+
+}
+
+.archive-status-line { padding-left: clamp(0px, 1.2vw, 10px); color: #dbffe2; font-weight: 600; }
+
+.archive-data-line { padding-left: clamp(0px, 1.2vw, 10px); color: #afdcb8; white-space: pre-wrap; }
+
+.archive-question-line { margin-top: 2px; color: #dcf6e1; font-size: clamp(.72rem, 1.3vw, 1.02rem); }
+
+.archive-warning-line { padding-left: clamp(0px, 1.2vw, 10px); color: #bdf0c7; font-weight: 600; letter-spacing: .04em; }
+
+.archive-call-line { padding-left: clamp(0px, 1.2vw, 10px); color: #e1ffe7; font-weight: 600; letter-spacing: .015em; }
+
+.terminal-mission-area {
+
+    flex: 0 0 auto;
+
+    padding-top: 0;
+
+}
+
+.terminal-mission-button {
+
+    gap: clamp(9px, 1.7vw, 18px);
+
+    min-height: 46px;
+
+    margin: 0;
+
+    padding: 8px 12px;
+
+    border-radius: 2px;
+
+    color: #e3ffe8;
+
+    font: inherit;
+
+    font-size: clamp(.74rem, 1.1vw, .89rem);
+
+    font-weight: 600;
+
+    letter-spacing: .1em;
+
+    text-shadow: 0 0 10px rgba(181,255,194,.13);
+
+    cursor: pointer;
+
+    transition: .22s ease, border-color .22s ease, box-shadow .22s ease, transform .22s ease, filter .18s ease;
+
+}
+
+.terminal-mission-button:hover:not(:disabled),
+
+.terminal-mission-button:focus-visible:not(:disabled) {
+
+    transform: translateY(-1px);
+
+    border-color: #e0ffe6;
+
+    background: rgba(38,99,49,.58);
+
+    box-shadow: 0 0 20px rgba(119,255,147,.32), 0 0 40px rgba(119,255,147,.18), inset 0 0 20px rgba(110,222,130,.14);
+
+}
+
+.terminal-mission-button:focus-visible { outline: 2px solid #c6ffd0; outline-offset: 4px; }
+
+.terminal-mission-button:disabled { opacity: .58; cursor: wait; animation: none; }
+
+.mission-bracket { color: #6dad7a; }
+
+.terminal-mission-divider { height: 1px; min-height: 1px; margin-top: 4px; color: transparent; font-size: 0; line-height: 1px; white-space: nowrap; overflow: hidden; background: linear-gradient(90deg, transparent, rgba(97,170,111,.48), transparent); }
+
+/* Deliberate blank screen, not a page transition. The room remains visible. */
+
+.terminal-screen.is-silent .terminal-glass {
+
+    border-color: rgba(73,99,77,.28);
+
+    background: #010201;
+
+    box-shadow: inset 0 0 95px rgba(0,0,0,.98), 0 0 0 2px rgba(0,0,0,.8);
+
+}
+
+.terminal-screen.is-silent .terminal-glass-glow { opacity: .04; }
+
+.terminal-screen.is-silent .terminal-glass-reflection { opacity: .13; }
+
+.terminal-screen.is-silent .power-led { background: #344838; box-shadow: none; }
+
+.terminal-screen.is-silent .terminal-monitor-frame { filter: brightness(.74); }
+
+/* A calm hold, phosphor dissolve, short CRT relay, and slow re-wake prevent
+
+   the archive from popping in abruptly after “was discovered.” */
+
+.terminal-screen.is-recovery-wake .terminal-glass { animation: thaRecoveryWake .42s ease-out both; }
+
+.terminal-screen.is-recovery-wake .terminal-glass-glow { animation: thaCRTGlowWake .42s ease-out both; }
+
+.terminal-screen.is-chapter-transition .terminal-glass { animation: thaCRTRelay .76s steps(1, end) both; }
+
+.terminal-screen.is-chapter-transition .terminal-glass::before { animation: thaStaticPulse .76s steps(2, end) both; }
+
+.terminal-screen.is-archive-wake .terminal-glass { animation: thaCRTReboot .61s ease-out both; }
+
+.terminal-screen.is-archive-wake .terminal-glass-glow { animation: thaCRTGlowWake .61s ease-out both; }
+
+.terminal-screen.is-archive-wake .terminal-monitor-frame { animation: thaHousingSettle .61s ease-out both; }
+
+/* Recovery text fades away before the archive's fresh readout begins. */
+.terminal-output.is-clearing { animation: thaRecoveryTextClear .42s ease both; pointer-events: none; }
+@keyframes thaRecoveryTextClear { to { opacity: 0; transform: translateY(-5px); filter: blur(1px); } }
+
+/* Acceptance transition: white flash, then a spare dark assignment screen. */
+
+.terminal-transition {
+
+    position: absolute;
+
+    z-index: 30;
+
+    inset: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    padding: 24px;
+
+    background:
+
+        radial-gradient(ellipse at 50% 47%, rgba(18,50,25,.32), transparent 49%),
+
+        linear-gradient(145deg, #020503 0%, #000 60%, #040905 100%);
+
+}
+
+.terminal-transition[hidden] { display: none !important; }
+
+.terminal-transition::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .16;
+
+    pointer-events: none;
+
+    background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0,0,0,.48) 4px 5px);
+
+}
+
+.terminal-flash { position: absolute; z-index: 5; inset: 0; opacity: 0; background: #f2fff5; pointer-events: none; }
+
+.terminal-transition.is-flashing .terminal-flash { animation: thaTerminalWhiteFlash .3s ease-out both; }
+
+.terminal-assignment-orbit {
+
+    position: absolute;
+
+    width: min(64vw, 590px);
+
+    aspect-ratio: 1;
+
+    border: 1px solid rgba(131,226,151,.07);
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 0 35px rgba(131,226,151,.018), 0 0 0 92px rgba(131,226,151,.012), inset 0 0 50px rgba(92,191,111,.025);
+
+    animation: thaIdentityOrbit 28s linear infinite;
+
+}
+
+.terminal-assignment-orbit::before,
+
+.terminal-assignment-orbit::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12%;
+
+    border: 1px solid rgba(131,226,151,.07);
+
+    border-radius: 50%;
+
+}
+
+.terminal-assignment-orbit::after { inset: 29%; border-color: rgba(131,226,151,.06); }
+
+.terminal-assignment-orbit i,
+
+.terminal-assignment-orbit b { position: absolute; top: 10%; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: #9de9ad; box-shadow: 0 0 12px rgba(126,255,153,.5); }
+
+.terminal-assignment-orbit b { top: auto; left: 14%; bottom: 27%; width: 3px; height: 3px; opacity: .6; }
+
+.terminal-assignment-card {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(100%, 690px);
+
+    padding: clamp(24px, 5vw, 58px) 18px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+}
+
+.terminal-assignment-card.is-revealed { animation: thaAssignmentReveal .82s cubic-bezier(.2,.8,.2,1) forwards; }
+
+.assignment-overline { margin: 0 0 18px; color: #779f80; font-size: clamp(.57rem, .9vw, .67rem); letter-spacing: .23em; }
+
+.terminal-assignment-card h1 {
+
+    margin: 0;
+
+    color: #e2ffe8;
+
+    font-family: var(--tha-font-display);
+
+    font-size: clamp(1.6rem, 4.7vw, 3.35rem);
+
+    font-weight: 500;
+
+    letter-spacing: .07em;
+
+    line-height: 1.3;
+
+    text-shadow: 0 0 28px rgba(127,241,151,.2), 0 0 2px rgba(235,255,239,.2);
+
+    overflow-wrap: anywhere;
+
+}
+
+.assignment-status { margin: 14px 0 0; color: #a0eab0; font-size: clamp(.77rem, 1.45vw, .98rem); letter-spacing: .25em; }
+
+.assignment-divider { display: flex; align-items: center; justify-content: center; gap: 10px; width: min(230px, 58%); margin: 27px auto; }
+
+.assignment-divider span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(149,229,164,.44), transparent); }
+
+.assignment-divider i { width: 5px; height: 5px; background: #a6edb4; transform: rotate(45deg); box-shadow: 0 0 9px rgba(128,255,156,.25); }
+
+.assignment-rec { display: inline-flex; align-items: center; gap: 9px; padding: 8px 13px; border: 1px solid rgba(126,206,143,.28); color: #c7f7d0; font-size: .71rem; letter-spacing: .23em; }
+
+.assignment-rec-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #c4ffd0; box-shadow: 0 0 10px rgba(156,248,174,.7); animation: thaRECIndicator 1.4s steps(2,end) infinite; }
+
+.terminal-transition.route-error .assignment-overline { color: #ffd1a3; }
+
+@keyframes thaTerminalCursor { 0%, 48% { opacity: 1; } 49%, 100% { opacity: 0; } }
+
+@keyframes thaTerminalLineIn { from { opacity: .58; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
+
+@keyframes thaMonitorArrive { from { opacity: 0; transform: translateY(13px) scale(.986); filter: brightness(.72); } to { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); } }
+
+@keyframes thaRecoveryWake { 0% { opacity: .38; filter: brightness(.42); } 30% { opacity: .94; filter: brightness(1.55); } 46% { opacity: .66; filter: brightness(.78); } 100% { opacity: 1; filter: brightness(1); } }
+
+@keyframes thaCRTWake { 0% { transform: scaleY(.008); filter: brightness(3); opacity: .3; } 18% { transform: scaleY(.02); filter: brightness(2.7); opacity: 1; } 35% { transform: scaleY(1); filter: brightness(1.8); } 51% { filter: brightness(.72); } 70% { filter: brightness(1.24); } 100% { transform: scaleY(1); filter: brightness(1); opacity: 1; } }
+
+@keyframes thaCRTRelay { 0%, 17%, 23%, 54%, 61%, 100% { filter: brightness(1); opacity: 1; } 18%, 22%, 55%, 60% { filter: brightness(1.8); opacity: .72; } 42% { filter: brightness(.16); opacity: .4; } 48% { filter: brightness(.72); opacity: .78; } }
+
+@keyframes thaStaticPulse { 0%, 100% { opacity: .14; } 20%, 58% { opacity: .28; } 44% { opacity: .45; } 49% { opacity: .08; } }
+
+@keyframes thaCRTReboot { 0% { opacity: .25; filter: brightness(1.8); transform: scaleY(.99); } 18% { opacity: .65; filter: brightness(2.2); } 33% { opacity: .45; filter: brightness(.62); } 51% { opacity: .96; filter: brightness(1.35); } 72% { opacity: .88; filter: brightness(.92); } 100% { opacity: 1; filter: brightness(1); transform: scaleY(1); } }
+
+@keyframes thaCRTGlowWake { 0% { opacity: .08; } 42% { opacity: .18; } 65% { opacity: .7; } 100% { opacity: .52; } }
+
+@keyframes thaHousingSettle { 0%, 33% { filter: brightness(.75); } 48% { filter: brightness(1.05); } 100% { filter: brightness(1); } }
+
+@keyframes thaRoomBreath { from { opacity: .28; } to { opacity: .64; } }
+
+@keyframes thaDustDrift { from { background-position: 9px 18px, 63px 79px; } to { background-position: 116px 129px, 236px 246px; } }
+
+@keyframes thaMissionArrival { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+
+@keyframes thaTerminalWhiteFlash { 0% { opacity: 0; } 23% { opacity: 1; } 100% { opacity: 0; } }
+
+@keyframes thaAssignmentReveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@keyframes thaIdentityOrbit { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+@keyframes thaRECIndicator { 0%, 45% { opacity: 1; } 46%, 100% { opacity: .38; } }
+
+/* =============================================================
+
+   RESPONSIVE TERMINAL LAYOUT
+
+   The output keeps its natural height, so the mission button follows the
+
+   story instead of being pushed to the bottom of the CRT by an empty flex area.
+
+\============================================================= */
+
+@media (max-width: 700px){
+
+    .terminal-screen { padding: 0; }
+
+    .terminal-monitor-frame {
+
+        width: calc(100vw - 12px);
+
+        height: calc(100dvh - 12px);
+
+        min-height: 0;
+
+        grid-template-rows: 24px minmax(0, 1fr) 26px;
+
+        padding: 5px;
+
+        border-radius: 10px;
+
+    }
+
+    .terminal-monitor-bezel { padding-inline: 8px; }
+
+    .terminal-console { flex: 0 1 auto; height: auto; max-height: 100%; }
+
+    .terminal-output {
+
+        flex: 0 1 auto;
+
+        padding: 0 2px 2px 0;
+
+        scrollbar-width: thin;
+
+    }
+
+    .terminal-years-line { font-size: clamp(.92rem, 3.8vw, 1.08rem); }
+
+    .archive-divider-line,
+
+    .terminal-mission-divider { font-size: clamp(.39rem, 1.5vw, .54rem); }
+
+    .terminal-power-cluster { gap: 4px; margin-right: 6px; }
+
+    .terminal-hardware-ports { gap: 3px; }
+
+    .terminal-vent-group i { height: 8px; }
+
+    .terminal-bezel-mark { font-size: .43rem; }
+
+    .terminal-control-group { gap: 4px; margin-right: 6px; }
+
+    .terminal-assignment-orbit { width: 92vw; }
+
+    .terminal-assignment-card { padding-inline: 10px; }
+
+    .assignment-overline { font-size: .53rem; letter-spacing: .14em; }
+
+    .terminal-assignment-card h1 { font-size: clamp(1.35rem, 7vw, 2.1rem); }
+
+    .assignment-status { font-size: .7rem; letter-spacing: .16em; }
+
+}
+
+@media (max-width: 380px){
+
+    .terminal-monitor-frame {
+
+        width: calc(100vw - 8px);
+
+        height: calc(100dvh - 8px);
+
+        padding: 4px;
+
+        grid-template-rows: 22px minmax(0, 1fr) 24px;
+
+    }
+
+    .archive-divider-line,
+
+    .terminal-mission-divider { font-size: .39rem; }
+
+    .terminal-mission-button {
+
+        padding: 6px 7px;
+
+    }
+
+    .terminal-hardware-ports i { width: 7px; }
+
+}
+
+/* Short laptop windows keep the CRT and mission action within the viewport. */
+
+@media (max-height: 640px) and (min-width: 701px){
+
+    .terminal-monitor-frame {
+
+        height: calc(100dvh - 16px);
+
+        min-height: 0;
+
+        grid-template-rows: 23px minmax(0, 1fr) 24px;
+
+    }
+
+    .terminal-stage { padding-block: 6px; }
+
+    .terminal-output {
+
+        max-height: min(62dvh, 390px);
+
+        font-size: .75rem;
+
+        line-height: 1.38;
+
+    }
+
+    .terminal-mission-area { margin-top: 5px; }
+
+}
+
+/* Compact landscape phones and short windows need a scrollable text pane. */
+
+@media (max-height: 480px){
+
+    .terminal-monitor-frame {
+
+        height: calc(100dvh - 8px);
+
+        grid-template-rows: 22px minmax(0, 1fr) 23px;
+
+    }
+
+    .terminal-stage { padding-block: 5px; }
+
+    .terminal-console { max-height: 100%; }
+
+    .terminal-output {
+
+        max-height: min(53dvh, 240px);
+
+        font-size: .64rem;
+
+        line-height: 1.3;
+
+    }
+
+    .terminal-mission-area { margin-top: 4px; }
+
+    .terminal-mission-divider { display: none; }
+
+    .terminal-mission-button { min-height: 35px; padding-block: 4px; }
+
+    .terminal-assignment-card { padding-block: 12px; }
+
+    .assignment-divider { margin: 12px auto; }
+
+}
+
+@media (prefers-reduced-motion: reduce){
+
+    .terminal-screen *,
+
+    .terminal-screen *::before,
+
+    .terminal-screen *::after {
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
+
+        scroll-behavior: auto !important;
+
+    }
+
+}
+
+/* Final mobile polish: readable terminal transcript and no blank gap above the CTA. */
+
+@media (max-width: 700px){
+
+    .terminal-screen { background: linear-gradient(145deg, #07100a 0%, #040805 58%, #020403 100%); }
+
+    .terminal-stage { padding-top: 10px; }
+
+    .archive-title-line { white-space: nowrap; }
+
+    .archive-status-line, .archive-data-line, .archive-warning-line, .archive-call-line { padding-left: 0; letter-spacing: .01em; }
+
+}
+
+@media (max-width: 380px){
+
+}
+
+/* =============================================================
+
+   V11 STORY / HEARTBEAT / MOBILE FINISH
+
+   Keep the terminal typewriter as the only visible text animation.
+
+\============================================================= */
+
+.terminal-output,
+
+.terminal-line-text {
+
+    font-family: var(--tha-font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+
+}
+
+.terminal-output > div {
+
+    animation: none;
+
+}
+
+/* No CRT relay/dissolve/reboot at the change from recovery text to archive. */
+
+.terminal-output.is-dissolving { opacity: 1; filter: none; transform: none; }
+
+.terminal-screen.is-recovery-wake .terminal-glass,
+
+.terminal-screen.is-chapter-transition .terminal-glass,
+
+.terminal-screen.is-archive-wake .terminal-glass,
+
+.terminal-screen.is-recovery-wake .terminal-glass-glow,
+
+.terminal-screen.is-chapter-transition .terminal-glass::before,
+
+.terminal-screen.is-archive-wake .terminal-glass-glow,
+
+.terminal-screen.is-archive-wake .terminal-monitor-frame {
+
+    animation: none !important;
+
+}
+
+/* Center the call-to-action under the archive text, like the centered title. */
+
+.terminal-mission-button {
+
+    width: fit-content;
+
+    text-align: center;
+
+    animation: none;
+
+    border-color: rgba(164, 255, 180, .78);
+
+}
+
+@media (max-width: 700px){
+
+    .terminal-stage { padding: 13px clamp(10px, 3.2vw, 16px) 12px; }
+
+    .terminal-output {
+
+        max-height: calc(100dvh - 145px);
+
+        font-size: clamp(.68rem, 2.7vw, .78rem);
+
+        line-height: 1.43;
+
+        letter-spacing: .006em;
+
+        padding-right: 4px;
+
+    }
+
+    .terminal-output > div { min-height: 1.43em; }
+
+    .terminal-year-line {
+
+        margin-bottom: 10px;
+
+        font-size: clamp(1.18rem, 5.9vw, 1.52rem);
+
+        letter-spacing: .095em;
+
+    }
+
+    .terminal-story-line,
+
+    .terminal-final-story-line,
+
+    .terminal-recovery-line { line-height: 1.5; }
+
+    .archive-divider-line { margin: 5px 0; }
+
+    .archive-title-line {
+
+        font-size: clamp(.88rem, 4.05vw, 1.08rem);
+
+        letter-spacing: .025em;
+
+        line-height: 1.5 !important;
+
+    }
+
+    .archive-status-line,
+
+    .archive-data-line,
+
+    .archive-question-line,
+
+    .archive-warning-line,
+
+    .archive-call-line { line-height: 1.48; }
+
+    .archive-question-line { font-size: clamp(.72rem, 2.7vw, .84rem); }
+
+    .terminal-mission-button {
+
+        min-height: 45px;
+
+        padding: 9px clamp(10px, 3vw, 16px);
+
+        gap: clamp(7px, 2.2vw, 12px);
+
+        font-size: clamp(.65rem, 2.5vw, .76rem);
+
+        letter-spacing: .055em;
+
+    }
+
+}
+
+@media (max-width: 380px){
+
+    .terminal-stage { padding: 12px 9px 10px; }
+
+    .terminal-output {
+
+        max-height: calc(100dvh - 140px);
+
+        font-size: .68rem;
+
+        line-height: 1.42;
+
+    }
+
+    .archive-title-line { font-size: .81rem; letter-spacing: .012em; }
+
+    .archive-divider-line { margin: 4px 0; }
+
+    .terminal-mission-area { margin-top: 9px; }
+
+    .terminal-mission-button {
+
+        min-height: 44px;
+
+        padding-inline: 7px;
+
+        gap: 6px;
+
+        font-size: .60rem;
+
+        letter-spacing: .02em;
+
+    }
+
+}
+
+/* V17 — Document-aligned terminal: no invented CRT power-on/off effect. */
+
+.terminal-stage {
+
+    opacity: 1;
+
+    transition: none;
+
+}
+
+/* CTA is centered beneath the divider; four glow peaks track two audio lub-dub cycles. */
+
+.terminal-mission-area {
+
+    width: 100%;
+
+    margin-top: clamp(8px, 1.25vh, 14px);
+
+    text-align: center;
+
+    animation: thaMissionArrival .5s ease-out both;
+
+}
+
+.terminal-mission-button {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    max-width: 100%;
+
+    margin-inline: auto;
+
+    transform-origin: center;
+
+    will-change: transform, filter, box-shadow;
+
+    border: 1px solid rgba(177,255,190,.88);
+
+    background: linear-gradient(180deg, rgba(34,88,44,.40), rgba(4,18,7,.68));
+
+    box-shadow: inset 0 0 14px rgba(110,222,130,.15), 0 0 15px rgba(119,255,147,.23);
+
+}
+
+.terminal-mission-button.is-heartbeat-playing {
+
+    animation: thaHeartbeatDoublePulse var(--tha-heartbeat-duration, 2.15s) ease-out 1 both;
+
+}
+
+.terminal-mission-button:disabled,
+
+.terminal-mission-button:disabled:hover {
+
+    animation: none !important;
+
+    transform: none;
+
+    filter: none;
+
+    box-shadow: none;
+
+}
+
+@keyframes thaHeartbeatDoublePulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+        border-color: rgba(177,255,190,.88);
+        box-shadow: inset 0 0 14px rgba(110,222,130,.15), 0 0 14px rgba(119,255,147,.20);
+    }
+    /* First lub-dub: two peaks near the first recording's waveform peaks. */
+    3%, 5% {
+        transform: scale(1.045);
+        filter: brightness(1.36);
+        border-color: #edfff0;
+        box-shadow: inset 0 0 23px rgba(110,222,130,.23), 0 0 27px rgba(119,255,147,.58), 0 0 42px rgba(119,255,147,.24);
+    }
+    13%, 15% {
+        transform: scale(1.038);
+        filter: brightness(1.30);
+        border-color: #edfff0;
+        box-shadow: inset 0 0 21px rgba(110,222,130,.21), 0 0 25px rgba(119,255,147,.52), 0 0 38px rgba(119,255,147,.21);
+    }
+    23%, 35% {
+        transform: scale(1);
+        filter: brightness(1.02);
+        box-shadow: inset 0 0 15px rgba(110,222,130,.12), 0 0 16px rgba(119,255,147,.24);
+    }
+    /* Second lub-dub: the same two peaks repeat with the second audio clip. */
+    56.5%, 58.5% {
+        transform: scale(1.045);
+        filter: brightness(1.36);
+        border-color: #edfff0;
+        box-shadow: inset 0 0 23px rgba(110,222,130,.23), 0 0 27px rgba(119,255,147,.58), 0 0 42px rgba(119,255,147,.24);
+    }
+    68%, 70% {
+        transform: scale(1.038);
+        filter: brightness(1.30);
+        border-color: #edfff0;
+        box-shadow: inset 0 0 21px rgba(110,222,130,.21), 0 0 25px rgba(119,255,147,.52), 0 0 38px rgba(119,255,147,.21);
+    }
+    77%, 87% {
+        transform: scale(1);
+        filter: brightness(1.02);
+        box-shadow: inset 0 0 15px rgba(110,222,130,.12), 0 0 16px rgba(119,255,147,.24);
+    }
+}
+
+@keyframes thaMissionPulse {
+
+    0%, 100% {
+
+        transform: scale(1);
+
+        filter: brightness(1);
+
+        box-shadow: inset 0 0 16px rgba(110,222,130,.13), 0 0 13px rgba(119,255,147,.18), 0 0 23px rgba(119,255,147,.09);
+
+    }
+
+    48% {
+
+        transform: scale(1.022);
+
+        filter: brightness(1.22);
+
+        box-shadow: inset 0 0 22px rgba(110,222,130,.2), 0 0 21px rgba(119,255,147,.38), 0 0 36px rgba(119,255,147,.16);
+
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce){
+
+    .terminal-mission-button.is-heartbeat-complete {
+
+        animation: none !important;
+
+        transform: none;
+
+        filter: brightness(1.16);
+
+        box-shadow: inset 0 0 18px rgba(110,222,130,.2), 0 0 20px rgba(119,255,147,.38), 0 0 36px rgba(119,255,147,.2);
+
+    }
+
+}
+
+@media (max-width: 700px){
+
+    .terminal-mission-area { margin-top: 7px; }
+
+    .terminal-mission-button { margin-inline: auto; }
+
+}
+
+/* The two double-beat cycles and four button glow peaks run together; then the
+   button holds a steady ready glow until the mission is accepted. */
+
+.terminal-mission-button.is-mission-ready {
+
+    animation: none;
+
+    border-color: rgba(195,255,204,.94);
+
+    box-shadow: inset 0 0 18px rgba(110,222,130,.17), 0 0 16px rgba(119,255,147,.24), 0 0 30px rgba(119,255,147,.12);
+
+}
+
+.terminal-mission-button.is-mission-ready.is-heartbeat-playing {
+
+    animation: thaHeartbeatDoublePulse var(--tha-heartbeat-duration, 2.15s) ease-out 1 both;
+
+}
+
+.terminal-mission-button.is-mission-ready:disabled,
+
+.terminal-mission-button.is-mission-ready:disabled:hover {
+
+    animation: none !important;
+
+    transform: none;
+
+    filter: none;
+
+    box-shadow: none;
+
+}
+
+@media (prefers-reduced-motion: reduce){
+
+    .terminal-mission-button.is-mission-ready:not(.is-heartbeat-playing) {
+
+        animation: none !important;
+
+        transform: none;
+
+        filter: brightness(1.16);
+
+        box-shadow: inset 0 0 18px rgba(110,222,130,.2), 0 0 20px rgba(119,255,147,.38), 0 0 36px rgba(119,255,147,.2);
+
+    }
+
+}
+
+
+
+/* =============================================================
+   MOBILE READABILITY + BEZEL SKIP CONTROL
+   These final overrides keep the original CRT design and desktop layout.
+============================================================= */
+
+.terminal-skip-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    flex: 0 0 auto;
+    min-width: 94px;
+    min-height: 29px;
+    margin: 0 5px 0 auto;
+    padding: 5px 9px;
+    border: 1px solid rgba(143, 224, 157, .34);
+    border-radius: 2px;
+    color: #bdebc7;
+    background: rgba(4, 17, 8, .76);
+    font: 600 .60rem/1 var(--tha-font-mono, ui-monospace, Consolas, monospace);
+    letter-spacing: .07em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: border-color .18s ease, color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.terminal-skip-button:hover,
+.terminal-skip-button:focus-visible {
+    border-color: rgba(196, 255, 207, .9);
+    color: #effff2;
+    background: rgba(29, 82, 40, .82);
+    box-shadow: 0 0 13px rgba(111, 236, 137, .15);
+}
+
+.terminal-skip-button:focus-visible {
+    outline: 2px solid #d4ffdd;
+    outline-offset: 2px;
+}
+
+.terminal-skip-arrow { color: #8fc99a; font-size: .85rem; }
+
+@media (max-width: 700px){
+    .terminal-monitor-frame {
+        width: calc(100vw - 10px);
+        height: calc(100dvh - 10px);
+        min-height: 0;
+        grid-template-rows: 37px minmax(0, 1fr) 29px;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .terminal-monitor-bezel-top {
+        gap: 6px;
+        padding-inline: 10px;
+    }
+
+    .terminal-hardware-ports { margin-left: 10px; gap: 3px; }
+    .terminal-power-cluster { gap: 4px; margin: 0 4px 0 0; }
+
+    .terminal-skip-button {
+        min-width: 82px;
+        min-height: 31px;
+        margin-right: 4px;
+        padding-inline: 8px;
+        font-size: .61rem;
+        letter-spacing: .045em;
+    }
+
+    .terminal-stage {
+        padding: clamp(12px, 3.8vw, 20px) clamp(12px, 4vw, 22px) 10px;
+    }
+
+    .terminal-console { flex: 0 1 auto; height: auto; max-height: 100%; }
+
+    .terminal-output {
+        max-height: calc(100dvh - 180px);
+        padding: 0 6px 4px 0;
+        font-size: clamp(.82rem, 3.5vw, .96rem);
+        line-height: 1.58;
+        letter-spacing: 0;
+    }
+
+    .terminal-output > div { min-height: 1.58em; }
+    .terminal-years-line { font-size: clamp(1.25rem, 5.6vw, 1.55rem); }
+
+    .terminal-story-line,
+    .terminal-final-story-line,
+    .terminal-recovery-line { line-height: 1.58; }
+
+    .archive-title-line {
+        font-size: clamp(1rem, 4.7vw, 1.22rem);
+        line-height: 1.4 !important;
+        letter-spacing: .025em;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .archive-status-line,
+    .archive-data-line,
+    .archive-question-line,
+    .archive-warning-line,
+    .archive-call-line {
+        line-height: 1.55;
+        overflow-wrap: break-word;
+    }
+
+    .archive-question-line { font-size: clamp(.84rem, 3.2vw, .96rem); }
+    .archive-divider-line { margin-block: 5px; }
+
+    .terminal-mission-area { margin-top: 9px; }
+
+    .terminal-mission-button {
+        min-height: 48px;
+        padding: 10px 13px;
+        gap: clamp(7px, 2.2vw, 12px);
+        font-size: clamp(.72rem, 2.8vw, .82rem);
+        letter-spacing: .045em;
+    }
+}
+
+@media (max-width: 380px){
+    .terminal-monitor-frame {
+        width: calc(100vw - 8px);
+        height: calc(100dvh - 8px);
+        grid-template-rows: 36px minmax(0, 1fr) 28px;
+        padding: 4px;
+    }
+
+    .terminal-hardware-ports { display: none; }
+    .terminal-skip-button { min-width: 80px; margin-right: 4px; font-size: .60rem; }
+    .terminal-stage { padding: 12px 10px 9px; }
+    .terminal-output { max-height: calc(100dvh - 170px); font-size: .82rem; line-height: 1.55; }
+    .archive-title-line { font-size: .98rem; }
+    .terminal-mission-area { margin-top: 8px; }
+    .terminal-mission-button { font-size: .72rem; padding-inline: 9px; }
+}
+
+
+/* ============================================================
+   TERMINAL — SKIP INTRO BUTTON / FIXED LEFT BEZEL CORNER
+   - Anchors the button to the left side of the CRT top bezel.
+   - Keeps the button vertically centered within the bezel strip.
+   - Leaves the hardware ports and power controls on the right.
+   ============================================================ */
+.terminal-monitor-bezel-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+    overflow: visible;
+}
+
+.terminal-skip-button {
+    position: absolute;
+    top: 30%;
+    left: 8px;
+    right: auto;
+    z-index: 20;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 108px;
+    min-width: 108px;
+    min-height: 30px;
+    margin: 0;
+    padding: 5px 8px;
+
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+.terminal-skip-button:hover,
+.terminal-skip-button:focus-visible {
+    transform: translateY(-50%);
+}
+
+/* Reserve the right side for the CRT's physical controls. */
+.terminal-hardware-ports {
+    margin-left: auto;
+}
+
+.terminal-power-cluster {
+    margin-left: 10px;
+}
+
+/* Phone screens: move the button closer to the actual left bezel corner. */
+@media (max-width: 700px){
+    .terminal-monitor-bezel-top {
+        padding-left: 4px;
+        padding-right: 6px;
+        
+
+    }
+
+    .terminal-skip-button {
+        left: 5px;
+        width: 104px;
+        min-width: 104px;
+        min-height: 29px;
+        padding-inline: 6px;
+        font-size: .65rem;
+        letter-spacing: .025em;
+        top: 40%;
+    }
+
+    .terminal-hardware-ports {
+        margin-left: auto;
+    }
+
+    .terminal-power-cluster {
+        margin-left: 7px;
+        margin-right: 5px;
+    }
+}
+
+/* Extra-small phones. */
+@media (max-width: 380px){
+    .terminal-skip-button {
+        left: 4px;
+        width: 98px;
+        min-width: 98px;
+        min-height: 28px;
+        font-size: .61rem;
+    }
+}
+
+
+/* Better touch targets and reading sizes while preserving each chapter palette. */
+@media (max-width: 700px){
+.terminal-output { font-size: .88rem; line-height: 1.72; }
+.terminal-output > div,
+.terminal-line-text { font-size: inherit; line-height: inherit; }
+.terminal-mission-button { min-height: 50px; font-size: .78rem; }
+}

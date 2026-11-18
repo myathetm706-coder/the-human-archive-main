@@ -1,0 +1,2134 @@
+/* MARS CHAPTER — deliberately distinct from the lunar archive. Sharp corners throughout. */
+
+.tha-mars-screen {--mars-ember:#e47b50;--mars-rust:#9d452b;--mars-sand:#f0b18c;--mars-ink:#160c09;min-height:100svh;padding:clamp(18px,4vw,54px);color:#f8e9df;background:radial-gradient(ellipse at 48% 10%,#542619 0%,#25130f 43%,#100a08 100%);font-family:"Fira Code",monospace;position:relative;overflow:hidden;}
+
+.tha-mars-screen:before {content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(255,190,150,.12) 5px),radial-gradient(ellipse at center,transparent 35%,#080403 100%);}
+
+.mars-header {position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid #a85a3d;color:#e7a17b;font-size:.7rem;letter-spacing:.14em;}
+
+
+
+.mars-record-content {position:relative;max-width:1080px;margin:clamp(28px,5vw,64px) auto 24px;}
+
+.mars-overline {margin:0 0 12px;color:#e58a5d;font-size:.68rem;letter-spacing:.17em;text-transform:uppercase;}
+
+.mars-record-top h1 {margin:0;color:#ffe1ce;font-family:Orbitron,sans-serif;font-size:clamp(2.1rem,6vw,4.6rem);letter-spacing:.05em;}
+
+
+
+.mars-record-top {padding:0 0 20px;border-bottom:1px solid #75402d;}
+
+.mars-record-subtitle {color:#d59c7e;font-size:.75rem;letter-spacing:.12em;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-source {display:inline-block;margin-top:12px;font-size:.72rem;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-primary,
+.mars-secondary {display:inline-flex;justify-content:center;align-items:center;min-height:50px;margin:12px 10px 0 0;padding:13px 20px;border:1px solid #e58a5d;background:#a44d2e;color:#fff2e9;font:inherit;font-size:.72rem;letter-spacing:.09em;cursor:pointer;}
+
+.mars-secondary {background:transparent;color:#e6b69c;border-color:#8e523b;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:700px){
+.tha-mars-screen {padding:14px;}
+.mars-header {align-items:flex-start;flex-direction:column;}
+
+
+
+
+
+
+
+
+.mars-primary,
+.mars-secondary {width:100%;margin:10px 0 0;}
+
+}
+
+@media (max-width:380px){
+.mars-record-top h1 {font-size:1.8rem;}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes marsDNAIn{to{opacity:1;transform:translateY(0)}}
+
+
+
+
+
+
+
+
+
+
+
+/* MARS EXPEDITION REDESIGN — map route and each record have their own layout. */
+
+body:has(.tha-mars-screen) .tha-global-identity-badge {
+  top:14px;right:clamp(12px,3vw,34px);border-color:rgba(239,139,99,.72);
+  color:#ffe0cf;background:rgba(43,15,9,.96);box-shadow:0 8px 28px rgba(0,0,0,.45),0 0 22px rgba(225,94,57,.12);
+}
+
+body:has(.tha-mars-screen) .tha-global-identity-badge .tha-global-badge-icon {border-color:rgba(239,139,99,.74);}
+
+body:has(.tha-mars-screen) .tha-global-identity-badge .tha-global-badge-copy small {color:#dc8565;}
+
+.tha-mars-screen {padding:clamp(16px,3.5vw,48px);padding-top:clamp(20px,3vh,36px);}
+
+.tha-mars-screen:before {z-index:0;opacity:.19;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,185,145,.07) 6px),radial-gradient(ellipse at 50% 40%,transparent 42%,#070302 100%);}
+
+.mars-header {z-index:1;padding:64px 250px 16px 0;gap:18px;border-color:rgba(207,112,74,.5);}
+
+
+
+
+
+
+
+
+
+.mars-footer {position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:56px calc(clamp(16px,3.5vw,48px) * -1) -48px;padding:18px clamp(16px,3.5vw,48px);border-top:1px solid rgba(190,104,68,.35);background:rgba(10,5,4,.64);color:#a87d68;font-size:.62rem;letter-spacing:.12em;}
+
+.mars-footer .mars-secondary {width:auto;margin:0;}
+
+.mars-record-top {position:relative;max-width:1120px;margin:0 auto;padding:62px 0 22px;border-color:rgba(207,112,74,.5);}
+
+
+
+.mars-record-top .mars-eyebrow {margin:7px 0 10px;color:#eb946b;font-size:.74rem;letter-spacing:.18em;}
+
+.mars-record-top h1 {font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.1;}
+
+.mars-record-subtitle {max-width:760px;font-size:clamp(1rem,2.2vw,1.35rem);line-height:1.5;color:#e5b59a;}
+
+.mars-location {margin:14px 0 0;color:#bb876f;font-size:.65rem;letter-spacing:.16em;}
+
+.mars-record-content {max-width:1120px;margin:28px auto 60px;}
+
+.mars-progress-line {margin:0 0 20px;color:#c58d72;font-size:.64rem;letter-spacing:.15em;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-trace-instruction {margin:0 0 15px;color:#d5a78f;font-size:.78rem;line-height:1.6;}
+
+
+
+
+
+
+
+
+
+.mars-trace-trigger {width:100%;min-height:48px;padding:12px 13px;border:1px solid rgba(207,126,91,.5);background:#32190f;color:#f2c2a7;text-align:left;font:inherit;font-size:.76rem;line-height:1.6;cursor:pointer;}
+
+.mars-trace-trigger:disabled {cursor:default;}
+
+
+
+.mars-trace-copy {grid-column:2;margin:0;padding:10px 13px 3px;color:#ffe1ce;font-size:.92rem;line-height:1.7;animation:marsDNAIn .4s ease both;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-primary {border-color:#f19a72;background:#a84d2f;color:#fff0e8;min-height:56px;font-weight:700;}
+
+.mars-secondary {border-color:#a55e40;color:#efc2a7;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-open-completion {display:flex;margin:24px auto;}
+
+@media (max-width:700px){
+.tha-mars-screen {padding:14px;padding-top:14px;}
+.mars-header {display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:76px 0 14px;}
+
+
+body:has(.tha-mars-screen) .tha-global-identity-badge {top:10px;right:10px;max-width:210px;padding:6px 8px;}
+.mars-footer {margin:40px -14px -14px;padding:14px;flex-wrap:wrap;font-size:.52rem;}
+.mars-footer .mars-secondary {width:auto;min-height:42px;padding:10px 12px;font-size:.57rem;}
+.mars-record-top {padding-top:76px;}
+.mars-record-top h1 {font-size:clamp(2.2rem,11vw,3.6rem);}
+.mars-record-subtitle {font-size:.92rem;}
+
+
+
+
+
+.mars-trace-trigger {font-size:.7rem;min-height:54px;padding:11px 10px;}
+.mars-trace-copy {font-size:.88rem;}
+
+
+
+
+
+
+
+
+
+
+
+.mars-primary,
+.mars-secondary {width:100%;min-height:54px;margin:9px 0 0;font-size:.7rem;}
+
+
+}
+
+@media (max-width:380px){
+.mars-trace-trigger {font-size:.66rem;}
+}
+
+/* MARS MAP HEADER — same fixed archive bar as the Moon, with the Mars rust palette. */
+
+
+
+.tha-mars-screen>.mars-header {position:fixed;inset:0 0 auto;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:68px;padding:max(8px,env(safe-area-inset-top)) clamp(11px,3vw,32px) 8px;border-bottom:1px solid rgba(224,137,101,.24);background:rgba(19,8,5,.95);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 10px 30px rgba(0,0,0,.24);}
+
+.tha-mars-screen>.mars-header .tha-moon-brand-mark {border-color:rgba(239,139,99,.62);color:#ef9a73;box-shadow:inset 0 0 16px rgba(239,139,99,.08),0 0 18px rgba(239,139,99,.05);}
+
+.tha-mars-screen>.mars-header .tha-moon-brand-copy strong {color:#ffe0cf;}
+
+.tha-mars-screen>.mars-header .tha-moon-brand-copy small {color:#c18469;}
+
+.tha-mars-screen>.mars-header .tha-moon-live {color:#d69a7c;}
+
+.tha-mars-screen>.mars-header .tha-moon-live i {background:#f0a078;box-shadow:0 0 10px #f0a078;}
+
+.tha-mars-screen>.mars-header .tha-global-identity-badge.is-in-menu-header {max-width:245px;padding:5px 8px;gap:7px;border-color:rgba(239,139,99,.65);background:rgba(43,15,9,.96);color:#ffe0cf;}
+
+.tha-mars-screen>.mars-header .tha-global-identity-badge .tha-global-badge-icon {border-color:rgba(239,139,99,.74);}
+
+.tha-mars-screen>.mars-header .tha-global-identity-badge .tha-global-badge-copy small {color:#dc8565;}
+
+/* Opportunity is a panoramic record: keep the image edge-to-edge in its content column. */
+
+
+
+
+
+
+
+/* Opportunity's chronological sequence: vertical mission line, one activated stop at a time. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Deliberate final archive card: recovered route, count, and next signal. */
+
+@media (max-width:700px){
+
+.tha-mars-screen>.mars-header {display:flex;align-items:center;flex-direction:row;gap:6px;min-height:60px;padding:max(6px,env(safe-area-inset-top)) 9px 6px;}
+.tha-mars-screen>.mars-header .tha-moon-brand {gap:6px;}
+.tha-mars-screen>.mars-header .tha-moon-brand-mark {flex-basis:30px;width:30px;height:30px;font-size:.58rem;}
+.tha-mars-screen>.mars-header .tha-moon-brand-copy {gap:3px;}
+.tha-mars-screen>.mars-header .tha-moon-brand-copy strong {font-size:.49rem;letter-spacing:.045em;}
+.tha-mars-screen>.mars-header .tha-moon-brand-copy small {font-size:.42rem;letter-spacing:.05em;}
+.tha-mars-screen>.mars-header .tha-moon-header-right {gap:5px;}
+.tha-mars-screen>.mars-header .tha-moon-live {display:none;}
+.tha-mars-screen>.mars-header .tha-global-identity-badge.is-in-menu-header {max-width:156px;gap:5px;padding:4px 5px;}
+.tha-mars-screen>.mars-header .tha-global-identity-badge .tha-global-badge-icon {flex-basis:21px;width:21px;height:21px;}
+.tha-mars-screen>.mars-header .tha-global-identity-badge .tha-global-badge-icon svg {width:18px;height:18px;}
+.tha-mars-screen>.mars-header .tha-global-identity-badge .tha-global-badge-copy {font-size:.37rem;letter-spacing:.045em;}
+
+
+}
+
+.tha-mars-screen.is-signal-blackout {background:#030202;transition:background 1.1s ease;}
+
+.tha-mars-screen.is-signal-blackout .mars-record-top,
+.tha-mars-screen.is-signal-blackout .mars-footer {opacity:.12;transition:opacity 1s ease;}
+
+
+
+
+
+
+
+/* FINAL STORY + HEADER POLISH */
+
+.tha-mars-screen {padding-top:88px;}
+
+.tha-mars-screen>.mars-header {position:fixed;inset:0 0 auto;z-index:80;}
+
+.mars-record-top {padding-top:12px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:700px){
+.tha-mars-screen {padding-top:76px;}
+.mars-record-top {padding-top:10px;}
+
+
+}
+
+/* Mars completion: restrained archive summary, not oversized title artwork. */
+
+
+
+/* Flight 72: vibrate the complete flight-control card during rotor whirr;
+   then tremble the complete archive screen only while the damage sound plays. */
+
+
+
+@keyframes marsWholeScreenTremor{0%,100%{transform:translate3d(0,0,0)}20%{transform:translate3d(-3px,1px,0)}40%{transform:translate3d(3px,-1px,0)}60%{transform:translate3d(-2px,-1px,0)}80%{transform:translate3d(2px,1px,0)}}
+
+.tha-mars-screen.is-damage-tremor {animation:marsWholeScreenTremor .13s linear infinite;}
+
+
+
+
+
+/* OPPORTUNITY ENDING — five seconds of true silence, then reveal the footer last. */
+
+.tha-mars-screen.is-signal-blackout .mars-record-top {opacity:.12;transition:opacity 1s ease;}
+
+.tha-mars-screen.is-signal-blackout .mars-footer {
+  opacity:0;visibility:hidden;transform:translateY(12px);pointer-events:none;
+  transition:opacity .8s ease,transform .8s ease,visibility 0s linear .8s;
+}
+
+.tha-mars-screen.is-signal-blackout .mars-footer.is-restored {
+  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;
+  transition-delay:0s;
+}
+
+
+
+
+
+.mars-footer.is-restored {color:#d8aa93;border-top-color:rgba(228,123,80,.55);}
+
+.mars-footer.is-restored .mars-secondary {font-size:.78rem;min-height:48px;padding:12px 17px;}
+
+/* MARS COMPLETION — new expedition-debrief layout, distinct from the old centered card. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (prefers-reduced-motion:reduce){
+
+.tha-mars-screen.is-signal-blackout .mars-footer {transition:none;}
+}
+
+/* MARS COMPLETION LAPTOP FIT: keep every action label on one line.
+   Mobile keeps its established stacked layout and sizing. */
+
+
+
+
+
+/* Mobile Mars learning tabs mirror the fixed Moon / Other Traces learning bar. */
+
+@media (max-width:700px){
+.tha-mars-screen {overflow:visible;padding-top:60px;}
+.mars-header {display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:60px;padding:max(6px,env(safe-area-inset-top)) 9px 6px;}
+.mars-header .tha-moon-live {display:none;}
+
+
+}
+
+
+/* The opening state is an abstract scan only; NASA photographs arrive after
+   every clue has been recovered. This avoids presenting a mission photo as
+   an unidentified silhouette. */
+
+
+
+.mars-silhouette-stage {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  margin: 18px 0 10px;
+  overflow: hidden;
+  border: 1px solid rgba(226, 145, 108, .22);
+  background:
+    radial-gradient(ellipse at 50% 75%, rgba(173, 86, 53, .23), transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(234, 165, 130, .045) 25px),
+    #0c0705;
+}
+.mars-silhouette-stage svg { display: block; width: min(100%, 580px); max-height: 220px; filter: drop-shadow(0 0 18px rgba(240, 150, 108, .18)); }
+.mars-scan-caption {
+  display: block;
+  color: #c9977f;
+  font-size: .68rem;
+  letter-spacing: .055em;
+  line-height: 1.6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Audio labels make clear which sounds belong to the project, not NASA. */
+
+
+/* Opportunity: a quiet, full-black signal-loss frame is still for the whole
+   five-second interval. No remaining timeline or artwork shows behind it. */
+.tha-mars-screen.is-signal-blackout { background: #030202 !important; }
+.tha-mars-screen.is-signal-blackout::before,
+.tha-mars-screen.is-signal-blackout::after { display: none !important; animation: none !important; }
+.tha-mars-screen.is-signal-blackout .mars-header,
+.tha-mars-screen.is-signal-blackout .mars-record-top,
+.tha-mars-screen.is-signal-blackout .mars-footer {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity .6s ease;
+}
+
+
+
+
+
+/* Ingenuity: five planned-flight markers are ringed; passed flights fill in. */
+
+
+
+
+
+
+
+
+
+/* Better touch targets and reading sizes while preserving each chapter palette. */
+@media (max-width: 700px){
+
+.tha-mars-screen .mars-trace-trigger { min-height: 54px; font-size: .83rem; }
+.tha-mars-screen .mars-trace-copy { font-size: .94rem; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+@media (max-width: 380px){
+.mars-silhouette-stage { min-height: 145px; }
+.mars-silhouette-stage svg { max-height: 170px; }
+
+}
+/* Spirit's requested mission-life comparison. */
+
+
+/* Clear, friendly progression feedback instead of a silent disabled Next button. */
+
+
+/* DISCOVER is the short, approachable layer; detailed facts stay in EXPLORE. */
+
+
+
+
+/* Sojourner's verified NASA image gets a restrained archive-style camera drift.
+   It is a presentation effect, not a claim that this is moving NASA footage. */
+
+
+
+
+
+
+/* Opportunity's single official source link lives inside its complete NASA DATA block. */
+
+/* Spirit mobility status: placed directly after the mission-life comparison. */
+
+
+
+/* Opportunity: the screen dims during the NASA ambience crescendo, then cuts to black. */
+.tha-mars-screen.is-storm-building {
+  animation: opportunityStormDarken 2.2s linear forwards;
+}
+@keyframes opportunityStormDarken {
+  0% { filter: brightness(1) saturate(1); }
+  100% { filter: brightness(.30) saturate(.48); }
+}
+
+
+/* OPPORTUNITY — instant blackout exactly when the storm ambience is cut. */
+.tha-mars-screen.is-signal-blackout {
+  background: #030202 !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+.tha-mars-screen.is-signal-blackout .mars-header,
+.tha-mars-screen.is-signal-blackout .mars-record-top,
+.tha-mars-screen.is-signal-blackout .mars-footer {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+/* Opportunity: deliberate cinematic fade after the storm ambience crescendo.
+   Audio remains present through the fade and is cut at the black-frame boundary. */
+.tha-mars-screen.is-signal-fading::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: block !important;
+  pointer-events: none;
+  background: #030202;
+  opacity: 0;
+  animation: opportunityCinematicFade 1.3s cubic-bezier(.48, 0, .22, 1) forwards;
+}
+@keyframes opportunityCinematicFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+/* ============================================================
+   THE HUMAN ARCHIVE — REDESIGN PASS / MARS + HIDDEN RECORDS
+   Added after the original chapter sheets so the existing story
+   mechanics remain intact while the visual systems are replaced.
+============================================================ */
+/* Shared archive header: keep the Moon/Other Traces header language. */
+.tha-mars-screen .mars-header {
+  min-height: 68px; padding: 10px 0 16px; border-bottom: 1px solid rgba(220,143,105,.38);
+}
+.tha-mars-screen .mars-header .tha-moon-brand { min-width:0; }
+.tha-mars-screen .mars-header .tha-moon-live { white-space:normal; }
+.tha-mars-screen .mars-header .tha-moon-brand,
+.tha-mars-screen .mars-header .tha-moon-header-right { display: flex; align-items: center; min-width: 0; }
+.tha-mars-screen .mars-header .tha-moon-brand { flex: 1 1 auto; gap: 10px; }
+.tha-mars-screen .mars-header .tha-moon-brand-mark {
+  flex: 0 0 36px; width: 36px; height: 36px;
+  border: 1px solid rgba(228, 123, 80, .66) !important;
+  color: #f0a17b !important;
+  box-shadow: inset 0 0 16px rgba(228,123,80,.08), 0 0 18px rgba(228,123,80,.07);
+}
+.tha-mars-screen .mars-header .tha-moon-brand-copy { display: grid; gap: 4px; min-width: 0; }
+.tha-mars-screen .mars-header .tha-moon-brand-copy strong { color: #f7e3d8 !important; font-size: .7rem; letter-spacing: .09em; white-space: nowrap; }
+.tha-mars-screen .mars-header .tha-moon-brand-copy small { color: #d08e6f !important; font-size: .55rem; letter-spacing: .1em; white-space: nowrap; }
+.tha-mars-screen .mars-header .tha-moon-header-right { flex: 0 0 auto; justify-content: flex-end; gap: clamp(8px, 1.6vw, 18px); }
+.tha-mars-screen .mars-header .tha-moon-live { color: #eaa17d !important; font-size: .58rem; white-space: nowrap; }
+.tha-mars-screen .mars-header .tha-moon-live i { background: #f19a70 !important; box-shadow: 0 0 10px #f19a70 !important; }
+.tha-mars-screen .mars-header .tha-moon-identity-slot { display:flex; align-items:center; justify-content:flex-end; min-width:0; }
+/* Header + content layout at tablet and phone widths. */
+@media (max-width:760px){
+.tha-mars-screen .mars-header .tha-moon-brand { gap:6px; }
+.tha-mars-screen .mars-header .tha-moon-brand-mark { flex-basis:29px; width:29px; height:30px; font-size:.54rem; }
+.tha-mars-screen .mars-header .tha-moon-brand-copy { gap:3px; }
+.tha-mars-screen .mars-header .tha-moon-brand-copy strong { font-size:clamp(.49rem,2vw,.6rem); letter-spacing:.045em; }
+.tha-mars-screen .mars-header .tha-moon-brand-copy small { max-width:calc(100vw - 230px); font-size:.42rem; letter-spacing:.05em; overflow:hidden; text-overflow:ellipsis; }
+.tha-mars-screen .mars-header .tha-moon-live { display:none !important; }
+}
+@media (max-width:390px){
+.tha-mars-screen .mars-header .tha-moon-brand-copy small { max-width:calc(100vw - 205px); }
+}
+
+/* MARS MAP — centered planetary survey, no side expedition list. */
+
+/* MARS RECORDS — a field dossier with a game-like evidence rail. */
+.tha-mars-screen.is-record { padding:clamp(14px,3vw,40px) clamp(14px,4vw,56px) 0; }
+.mars-record-top { max-width:1180px; margin:clamp(20px,3vw,36px) auto 0; padding:16px 0 20px; border-bottom:1px solid rgba(221,139,99,.24); }
+
+.mars-record-top > .mars-overline { color:#f0a17b; }
+.mars-record-top .mars-eyebrow { margin:8px 0; color:#d68c68; }
+.mars-record-top h1 { font-size:clamp(2.5rem,7vw,6rem); letter-spacing:.015em; }
+.mars-record-subtitle { max-width:760px; color:#e5b69b; }
+.mars-location { color:#c58b70; }
+.mars-record-content { max-width:1180px; margin:24px auto 34px; }
+.mars-progress-line { display:inline-flex; margin:0 0 18px; padding:8px 11px; border:1px solid rgba(235,151,108,.28); color:#e9b08f; background:rgba(34,15,9,.55); font-size:.58rem; letter-spacing:.14em; }
+.mars-mystery-scan { display:grid; grid-template-columns:minmax(0,.8fr) minmax(280px,1.2fr); align-items:center; gap:clamp(14px,3vw,36px); margin:12px 0 28px; padding:clamp(18px,3.2vw,38px); border:1px solid rgba(236,153,111,.35); background:linear-gradient(120deg,rgba(62,28,17,.9),rgba(21,12,9,.9)); }
+.mars-mystery-scan > .mars-overline,
+.mars-mystery-scan h2,
+.mars-mystery-copy { grid-column:1; }
+.mars-mystery-scan h2 { margin:0; color:#ffdfca; font:700 clamp(1.5rem,3.4vw,2.7rem) var(--tha-font-display); }
+.mars-mystery-copy { margin:0; color:#d9b29c; font-size:.86rem; line-height:1.8; }
+.mars-silhouette-stage { grid-column:2; grid-row:1 / span 3; min-width:0; padding:12px; border:1px solid rgba(232,153,112,.2); background:radial-gradient(ellipse,rgba(197,91,54,.18),rgba(12,8,7,.65)); }
+
+
+.mars-trace-instruction { color:#d2a58e; }
+
+
+
+
+
+.mars-trace-trigger { min-height:48px; border:1px solid rgba(218,143,104,.45); color:#f5c7ad; background:rgba(30,14,9,.9); font-size:.7rem; letter-spacing:.06em; }
+
+.mars-trace-copy { grid-column:2; margin:0; color:#ffe0cd; font-size:.84rem; line-height:1.75; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-primary { min-height:52px; padding:14px 20px; color:#271209; background:#f0b08d; border:1px solid #ffd7bd; font-weight:700; letter-spacing:.07em; }
+.mars-secondary { min-height:48px; padding:12px 16px; border:1px solid rgba(227,151,110,.45); color:#edb28f; background:rgba(37,17,10,.85); }
+.mars-footer { margin-top:34px; }
+/* Tablet and phone layouts: reflow, never shrink desktop columns. */
+@media (max-width:760px){
+
+.tha-mars-screen.is-record { padding:12px 12px 0; }
+.mars-record-top { padding-top:12px; }
+.mars-record-top h1 { font-size:clamp(2.1rem,10vw,3.7rem); }
+.mars-mystery-scan { grid-template-columns:1fr; }
+.mars-mystery-scan > .mars-overline,
+.mars-mystery-scan h2,
+.mars-mystery-copy,
+.mars-silhouette-stage { grid-column:1; grid-row:auto; }
+
+
+
+
+.mars-footer { flex-direction:column; align-items:flex-start; gap:12px; margin-left:-12px!important; margin-right:-12px!important; padding:16px 12px; line-height:1.6; }
+}
+/* ========================================================================
+   FINAL RESPONSIVE REBUILD — MARS FIELD EXPERIENCE + HIDDEN CASE GAME
+   This pass replaces the earlier Mars/Hidden presentation rules above.
+   Shared archive header geometry is retained; each chapter keeps its own
+   palette and interaction identity.
+   ======================================================================== */
+/* MARS: fixed shared header, with the Mars ember/rust colour identity. */
+.tha-mars-screen {
+  box-sizing: border-box;
+  min-height: 100dvh;
+  padding: 68px 0 34px !important;
+  overflow: clip;
+  background:
+    radial-gradient(ellipse at 52% 18%, rgba(155, 65, 36, .22), transparent 46%),
+    linear-gradient(155deg, #25130e 0%, #140b08 58%, #090706 100%) !important;
+}
+.tha-mars-screen *,
+.tha-mars-screen *::before,
+.tha-mars-screen *::after { box-sizing: border-box; }
+.tha-mars-screen .mars-header {
+  position: fixed !important;
+  inset: 0 0 auto !important;
+  z-index: 100 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  width: 100%;
+  min-height: 68px !important;
+  padding: max(8px, env(safe-area-inset-top)) clamp(11px, 3vw, 32px) 8px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(228, 123, 80, .35) !important;
+  background: rgba(16, 8, 5, .95) !important;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.22);
+  letter-spacing: normal;
+}
+.tha-mars-screen .mars-header .tha-global-identity-badge.is-in-menu-header {
+  max-width: 245px; padding: 5px 8px; gap: 7px;
+  border-color: rgba(228,123,80,.62) !important;
+  background: rgba(31,13,8,.96) !important;
+}
+.tha-mars-screen .mars-header .tha-global-identity-badge .tha-global-badge-copy small { color: #e5a07e !important; }
+/* Map introduction and counter sit cleanly beneath the fixed header. */
+
+
+/* Completely rebuilt Sojourner / Spirit trace-game screen. */
+.tha-mars-screen.is-record { padding: 68px 0 34px !important; }
+.mars-record-top {
+  width: min(1160px, calc(100% - 48px)); max-width: none !important;
+  margin: 30px auto 0 !important; padding: 0 0 20px !important;
+  border-bottom: 1px solid rgba(221,139,99,.24) !important;
+}
+
+.mars-record-top > .mars-overline { margin: 0 0 8px; color: #e99a74 !important; font-size: .65rem; letter-spacing: .17em; }
+.mars-record-top .mars-eyebrow { margin: 0 0 8px; color: #d68c68 !important; font-size: .61rem; letter-spacing: .16em; }
+.mars-record-top h1 { margin: 0; color: #ffe1ce !important; font-size: clamp(2.35rem, 6.5vw, 5.1rem) !important; line-height: 1.02; letter-spacing: .015em; }
+.mars-record-subtitle { max-width: 760px; margin: 9px 0 0; color: #e5b69b !important; font-size: clamp(.82rem, 1.3vw, 1rem); line-height: 1.7; }
+.mars-location { margin: 8px 0 0; color: #c58b70 !important; font-size: .62rem; letter-spacing: .13em; }
+.mars-record-content { width: min(1160px, calc(100% - 48px)); max-width: none !important; margin: 18px auto 30px !important; }
+.mars-progress-line { display: inline-flex; margin: 0 0 14px !important; padding: 0 !important; border: 0 !important; background: transparent !important; color: #d99773 !important; font-size: .58rem; letter-spacing: .13em; }
+.mars-trace-game {
+  position: relative; margin: 12px 0 25px; padding: clamp(18px, 3.5vw, 36px);
+  border: 1px solid rgba(224,137,96,.28); background:
+    radial-gradient(ellipse at 10% 0%, rgba(153,64,35,.22), transparent 48%),
+    linear-gradient(145deg, rgba(41,19,12,.96), rgba(15,9,7,.98));
+  box-shadow: 0 24px 70px rgba(0,0,0,.3);
+}
+.mars-trace-game-intro { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 8px 20px; }
+.mars-trace-game-intro > .mars-overline,
+.mars-trace-game-intro h2,
+.mars-trace-instruction { grid-column: 1; }
+.mars-trace-game-intro > .mars-overline { margin: 0 0 6px; color: #e89b75; font-size: .62rem; letter-spacing: .17em; }
+.mars-trace-game-intro h2 { margin: 0; color: #ffe1ce; font: 800 clamp(1.45rem, 3.2vw, 2.35rem) Orbitron, sans-serif; letter-spacing: .045em; }
+.mars-trace-instruction { max-width: 64ch; margin: 8px 0 0; color: #d4af9a; font-size: .8rem; line-height: 1.8; }
+.mars-trace-game-status { grid-column: 2; grid-row: 1 / span 2; display: grid; justify-items: end; gap: 4px; align-self: center; }
+.mars-trace-count { color: #ffe0cd; font: 700 clamp(1.2rem, 2.3vw, 1.7rem) Orbitron, sans-serif; white-space: nowrap; }
+.mars-trace-game-status span { color: #c58b70; font-size: .53rem; letter-spacing: .14em; }
+.mars-trace-progress-track { grid-column: 1 / -1; height: 4px; margin: 17px 0 2px; overflow: hidden; background: rgba(117,61,39,.5); }
+.mars-trace-progress-fill { display: block; width: 0; height: 100%; background: linear-gradient(90deg,#a64d2e,#f1a078); box-shadow: 0 0 14px rgba(240,145,101,.4); transition: width .4s ease; }
+.mars-trace-board { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 20px; }
+.mars-trace-node { position: relative; display: grid; grid-template-columns: 52px minmax(0,1fr); gap: 10px 13px; min-width: 0; min-height: 128px; padding: 15px; border: 1px solid rgba(202,117,79,.28); background: rgba(22,11,7,.78); transition: border-color .25s, background .25s, opacity .25s; }
+.mars-trace-node.is-sealed { opacity: .5; }
+.mars-trace-node.is-active { border-color: rgba(246,166,124,.78); background: linear-gradient(135deg,rgba(91,39,22,.82),rgba(25,12,8,.95)); box-shadow: 0 0 24px rgba(194,83,43,.11); }
+.mars-trace-node.is-recovered { border-color: rgba(202,145,112,.56); background: linear-gradient(135deg,rgba(68,34,22,.68),rgba(20,11,8,.92)); }
+.mars-trace-node-meta { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.mars-trace-index { color: #e4a07d; font-size: .58rem; letter-spacing: .15em; }
+.mars-trace-state { color: #ad8069; font-size: .5rem; letter-spacing: .12em; }
+.mars-trace-node.is-active .mars-trace-state { color: #ffbd97; }
+.mars-trace-node.is-recovered .mars-trace-state { color: #d9c2a8; }
+.mars-trace-node-glyph { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(225,139,98,.58); border-radius: 50%; color: #f3b28d; font: 700 .85rem Orbitron, sans-serif; background: rgba(107,46,26,.22); }
+.mars-trace-node.is-active .mars-trace-node-glyph { color: #2a1209; background: #f0b18d; box-shadow: 0 0 0 5px rgba(228,123,80,.12), 0 0 25px rgba(239,144,97,.34); }
+.mars-trace-trigger { min-width: 0; min-height: 42px; align-self: center; padding: 9px 10px; border: 1px solid rgba(226,140,99,.58) !important; border-radius: 2px; color: #f4c1a3 !important; background: rgba(79,34,20,.62) !important; font: inherit; font-size: .58rem; letter-spacing: .07em; cursor: pointer; }
+.mars-trace-trigger:disabled { cursor: default; opacity: .74; }
+.mars-trace-node.is-active .mars-trace-trigger { color: #fff0e6 !important; border-color: #e99369 !important; background: #893d24 !important; }
+.mars-trace-copy { grid-column: 1 / -1; margin: 2px 0 0; color: #ffe3d2; font-size: .83rem; line-height: 1.8; }
+
+
+
+
+/* One-beat transition between the recovered traces and the full record. */
+.tha-mars-screen.is-trace-transition { display: grid; align-content: start; }
+.mars-trace-transition-main { display: grid; justify-items: center; align-content: center; min-height: min(68vh, 700px); width: min(900px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0; text-align: center; }
+.mars-trace-transition-ring { display: grid; place-items: center; width: 86px; height: 86px; margin: 0 0 26px; border: 1px solid rgba(245,170,131,.8); border-radius: 50%; color: #ffd9c2; font-size: 2rem; box-shadow: 0 0 0 12px rgba(199,83,46,.08), 0 0 50px rgba(221,105,61,.24); animation: marsTraceRing 1.15s ease both; }
+@keyframes marsTraceRing { from { opacity: .2; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+.mars-trace-transition-main > .mars-overline { color: #e99a74; font-size: .62rem; letter-spacing: .2em; }
+.mars-trace-transition-main h1 { margin: 6px 0 12px; color: #ffe1ce; font: 800 clamp(1.8rem, 6vw, 3.7rem) Orbitron, sans-serif; letter-spacing: .08em; }
+.mars-trace-transition-copy { color: #d4aa93; font-size: .82rem; line-height: 1.8; }
+/* Identified record: one requested hero image + Discover / Explore layers. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-primary { color:#fff0e7 !important; background:#994629 !important; border:1px solid #d17a52 !important; border-radius:2px; font-weight:700; }
+.mars-primary:hover,
+.mars-primary:focus-visible { background:#b65332 !important; border-color:#f0a17b !important; }
+.mars-secondary { color:#e5b69c !important; background:rgba(38,17,10,.85) !important; border:1px solid rgba(227,151,110,.5) !important; border-radius:2px; }
+
+
+
+
+.mars-footer { width:min(1160px,calc(100% - 48px)); display:flex; align-items:center; justify-content:space-between; gap:12px; margin:25px auto 0 !important; padding:16px 0 0; border-top:1px solid rgba(228,123,80,.24); color:#ad806a; font-size:.55rem; letter-spacing:.1em; }
+.mars-footer .mars-secondary { margin:0; }
+/* Header + content layout at tablet and phone widths. */
+@media (max-width:760px){
+.tha-mars-screen { padding-top:60px !important; }
+.tha-mars-screen .mars-header { min-height:60px !important; padding:max(6px,env(safe-area-inset-top)) 9px 6px !important; gap:6px !important; }
+.tha-mars-screen .mars-header .tha-global-identity-badge.is-in-menu-header { max-width:156px; gap:5px; padding:4px 5px; }
+.tha-mars-screen .mars-header .tha-global-identity-badge .tha-global-badge-icon { flex-basis:21px; width:21px; height:21px; }
+.tha-mars-screen .mars-header .tha-global-identity-badge .tha-global-badge-copy { font-size:.37rem; letter-spacing:.045em; }
+
+
+.tha-mars-screen.is-record { padding-top:60px !important; }
+.mars-record-top { width:calc(100% - 28px); margin:22px auto 0 !important; padding-bottom:16px !important; }
+.mars-record-top h1 { font-size:clamp(2rem,9vw,3.5rem) !important; }
+.mars-record-content { width:calc(100% - 28px); margin-top:15px !important; }
+.mars-trace-game { padding:15px; margin-top:8px; }
+.mars-trace-game-intro { grid-template-columns:minmax(0,1fr) auto; gap:7px 10px; }
+.mars-trace-game-intro h2 { font-size:clamp(1.15rem,5.2vw,1.7rem); }
+.mars-trace-instruction { font-size:.71rem; }
+.mars-trace-game-status { gap:3px; }
+.mars-trace-count { font-size:1rem; }
+.mars-trace-game-status span { font-size:.42rem; letter-spacing:.08em; }
+.mars-trace-board { grid-template-columns:1fr; gap:9px; margin-top:14px; }
+.mars-trace-node { grid-template-columns:40px minmax(0,1fr); min-height:0; padding:12px; gap:8px 10px; }
+.mars-trace-node-glyph { width:34px; height:34px; font-size:.72rem; }
+.mars-trace-trigger { min-height:42px; font-size:.55rem; }
+.mars-trace-copy { font-size:.76rem; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mars-footer { width:calc(100% - 28px); display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:20px !important; }
+.mars-footer .mars-secondary { width:100%; }
+}
+@media (max-width:390px){
+.tha-mars-screen .mars-header .tha-global-identity-badge.is-in-menu-header { max-width:135px; }
+.tha-mars-screen .mars-header .tha-global-identity-badge .tha-global-badge-copy { font-size:.33rem; }
+
+.mars-record-top,
+.mars-record-content,
+.mars-footer { width:calc(100% - 22px); }
+.mars-trace-game-intro { grid-template-columns:minmax(0,1fr); }
+.mars-trace-game-status { grid-column:1; grid-row:auto; justify-items:start; margin-top:5px; }
+.mars-trace-progress-track { grid-column:1; }
+}
+@media (prefers-reduced-motion: reduce){
+
+.mars-trace-progress-fill { transition:none !important; }
+}
+
+
+/* Mars records: exactly one back button, centered in the footer. */
+
+.tha-mars-screen.is-record .mars-record-top {
+  width:min(1160px,calc(100% - 48px)) !important;
+  margin:24px auto 0 !important;
+}
+.tha-mars-screen.is-record .mars-footer {
+  width:min(1160px,calc(100% - 48px)) !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  margin:24px auto 0 !important;
+  padding:16px 0 22px !important;
+  text-align:center !important;
+}
+.tha-mars-screen.is-record .mars-footer > span { text-align:center; }
+.tha-mars-screen.is-record .mars-footer .mars-secondary {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:min(100%,360px) !important;
+  min-height:48px;
+  margin:0 auto !important;
+  text-align:center;
+}
+.mars-record-top .mars-case-title { overflow-wrap:normal; }
+.mars-record-content { min-width:0; }
+/* Sojourner: three quick facts sit lightly before the two mission photographs. */
+
+
+
+
+
+
+
+
+
+/* Discover / Explore controls: one joined tab rail that remains available while reading. */
+
+
+
+
+
+
+
+/* Ingenuity: turn the flight mechanic into a compact instrument panel on phones. */
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:760px){
+.tha-mars-screen.is-record .mars-record-top { width:calc(100% - 28px) !important; margin:18px auto 0 !important; }
+.tha-mars-screen.is-record .mars-record-content { width:calc(100% - 28px) !important; margin-inline:auto !important; }
+.tha-mars-screen.is-record .mars-footer { width:calc(100% - 28px) !important; margin:22px auto 0 !important; align-items:center !important; text-align:center !important; }
+.tha-mars-screen.is-record .mars-footer .mars-secondary { width:min(100%,320px) !important; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* Mars footers: desktop keeps the label left and navigation right. */
+
+/* Mars identified evidence: image first; Sojourner has one full-width image,
+   Spirit keeps both supplied images beside one another. */
+
+
+
+
+
+
+
+
+
+
+
+/* Explicit record variants: one full-width Sojourner image, two-up Spirit images. */
+
+
+
+
+
+
+/* Spirit's planned-vs-actual bars animate into their orange lengths. */
+
+
+
+/* Discover + Explore reveal on Sojourner / Spirit and the joined tab rail. */
+
+
+
+
+
+
+
+
+
+/* Mobile-only behaviours. Desktop tabs remain in document flow. */
+
+
+
+/* Mars trace completion: full-screen identity interstitial, no archive chrome. */
+.tha-mars-screen.is-trace-transition {
+  display:grid!important;place-items:center;align-content:center;
+  width:100%;max-width:none;min-height:100svh;min-height:100dvh;
+  margin:0;padding:0!important;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 46%,rgba(157,64,38,.24),transparent 48%),
+    linear-gradient(145deg,#1b0d08 0%,#100806 58%,#050403 100%);
+}
+.tha-mars-screen.is-trace-transition:before {opacity:.12;}
+.tha-mars-screen.is-trace-transition .mars-trace-transition-main {
+  box-sizing:border-box;display:grid;justify-items:center;align-content:center;
+  width:min(860px,calc(100% - 36px));min-height:100svh;min-height:100dvh;
+  margin:0 auto;padding:36px 0;text-align:center;
+}
+.tha-mars-screen.is-trace-transition .mars-trace-transition-ring {
+  width:clamp(76px,11vw,104px);height:clamp(76px,11vw,104px);
+  margin:0 0 clamp(25px,4vh,38px);font-size:clamp(2rem,4vw,2.8rem);
+  animation:marsConfirmPulse 1.25s ease-in-out infinite alternate;
+}
+.tha-mars-screen.is-trace-transition .mars-overline {
+  margin:0 0 14px;color:#ed9a73;font-size:clamp(.58rem,1vw,.72rem);
+  letter-spacing:.19em;text-align:center;
+}
+.tha-mars-screen.is-trace-transition h1 {
+  margin:0;color:#ffe4d4;font-family:Orbitron,sans-serif;
+  font-size:clamp(1.7rem,5vw,3.5rem);line-height:1.2;
+  letter-spacing:.075em;text-align:center;
+  animation:marsConfirmText .9s ease both;
+}
+.tha-mars-screen.is-trace-transition .mars-trace-transition-copy {
+  max-width:46ch;margin:18px auto 0;color:#dcb29b;
+  font-size:clamp(.78rem,1.4vw,.96rem);line-height:1.8;text-align:center;
+  animation:marsConfirmText 1.1s .12s ease both;
+}
+@keyframes marsConfirmPulse{
+  from{transform:scale(.94);box-shadow:0 0 0 8px rgba(199,83,46,.05),0 0 24px rgba(221,105,61,.13);}
+  to{transform:scale(1.04);box-shadow:0 0 0 14px rgba(199,83,46,.11),0 0 58px rgba(221,105,61,.32);}
+}
+@keyframes marsConfirmText{
+  from{opacity:0;transform:translateY(12px);filter:blur(3px);}
+  to{opacity:1;transform:translateY(0);filter:blur(0);}
+}
+@media (prefers-reduced-motion:reduce){
+.tha-mars-screen.is-trace-transition .mars-trace-transition-ring,
+.tha-mars-screen.is-trace-transition h1,
+.tha-mars-screen.is-trace-transition .mars-trace-transition-copy {animation:none;}
+}
+
+
+/* ============================================================================
+   V6 USER ADJUSTMENTS — mobile spacing, compact Mars controls and Voyager fit
+   Loaded last so only the explicitly requested elements are changed.
+   ============================================================================ */
+/* Mars Discover + Explore: compact left-aligned control, never a full-width bar. */
+
+
+/* Opportunity's closing motto: restore a clearly readable size on desktop. */
+
+
+
+
+
+/* ============================================================================
+   V7 FOCUSED ADJUSTMENTS
+   Only the latest requested Mars identity / reveal button and RTG caption
+   refinements. Earlier chapter styling remains the source of truth.
+   ============================================================================ */
+/* The reveal control uses the same compact solid-red treatment as the
+   RETURN TO MARS MAP // TRACE n button. Intrinsic width removes the dead space
+   after EXPLORE; desktop stays left-aligned. */
+
+
+
+
+
+/* A short pause after the final clue, followed by a soft full-screen arrival.
+   The main check is drawn in with a scale/opacity animation, while the ring
+   continues its restrained pulse. */
+.tha-mars-screen.is-trace-transition {
+  animation: marsTraceBackdropArrive .85s ease both !important;
+}
+.tha-mars-screen.is-trace-transition .mars-trace-transition-main {
+  opacity: 1;
+  animation: marsTraceMainArrive 1.15s cubic-bezier(.2,.72,.2,1) both;
+}
+.tha-mars-screen.is-trace-transition .mars-trace-transition-ring {
+  display: grid !important;
+  place-items: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.tha-mars-screen.is-trace-transition .mars-trace-check {
+  display: inline-block;
+  color: #ffe4d4;
+  opacity: 0;
+  transform: scale(.45) rotate(-22deg);
+  animation: marsTraceCheckArrive .72s .28s cubic-bezier(.18,.82,.22,1.18) forwards;
+  text-shadow: 0 0 18px rgba(255,220,194,.42);
+}
+.tha-mars-screen.is-trace-transition .mars-overline {
+  animation: marsTraceTextArrive .85s .38s ease both !important;
+}
+.tha-mars-screen.is-trace-transition h1 {
+  animation: marsTraceTextArrive 1.05s .52s ease both !important;
+}
+.tha-mars-screen.is-trace-transition .mars-trace-transition-copy {
+  animation: marsTraceTextArrive 1.1s .7s ease both !important;
+}
+@keyframes marsTraceBackdropArrive {
+  from { opacity: .12; filter: brightness(.72); }
+  to { opacity: 1; filter: brightness(1); }
+}
+@keyframes marsTraceMainArrive {
+  from { opacity: 0; transform: translateY(16px) scale(.985); filter: blur(5px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes marsTraceCheckArrive {
+  0% { opacity: 0; transform: scale(.45) rotate(-22deg); }
+  70% { opacity: 1; transform: scale(1.14) rotate(4deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+@keyframes marsTraceTextArrive {
+  from { opacity: 0; transform: translateY(13px); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+.tha-mars-screen.is-trace-transition,
+.tha-mars-screen.is-trace-transition .mars-trace-transition-main,
+.tha-mars-screen.is-trace-transition .mars-trace-check,
+.tha-mars-screen.is-trace-transition .mars-overline,
+.tha-mars-screen.is-trace-transition h1,
+.tha-mars-screen.is-trace-transition .mars-trace-transition-copy {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+/* V8 — Mars identity confirmation keeps the archive header, but no footer.
+   The confirmation content is centered against the full screen area. */
+.tha-mars-screen.is-trace-transition {
+  position: relative !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 100svh !important;
+  min-height: 100dvh !important;
+  margin: 0 !important;
+  padding: clamp(18px, 4vw, 54px) clamp(18px, 4vw, 54px) 0 !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+.tha-mars-screen.is-trace-transition > .mars-header {
+  position: relative !important;
+  z-index: 80 !important;
+  display: flex !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+.tha-mars-screen.is-trace-transition > .mars-trace-transition-main {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 0 !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  justify-items: center !important;
+  align-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 clamp(18px, 4vw, 54px) !important;
+  text-align: center !important;
+}
+@media (max-width: 700px){
+.tha-mars-screen.is-trace-transition {
+    padding: 14px 14px 0 !important;
+  }
+.tha-mars-screen.is-trace-transition > .mars-trace-transition-main {
+    padding-right: 14px !important;
+    padding-left: 14px !important;
+  }
+}
+
+
+/* V9 — Identity-confirmation screen: archive header stays at the top;
+   only the confirmation block is centered in the space below it. */
+.tha-mars-screen.is-trace-transition {
+  position: relative !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 100svh !important;
+  min-height: 100dvh !important;
+  height: 100svh !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+.tha-mars-screen.is-trace-transition > .mars-header {
+  position: absolute !important;
+  inset: 0 0 auto 0 !important;
+  z-index: 80 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: 68px !important;
+  min-height: 68px !important;
+  margin: 0 !important;
+  padding: 8px clamp(16px, 3vw, 32px) !important;
+}
+.tha-mars-screen.is-trace-transition > .mars-trace-transition-main {
+  position: absolute !important;
+  inset: 68px 0 0 0 !important;
+  z-index: 1 !important;
+  display: grid !important;
+  justify-items: center !important;
+  align-content: center !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 24px clamp(18px, 4vw, 54px) !important;
+  text-align: center !important;
+}
+.tha-mars-screen.is-trace-transition > .mars-trace-transition-main > * {
+  justify-self: center !important;
+  text-align: center !important;
+}
+@media (max-width: 700px){
+.tha-mars-screen.is-trace-transition > .mars-header {
+    height: 60px !important;
+    min-height: 60px !important;
+    padding: max(6px, env(safe-area-inset-top)) 9px 6px !important;
+  }
+.tha-mars-screen.is-trace-transition > .mars-trace-transition-main {
+    inset: 60px 0 0 0 !important;
+    padding: 20px 14px !important;
+  }
+}
+
+
+/* ========================================================================
+   MARS RECORD EXPERIENCES — NEW RESPONSIVE SYSTEM
+   Rebuilt: Sojourner, Spirit, Opportunity, Ingenuity and chapter completion.
+   The original map, clue sequence and identity-confirmation transition above
+   remain intentionally intact.
+======================================================================== */
+.mrx-experience-screen {
+  --mrx-copper:#f0a37d; --mrx-sand:#f6d2bc; --mrx-cream:#fff0e7;
+  --mrx-ink:#110b09; --mrx-panel:rgba(34,18,13,.82); --mrx-line:rgba(226,139,101,.32);
+  position:relative; isolation:isolate; min-height:100svh; padding:0 0 56px;
+  overflow:clip; color:#f7e6dc;
+  background:radial-gradient(ellipse at 50% 12%,#54291d 0%,#28150f 42%,#100a08 100%);
+}
+.mrx-experience-screen::before,.mrx-completion-screen::before {
+  content:""; position:absolute; z-index:-1; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,195,160,.035) 6px),
+    radial-gradient(ellipse at 50% 48%,transparent 30%,rgba(0,0,0,.45) 100%);
+}
+.mrx-record-heading {
+  width:min(1160px,calc(100% - 48px)); margin:42px auto 24px; padding:20px 0 26px;
+  border-bottom:1px solid var(--mrx-line); text-align:left;
+}
+.mrx-kicker,.mrx-progress,.mrx-record-eyebrow,.mrx-record-location {
+  margin:0; color:#d99575; font-size:.68rem; line-height:1.65; letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.mrx-record-eyebrow {margin-top:15px;color:#f2b08d;}
+.mrx-record-title {margin:8px 0 0; color:var(--mrx-cream); font-family:var(--tha-font-display,Orbitron,monospace); font-size:clamp(2.1rem,6.4vw,5.1rem); line-height:1.06; letter-spacing:.055em; overflow-wrap:anywhere;}
+.mrx-record-subtitle {max-width:62ch;margin:14px 0 12px;color:#e8c2ae;font-family:Georgia,serif;font-size:clamp(1.08rem,2vw,1.35rem);line-height:1.6;}
+.mrx-record-location {display:inline-flex;margin-top:8px;padding:7px 10px;border:1px solid var(--mrx-line);color:#f0b28f;background:rgba(12,7,5,.28);}
+.mrx-record-main {width:min(1160px,calc(100% - 48px));margin:0 auto;display:grid;gap:26px;}
+.mrx-progress {padding:10px 14px;border-left:2px solid #e58c62;background:rgba(6,5,4,.28);color:#c88a6f;}
+.mrx-record-hero {min-width:0;}
+.mrx-image-gallery {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;min-width:0;}
+.mrx-image-frame {position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0;min-height:0;margin:0;overflow:hidden;aspect-ratio:16/10;border:1px solid rgba(234,160,124,.42);background:#160d09;box-shadow:0 22px 55px rgba(0,0,0,.3);}
+.mrx-image-frame img {display:block;width:100%;height:100%;min-height:0;object-fit:cover;object-position:center;background:#21140e;}
+.mrx-image-frame:nth-child(2) img {object-position:50% 45%;}
+.mrx-image-caption {display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 13px;color:#cba18d;background:#0c0807;font-size:.62rem;line-height:1.5;letter-spacing:.04em;}
+.mrx-image-caption a,.mrx-experience-screen .mars-source {color:#ffd1b7;text-underline-offset:3px;white-space:nowrap;}
+.mrx-fact-ribbon {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+.mrx-fact-card {display:grid;align-content:start;gap:8px;min-width:0;padding:20px;border:1px solid var(--mrx-line);background:linear-gradient(145deg,rgba(93,44,28,.62),rgba(22,12,8,.86));}
+.mrx-fact-index {color:#b77c62;font-size:.62rem;letter-spacing:.18em;}
+.mrx-fact-label,.mrx-duration-label {color:#d99d80;font-size:.65rem;letter-spacing:.13em;}
+.mrx-fact-value {color:#fff0e6;font-family:var(--tha-font-display,Orbitron,monospace);font-size:clamp(1.4rem,2.4vw,2.1rem);}
+.mrx-fact-note {margin:0;color:#c9aa99;font-family:Georgia,serif;font-size:.9rem;line-height:1.55;}
+.mrx-duration-card,.mrx-wheel-status,.mrx-timeline-card,.mrx-flight-console,.mrx-data-card {
+  min-width:0;padding:clamp(18px,3vw,30px);border:1px solid var(--mrx-line);
+  background:linear-gradient(135deg,rgba(45,23,15,.9),rgba(18,11,8,.92));
+  box-shadow:0 22px 50px rgba(0,0,0,.22);
+}
+.mrx-duration-card h2,.mrx-wheel-status h2,.mrx-timeline-card h2,.mrx-flight-console h2,.mrx-layer-panel h2 {
+  margin:8px 0 12px;color:#fff0e7;font-family:var(--tha-font-display,Orbitron,monospace);
+  font-size:clamp(1.25rem,3vw,2rem);letter-spacing:.035em;line-height:1.25;
+}
+.mrx-section-copy,.mrx-wheel-status>p:last-child {max-width:72ch;margin:0;color:#dfb8a3;font-family:Georgia,serif;font-size:1rem;line-height:1.75;}
+.mrx-duration-bars {display:grid;gap:18px;margin:24px 0;}
+.mrx-duration-row {display:grid;grid-template-columns:130px minmax(90px,180px) minmax(0,1fr);align-items:center;gap:14px;}
+.mrx-duration-value {color:#ffdec9;font-family:var(--tha-font-display,Orbitron,monospace);font-size:1rem;}
+.mrx-duration-track,.mrx-timeline-progress-track {display:block;height:9px;overflow:hidden;background:#291812;border:1px solid rgba(238,160,125,.2);}
+.mrx-duration-fill,.mrx-timeline-progress-fill {display:block;height:100%;background:linear-gradient(90deg,#9b4c31,#f3a47e);box-shadow:0 0 18px rgba(238,139,97,.35);}
+.mrx-duration-tagline {margin:10px 0 0;color:#f0a37d;font-size:.68rem;letter-spacing:.16em;}
+.mrx-wheel-status {border-left:3px solid #de875f;}
+.mrx-reveal-section {display:grid;gap:0;}
+.mrx-primary,.mrx-secondary {display:inline-flex;justify-content:center;align-items:center;min-height:50px;padding:14px 20px;border:1px solid #efaa84;background:linear-gradient(135deg,#a95737,#70321f);color:#fff3ec;font-family:var(--tha-font-mono,monospace);font-size:.68rem;font-weight:700;letter-spacing:.11em;text-align:center;text-decoration:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;}
+.mrx-primary:hover,.mrx-secondary:hover {transform:translateY(-2px);box-shadow:0 9px 25px rgba(0,0,0,.3),0 0 20px rgba(230,143,101,.14);}
+.mrx-secondary {background:transparent;color:#f0c0a6;border-color:rgba(228,158,125,.42);}
+.mrx-reveal-trigger {width:100%;min-height:60px;justify-content:space-between;padding:18px 22px;}
+.mrx-reveal-trigger::after {content:"＋";font-size:1.15rem;}
+.mrx-reveal-section.is-open .mrx-reveal-trigger::after {content:"−";}
+.mrx-reveal-body {margin-top:0;}
+.mrx-learning-module {min-width:0;margin:0;}
+.mrx-tabs {display:flex;gap:8px;padding:10px;border:1px solid var(--mrx-line);background:rgba(10,7,5,.94);}
+.mrx-tab {flex:1;min-height:48px;padding:12px 16px;border:1px solid rgba(229,157,122,.22);background:rgba(45,25,17,.8);color:#d2a48b;font-family:var(--tha-font-mono,monospace);font-size:.69rem;letter-spacing:.14em;cursor:pointer;}
+.mrx-tab.is-active {border-color:#f0aa83;background:linear-gradient(135deg,rgba(157,77,47,.9),rgba(76,36,23,.96));color:#fff2e9;box-shadow:inset 0 -2px #f0aa83;}
+.mrx-layer {min-width:0;}
+.mrx-layer[hidden] {display:none!important;}
+.mrx-layer-panel {padding:clamp(18px,3vw,32px);border:1px solid var(--mrx-line);border-top:0;background:rgba(24,14,10,.91);text-align:left;}
+.mrx-answer-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px;}
+.mrx-answer-card {min-width:0;padding:18px;border:1px solid rgba(223,145,107,.25);background:rgba(62,31,21,.5);text-align:left;}
+.mrx-answer-card h3 {margin:0 0 10px;color:#eda77f;font-size:.67rem;line-height:1.55;letter-spacing:.08em;}
+.mrx-answer-card p {margin:0;color:#e8d0c2;font-family:Georgia,serif;font-size:.95rem;line-height:1.72;}
+.mrx-data-card {padding:0;border:0;background:transparent;box-shadow:none;}
+.mrx-data-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;margin:18px 0;}
+.mrx-data-row {display:grid;grid-template-columns:minmax(112px,.65fr) minmax(0,1.35fr);gap:12px;align-items:start;padding:13px 10px;border-bottom:1px solid rgba(232,157,120,.18);}
+.mrx-data-row dt {color:#d99b7c;font-size:.64rem;letter-spacing:.1em;}
+.mrx-data-row dd {margin:0;color:#f1ded3;font-size:.78rem;line-height:1.6;overflow-wrap:anywhere;}
+.mrx-story-card {padding:clamp(20px,3.5vw,34px);border:1px solid rgba(230,159,125,.32);background:linear-gradient(120deg,rgba(61,31,22,.78),rgba(16,10,7,.92));text-align:left;}
+.mrx-story-card .mrx-kicker {margin-bottom:18px;}
+.mrx-story-lead {max-width:72ch;margin:0 0 15px;color:#fff0e6;font-family:Georgia,serif;font-size:clamp(1.2rem,2.5vw,1.55rem);line-height:1.75;white-space:pre-line;}
+.mrx-story-copy,.mrx-story-legacy p {max-width:78ch;margin:0;color:#d9b9a8;font-family:Georgia,serif;font-size:1rem;line-height:1.8;white-space:pre-line;}
+.mrx-story-legacy {margin:14px 0;padding:12px 18px;border-left:2px solid #df8e67;}
+.mrx-story-legacy p+p {margin-top:8px;}
+.mrx-record-actions {display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 14px;}
+.mrx-record-actions button {flex:1 1 240px;}
+.mrx-timeline-card {display:grid;gap:18px;}
+.mrx-timeline-progress {display:flex;align-items:center;gap:16px;color:#e9b08f;font-size:.67rem;letter-spacing:.1em;}
+.mrx-timeline-progress-track {flex:1;}
+.mrx-timeline-list {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none;}
+.mrx-timeline-item {min-width:0;}
+.mrx-timeline-event {display:flex;align-items:center;gap:14px;width:100%;min-height:66px;padding:14px;border:1px solid rgba(228,151,112,.22);background:rgba(21,13,9,.8);color:#d7b4a2;text-align:left;cursor:pointer;}
+.mrx-timeline-event:disabled {cursor:default;opacity:.65;}
+.mrx-timeline-item.is-current .mrx-timeline-event {border-color:#f0a37d;background:rgba(122,58,34,.42);color:#fff0e7;}
+.mrx-timeline-item.is-recovered .mrx-timeline-event {border-color:rgba(218,156,116,.55);color:#ffe0ca;}
+.mrx-event-index {display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;border:1px solid rgba(229,155,119,.45);color:#eea27b;font-size:.64rem;}
+.mrx-event-prompt {font-size:.69rem;line-height:1.55;letter-spacing:.06em;}
+.mrx-storm-gate {padding:22px;border:1px solid #e58d68;background:radial-gradient(ellipse at 50% 0,rgba(169,67,38,.38),rgba(18,9,6,.96));}
+.mrx-storm-gate h2 {margin:8px 0;color:#fff0e7;font-family:var(--tha-font-display,Orbitron,monospace);font-size:clamp(1.3rem,3vw,2.1rem);}
+.mrx-storm-gate p:last-child {color:#e5c2b0;line-height:1.7;}
+.mrx-signal-panel {display:grid;place-items:center;min-height:54vh;padding:35px;border:1px solid rgba(230,145,112,.32);background:#050505;text-align:center;}
+.mrx-signal-panel h2 {margin:16px 0;color:#f3e9e2;font-family:var(--tha-font-display,Orbitron,monospace);font-size:clamp(2rem,7vw,4.5rem);letter-spacing:.15em;}
+.mrx-signal-panel .mrx-kicker {color:#8e8a86;}
+.mrx-signal-blackout {background:#020202!important;}
+.mrx-signal-blackout::before {opacity:0;}
+.mrx-abandoned {margin:26px 0;color:#f0a37d;font-family:var(--tha-font-display,Orbitron,monospace);font-size:clamp(1.05rem,3vw,1.55rem);letter-spacing:.13em;text-align:center;}
+.mrx-flight-console {display:grid;gap:20px;}
+.mrx-flight-stats {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.mrx-flight-stat {display:grid;gap:4px;padding:16px;border:1px solid rgba(229,153,115,.26);background:rgba(18,11,8,.68);}
+.mrx-flight-stat span,.mrx-flight-stat small {color:#d69b7f;font-size:.63rem;letter-spacing:.11em;}
+.mrx-flight-stat strong {color:#fff0e7;font-family:var(--tha-font-display,Orbitron,monospace);font-size:2rem;}
+.mrx-flight-stat.is-highlight {border-color:#eea27c;background:rgba(117,54,32,.36);}
+.mrx-flight-output {color:#ffdfca;font-size:.85rem;letter-spacing:.13em;}
+.mrx-flight-range {width:100%;accent-color:#ed9d77;cursor:pointer;}
+.mrx-flight-markers {display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:6px;}
+.mrx-flight-marker {height:8px;border-radius:8px;background:#4b2b20;transition:background .18s ease,box-shadow .18s ease;}
+.mrx-flight-marker.is-planned {background:#986044;}
+.mrx-flight-marker.is-passed {background:#f1a37c;box-shadow:0 0 8px rgba(241,163,124,.45);}
+.mrx-flight-damage-panel {display:grid;gap:15px;padding:18px;border:1px solid #e49a75;background:rgba(10,6,5,.8);}
+.mrx-damage-tremor {animation:mrxDamageTremor .32s linear 2;}
+@keyframes mrxDamageTremor {0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+.mrx-flight-console.is-final-flight {border-color:#e9a17e;}
+.mrx-completion-screen {--mrx-ember:#e98e68;position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:100svh;padding:0 0 48px;overflow:clip;color:#f8e9df;background:radial-gradient(ellipse at 50% 32%,#5a2c20 0%,#28150f 43%,#0d0807 100%);font-family:var(--tha-font-mono,monospace);}
+.mrx-completion-main {position:relative;display:grid;justify-items:center;align-content:center;gap:clamp(22px,4vh,38px);width:min(880px,calc(100% - 40px));flex:1;margin:0 auto;padding:clamp(35px,8vh,88px) 0;}
+.mrx-completion-card {position:relative;width:100%;padding:clamp(28px,6vw,68px);border:1px solid rgba(236,157,121,.5);background:linear-gradient(145deg,rgba(62,31,22,.94),rgba(13,8,6,.98));box-shadow:0 25px 85px rgba(0,0,0,.48);text-align:center;}
+.mrx-completion-title {margin:0;color:#fff0e7;font-family:var(--tha-font-display,Orbitron,monospace);font-size:clamp(1.5rem,5vw,3rem);line-height:1.35;letter-spacing:.1em;}
+.mrx-completion-count {display:inline-block;margin:18px 0 28px;padding:9px 20px;border:1px solid rgba(237,166,130,.5);color:#ffd7c0;background:rgba(11,6,5,.46);font-size:clamp(1rem,3vw,1.35rem);letter-spacing:.2em;}
+.mrx-completion-line {margin:5px 0;color:#e8c5b3;font-family:Georgia,serif;font-size:clamp(1.12rem,2.5vw,1.5rem);line-height:1.7;}
+.mrx-completion-actions {display:flex;flex-wrap:wrap;justify-content:center;gap:12px;width:100%;}
+.mrx-completion-actions button {flex:1 1 240px;min-height:54px;}
+.mrx-experience-screen .mars-footer {width:100%;margin:46px 0 -56px;padding:18px clamp(20px,4vw,52px);}
+
+@media (max-width:760px) {
+  .mrx-record-heading {width:calc(100% - 32px);margin:28px auto 18px;padding-bottom:20px;}
+  .mrx-record-title {font-size:clamp(2rem,10vw,3.3rem);}
+  .mrx-record-main {width:calc(100% - 32px);gap:18px;}
+  .mrx-image-gallery {grid-template-columns:1fr;gap:12px;}
+  .mrx-image-frame {aspect-ratio:16/10;}
+  .mrx-fact-ribbon {grid-template-columns:1fr;}
+  .mrx-fact-card {padding:16px;text-align:left;}
+  .mrx-duration-row {grid-template-columns:1fr auto;gap:7px 12px;text-align:left;}
+  .mrx-duration-track {grid-column:1/-1;}
+  .mrx-learning-module {overflow:visible;}
+  .mrx-tabs {position:sticky;top:calc(76px + env(safe-area-inset-top,0px));z-index:80;gap:5px;padding:7px;background:rgba(13,8,6,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+  .mrx-tab {min-height:46px;padding:11px 7px;font-size:.65rem;}
+  .mrx-layer-panel,.mrx-data-card,.mrx-story-card,.mrx-answer-card,.mrx-wheel-status,.mrx-duration-card {text-align:left;}
+  .mrx-answer-grid {grid-template-columns:1fr;}
+  .mrx-answer-card h3,.mrx-answer-card p,.mrx-story-lead,.mrx-story-copy,.mrx-story-legacy p {text-align:left;}
+  .mrx-data-grid {grid-template-columns:1fr;}
+  .mrx-data-row {grid-template-columns:minmax(100px,.48fr) minmax(0,1fr);padding:12px 4px;text-align:left;}
+  .mrx-timeline-list {grid-template-columns:1fr;}
+  .mrx-timeline-progress {align-items:flex-start;flex-direction:column;}
+  .mrx-timeline-progress-track {width:100%;}
+  .mrx-flight-markers {grid-template-columns:repeat(12,minmax(0,1fr));}
+  .mrx-record-actions {display:grid;grid-template-columns:1fr;}
+  .mrx-record-actions button {width:100%;}
+  .mrx-completion-main {width:calc(100% - 30px);gap:22px;padding:42px 0;}
+  .mrx-completion-emblem {width:62px;height:62px;}
+  .mrx-completion-card {padding:30px 18px;}
+  .mrx-completion-title {font-size:clamp(1.35rem,7vw,2.1rem);letter-spacing:.055em;}
+  .mrx-completion-actions {display:grid;grid-template-columns:1fr;}
+  .mrx-completion-actions button {width:100%;}
+  .mrx-experience-screen .mars-footer {align-items:flex-start;flex-direction:column;gap:12px;margin:32px 0 -56px;}
+  .mrx-experience-screen .mars-footer .mars-secondary {width:100%;}
+}
+@media (max-width:380px) {
+  .mrx-record-heading,.mrx-record-main {width:calc(100% - 24px);}
+  .mrx-record-title {font-size:1.85rem;}
+  .mrx-completion-title {font-size:1.25rem;}
+  .mrx-data-row {grid-template-columns:92px minmax(0,1fr);gap:8px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .mrx-damage-tremor,.mrx-flight-console.is-final-flight {animation:none!important;}
+  .mrx-primary,.mrx-secondary,.mrx-flight-marker {transition:none!important;}
+}
+
+/* Completion is intentionally reduced to the archive heading, status,
+   two narrative lines and the two context-aware actions. */
+.mrx-completion-main {min-height:100svh;}
+.mrx-completion-card {display:grid;justify-items:center;align-content:center;gap:clamp(10px,2vh,18px);min-height:min(62vh,620px);}
+.mrx-completion-count {margin:8px 0 18px;}
+
+/* ========================================================================
+   RESPONSIVE MARS POLISH — requested alignment, full-width imagery,
+   chapter-contained sticky controls, and restored Opportunity timeline.
+======================================================================== */
+/* Mars field footer: desktop uses left/right alignment; phones center both. */
+.tha-mars-screen.is-record .mars-footer.mars-record-footer {
+  width:min(1160px,calc(100% - 48px)) !important;
+  display:flex !important; flex-direction:row !important;
+  align-items:center !important; justify-content:space-between !important;
+  gap:16px !important; margin:25px auto 0 !important;
+  padding:16px 0 22px !important; text-align:left !important;
+}
+.tha-mars-screen.is-record .mars-footer.mars-record-footer > span {text-align:left !important;}
+.tha-mars-screen.is-record .mars-footer.mars-record-footer .mars-secondary {
+  width:auto !important; max-width:100%; margin:0 !important;
+}
+/* Sojourner and Opportunity each use one full-width image frame. */
+.mrx-image-gallery.is-sojourner-gallery,
+.mrx-image-gallery.is-opportunity-gallery {grid-template-columns:minmax(0,1fr) !important; width:100%;}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame,
+.mrx-image-gallery.is-opportunity-gallery .mrx-image-frame {width:100%; min-width:0; aspect-ratio:16/9;}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame img,
+.mrx-image-gallery.is-opportunity-gallery .mrx-image-frame img {width:100%; height:100%; object-fit:cover; object-position:center;}
+/* Compact, content-sized controls stay left aligned on desktop and mobile. */
+.mrx-reveal-trigger {
+  display:inline-flex !important; width:auto !important; max-width:100%;
+  justify-content:flex-start !important; gap:14px; padding:13px 16px !important;
+  margin:0 !important; text-align:left !important;
+}
+.mrx-record-actions {display:flex !important; flex-wrap:wrap; justify-content:flex-start !important; gap:10px;}
+.mrx-record-actions button {flex:0 1 auto !important; width:auto !important; max-width:100%; margin:0 !important;}
+/* Same top offset and natural section-boundary release as the Moon learning tabs. */
+@media (max-width:760px) {
+  .mrx-tabs {position:sticky !important; top:calc(60px + env(safe-area-inset-top,0px)) !important; z-index:40 !important;}
+  .tha-mars-screen.is-record .mars-footer.mars-record-footer {
+    width:calc(100% - 28px) !important; flex-direction:column !important;
+    align-items:center !important; justify-content:center !important;
+    text-align:center !important; gap:10px !important;
+  }
+  .tha-mars-screen.is-record .mars-footer.mars-record-footer > span {text-align:center !important;}
+  .tha-mars-screen.is-record .mars-footer.mars-record-footer .mars-secondary {width:auto !important; max-width:100%;}
+  .mrx-reveal-trigger {width:auto !important;}
+  .mrx-record-actions {display:flex !important; flex-direction:row !important; align-items:flex-start;}
+  .mrx-record-actions button {width:auto !important; flex:0 1 auto !important;}
+}
+
+/* Spirit duration bars animate from zero once the recovered dossier appears. */
+.mrx-duration-fill {transform:scaleX(0); transform-origin:left center; animation:mrxDurationReveal 1.35s cubic-bezier(.2,.75,.25,1) .12s both;}
+@keyframes mrxDurationReveal {to {transform:scaleX(1);}}
+
+/* Opportunity's earlier vertical milestone rail is intentionally restored. */
+.mars-timeline {position:relative; margin:26px 0; padding:clamp(18px,3.5vw,28px); overflow:hidden; border:1px solid rgba(204,119,81,.45); background:rgba(25,12,8,.86);}
+.mars-timeline-help {margin:8px 0 0; color:#d3a48d; font-size:.8rem; line-height:1.65;}
+.mars-events {display:grid; grid-template-columns:minmax(0,1fr); gap:0; margin:24px 0 0 8px; padding:0 0 0 27px; border-left:1px solid rgba(239,153,113,.48); list-style:none;}
+.mars-event-item {position:relative; min-width:0; padding:0 0 22px; animation:marsTimelineArrive .7s cubic-bezier(.2,.7,.2,1) both;}
+.mars-event-item:last-child {padding-bottom:0;}
+.mars-event-item::before {content:""; position:absolute; left:-33px; top:17px; width:10px; height:10px; border:1px solid #d98b69; border-radius:50%; background:#2a140d; box-shadow:0 0 0 4px rgba(217,139,105,.08);}
+.mars-event-item:has(.mars-event.is-selected)::before {background:#ffc09d; box-shadow:0 0 0 5px rgba(241,153,111,.15),0 0 16px rgba(241,153,111,.6);}
+.mars-event {display:flex; width:100%; min-height:58px; align-items:center; gap:14px; padding:13px 15px; border:1px solid rgba(192,109,76,.36); background:rgba(46,22,14,.66); color:#e9b79e; font-size:.8rem; letter-spacing:.06em; line-height:1.55; text-align:left; cursor:pointer;}
+.mars-event:disabled:not(.is-selected) {opacity:.42; cursor:not-allowed;}
+.mars-event.is-selected {border-color:#e59a76; background:linear-gradient(90deg,rgba(143,58,34,.65),rgba(54,24,15,.82)); color:#fff0e8;}
+.mars-event-index {display:grid; place-items:center; flex:0 0 30px; width:30px; height:30px; border:1px solid rgba(225,143,106,.48); color:#e99a75; font-family:var(--tha-font-display,Orbitron,monospace); font-size:.62rem;}
+.mars-event-prompt {line-height:1.45;}
+.mars-event-year {color:#ffbf9c; font-family:var(--tha-font-display,Orbitron,monospace); font-size:.78rem; letter-spacing:.08em;}
+.mars-event-title {color:#fff0e8; font-size:.82rem; letter-spacing:.06em;}
+.mars-storm-gate {position:relative; display:grid; align-content:center; justify-items:center; gap:10px; min-height:190px; margin-top:20px; padding:22px; overflow:hidden; border:1px solid #a94d30; background:rgba(95,35,20,.3); text-align:center; animation:marsStormReveal 1.2s ease both;}
+.mars-storm-gate h2 {max-width:720px; margin:0; color:#ffe1d1; font-family:var(--tha-font-display,Orbitron,monospace); font-size:clamp(1.3rem,4vw,2.5rem); line-height:1.35;}
+.mars-storm-gate p:not(.mars-overline) {color:#f1c9b6; line-height:1.7;}
+.mars-storm-gate.is-storm-dark {background:#030202; border-color:#21100b;}
+@keyframes marsTimelineArrive {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marsStormReveal {from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* The Opportunity loss frame becomes a true viewport blackout, not a short card. */
+.tha-mars-screen.is-signal-blackout {
+  position:fixed !important; inset:0 !important; z-index:99999 !important;
+  display:block !important; width:100vw !important; height:100vh !important; height:100dvh !important;
+  min-height:100vh !important; min-height:100dvh !important; margin:0 !important; padding:0 !important;
+  overflow:hidden !important; background:#020202 !important; filter:none !important; animation:none !important;
+}
+.tha-mars-screen.is-signal-blackout::before,.tha-mars-screen.is-signal-blackout::after {display:none !important; opacity:0 !important; animation:none !important;}
+.tha-mars-screen.is-signal-blackout .mars-header,
+.tha-mars-screen.is-signal-blackout .mars-record-top,
+.tha-mars-screen.is-signal-blackout .mars-footer {display:none !important; opacity:0 !important; visibility:hidden !important;}
+.tha-mars-screen.is-signal-blackout .mars-signal-sequence {
+  position:absolute !important; inset:0 !important; display:grid !important; place-items:center !important;
+  width:100% !important; height:100% !important; min-height:100dvh !important; margin:0 !important;
+  padding:24px !important; border:0 !important; background:#020202 !important;
+  animation:none !important; opacity:1 !important;
+}
+.tha-mars-screen.is-signal-blackout .mars-signal-sequence h2 {
+  margin:0; color:#f0e7e3; font-family:var(--tha-font-display,Orbitron,monospace);
+  font-size:clamp(2rem,7vw,4.5rem); letter-spacing:.17em; white-space:normal;
+  text-align:center; text-shadow:0 0 28px rgba(210,194,184,.11);
+}
+
+/* Flight 72 telemetry appears with the rotor whirr; damage then shakes the page. */
+.mrx-final-flight-status {display:grid; justify-items:center; gap:10px; padding:clamp(20px,4vw,34px); border:1px solid rgba(239,170,132,.55); background:radial-gradient(ellipse at 50% 0,rgba(126,65,43,.34),rgba(7,5,5,.96)); text-align:center;}
+.mrx-final-flight-status h3 {margin:0; color:#fff0e7; font-family:var(--tha-font-display,Orbitron,monospace); font-size:clamp(1.8rem,5vw,3rem); letter-spacing:.12em;}
+.mrx-final-flight-status p:last-child {max-width:55ch; margin:0; color:#e5c2b0; line-height:1.7;}
+.mrx-flight-console.is-vibrating {animation:mrxRotorVibration .14s linear infinite;}
+@keyframes mrxRotorVibration {0%,100%{transform:translate(0,0)}25%{transform:translate(-1px,.5px)}75%{transform:translate(1px,-.5px)}}
+.tha-mars-screen.mrx-damage-tremor {animation:mrxDamageFullScreen .12s linear 9 !important;}
+@keyframes mrxDamageFullScreen {0%,100%{transform:translate(0,0)}20%{transform:translate(-3px,1px)}40%{transform:translate(3px,-1px)}60%{transform:translate(-2px,-1px)}80%{transform:translate(2px,1px)}}
+@media (max-width:760px) {
+  .mars-timeline {padding:17px 13px;}
+  .mars-events {margin-left:7px; padding-left:22px;}
+  .mars-event-item::before {left:-28px;}
+  .mars-event {gap:9px; padding:11px 10px; font-size:.72rem;}
+  .mars-event-title {font-size:.75rem;}
+  .mars-signal-sequence h2 {font-size:clamp(1.8rem,8vw,3.2rem); letter-spacing:.11em;}
+  .mrx-final-flight-status {padding:20px 14px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .mrx-duration-fill,.mars-event-item,.mars-storm-gate,.mrx-flight-console.is-vibrating,.tha-mars-screen.mrx-damage-tremor {animation:none !important;}
+}
+
+/* Final interaction timing: keep the record masthead out of the SIGNAL LOST
+   blackout and let the viewport tremble for the complete rotor-damage cue. */
+.tha-mars-screen.is-signal-blackout .mrx-record-heading,
+.tha-mars-screen.is-signal-blackout .tha-global-identity-badge {
+  display:none !important;
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+.tha-mars-screen.mrx-damage-tremor {
+  animation:mrxDamageFullScreen .12s linear infinite !important;
+}
+/* Widen the selected rover image without increasing its old visual height. */
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame,
+.mrx-image-gallery.is-opportunity-gallery .mrx-image-frame {
+  height:clamp(220px,28vw,360px) !important;
+  aspect-ratio:auto !important;
+}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame img,
+.mrx-image-gallery.is-opportunity-gallery .mrx-image-frame img {
+  width:100% !important; height:100% !important; object-fit:cover !important;
+}
+/* The completed-map launch action also follows the compact left-aligned rule. */
+.tha-mars-screen .mars-open-completion {
+  display:inline-flex !important;
+  width:auto !important;
+  max-width:100%;
+  margin:24px 0 24px !important;
+  flex:0 0 auto !important;
+}
+
+/* Sojourner + Spirit: the compact launch control sits at the left edge and
+   the return action remains hidden until Discover + Explore is opened. */
+.mrx-reveal-trigger {
+  justify-self:start !important;
+  width:max-content !important;
+  max-width:100% !important;
+}
+.mrx-reveal-body[hidden],
+.mrx-record-actions[hidden],
+.mrx-flight-damage-panel[hidden] {
+  display:none !important;
+}
+.mrx-record-actions:not([hidden]) {
+  display:flex !important;
+  justify-content:flex-start !important;
+}
+.mrx-record-actions:not([hidden]) button {
+  width:auto !important;
+  flex:0 1 auto !important;
+}
+
+/* The small console alone vibrates during the helicopter whirr. */
+.mrx-flight-console.is-vibrating {
+  animation:mrxFlightLogWhirr .105s linear infinite !important;
+  transform-origin:center center;
+}
+@keyframes mrxFlightLogWhirr {
+  0%,100% {transform:translate3d(0,0,0) rotate(0);}
+  20% {transform:translate3d(-2px,1px,0) rotate(-.12deg);}
+  40% {transform:translate3d(2px,-1px,0) rotate(.12deg);}
+  60% {transform:translate3d(-1px,-1px,0) rotate(-.08deg);}
+  80% {transform:translate3d(1px,1px,0) rotate(.08deg);}
+}
+@media (prefers-reduced-motion:reduce) {
+  .mrx-flight-console.is-vibrating,
+  .tha-mars-screen.mrx-damage-tremor {animation:none !important;}
+}
+
+
+/* Sojourner's two NASA photographs are a paired side-by-side comparison. */
+.mrx-image-gallery.is-sojourner-gallery {
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:clamp(9px,1.5vw,16px) !important;
+  width:100% !important;
+}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame {
+  width:100% !important; min-width:0 !important; height:clamp(185px,24vw,330px) !important;
+  aspect-ratio:auto !important;
+}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame img {
+  width:100% !important; height:100% !important; object-fit:cover !important; object-position:center !important;
+}
+@media(max-width:760px) {
+  .mrx-image-gallery.is-sojourner-gallery { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:8px !important; }
+  .mrx-image-gallery.is-sojourner-gallery .mrx-image-frame { height:clamp(145px,42vw,215px) !important; }
+  .mrx-image-gallery.is-sojourner-gallery .mrx-image-caption { display:grid; gap:4px; font-size:.55rem; }
+}
+
+/* Opportunity ending: one centered, single-line archive motto on every viewport. */
+.mars-abandoned {
+  display:block;
+  width:100%;
+  margin:clamp(30px,6vh,64px) auto !important;
+  padding:clamp(22px,4vw,38px) 12px !important;
+  border-top:1px solid rgba(143,232,160,.38);
+  border-bottom:1px solid rgba(143,232,160,.38);
+  color:#d9ffe0 !important;
+  font-family:var(--tha-font-display,Orbitron,monospace) !important;
+  font-size:clamp(1.15rem,3.4vw,2.35rem) !important;
+  font-weight:700;
+  line-height:1.25 !important;
+  letter-spacing:clamp(.035em,.45vw,.12em) !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  text-shadow:0 0 28px rgba(139,245,159,.22);
+  scroll-margin-top:18px;
+}
+@media(max-width:520px){
+  .mars-abandoned{font-size:clamp(.78rem,4.05vw,1.22rem) !important;letter-spacing:.015em !important;padding:20px 2px !important;}
+  .tha-mars-screen.is-signal-blackout .mars-signal-sequence h2{font-size:clamp(2.5rem,10.5vw,4.1rem) !important;letter-spacing:.035em !important;white-space:nowrap !important;}
+}
+
+/* Mobile-centered controls on the four Mars rover dossiers. Desktop alignment
+   remains unchanged; image pairs stay side-by-side on every viewport. */
+.mrx-image-gallery.is-sojourner-gallery,
+.mrx-image-gallery.is-spirit-gallery {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch;
+  gap: clamp(9px, 1.5vw, 16px) !important;
+  width: 100% !important;
+}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame,
+.mrx-image-gallery.is-spirit-gallery .mrx-image-frame {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: clamp(190px, 25vw, 340px) !important;
+  aspect-ratio: auto !important;
+}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame img,
+.mrx-image-gallery.is-spirit-gallery .mrx-image-frame img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+@media (max-width: 760px) {
+  .mrx-tabs {
+    display: flex !important;
+    justify-content: center !important;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+  .mrx-tab { flex: 0 1 156px; min-width: 112px; }
+  .mrx-record-actions:not([hidden]) { justify-content: center !important; }
+  .mrx-record-actions:not([hidden]) button {
+    width: fit-content !important;
+    max-width: 100%;
+    margin-inline: auto !important;
+    flex: 0 1 auto !important;
+  }
+  .mrx-image-gallery.is-sojourner-gallery,
+  .mrx-image-gallery.is-spirit-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+  .mrx-image-gallery.is-sojourner-gallery .mrx-image-frame,
+  .mrx-image-gallery.is-spirit-gallery .mrx-image-frame {
+    height: clamp(145px, 42vw, 215px) !important;
+  }
+}
+
+/* Final mobile alignment pass: center both the combined Discover + Explore
+   reveal control and the two learning tabs, plus every rover return action.
+   Desktop positioning intentionally remains unchanged. */
+@media (max-width: 760px) {
+  .mrx-reveal-section { display: flex !important; flex-direction: column; align-items: center !important; }
+  .mrx-reveal-trigger {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-self: center !important;
+    width: fit-content !important;
+    max-width: calc(100% - 8px) !important;
+    margin-inline: auto !important;
+    text-align: center !important;
+  }
+  .mrx-tabs {
+    display: flex !important;
+    justify-content: center !important;
+    align-self: center !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
+  .mrx-record-actions,
+  .mrx-record-actions:not([hidden]) {
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-inline: auto !important;
+  }
+  .mrx-record-actions button,
+  .mrx-record-actions:not([hidden]) button {
+    width: fit-content !important;
+    max-width: calc(100% - 8px) !important;
+    margin-inline: auto !important;
+    text-align: center !important;
+  }
+  .tha-mars-screen.is-record .mars-footer.mars-record-footer .mars-secondary {
+    align-self: center !important;
+    margin-inline: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   CORRECTION PASS — rover image breakpoints and control alignment
+   Desktop: Sojourner + Spirit image pairs remain side by side.
+   Mobile: image pairs stack; only the combined reveal button is centered.
+   ------------------------------------------------------------------------- */
+.mrx-image-gallery.is-sojourner-gallery,
+.mrx-image-gallery.is-spirit-gallery {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: clamp(10px, 1.5vw, 16px) !important;
+  width: 100% !important;
+}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame,
+.mrx-image-gallery.is-spirit-gallery .mrx-image-frame {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: clamp(190px, 25vw, 340px) !important;
+  aspect-ratio: auto !important;
+}
+.mrx-image-gallery.is-sojourner-gallery .mrx-image-frame img,
+.mrx-image-gallery.is-spirit-gallery .mrx-image-frame img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* The reveal CTA is centered on phones, but the Discover/Explore tab rail
+   keeps its original full-width, left-to-right layout. Add breathing room
+   between the CTA and the tab rail without changing the tabs themselves. */
+@media (max-width: 760px) {
+  .mrx-reveal-section {
+    display: grid !important;
+    justify-items: stretch !important;
+    gap: 0 !important;
+  }
+  .mrx-reveal-section > .mrx-reveal-trigger {
+    justify-self: center !important;
+    align-self: center !important;
+    display: inline-flex !important;
+    width: fit-content !important;
+    max-width: calc(100% - 8px) !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  .mrx-reveal-body {
+    width: 100% !important;
+    margin-top: 12px !important;
+  }
+  .mrx-tabs {
+    display: flex !important;
+    position: sticky !important;
+    justify-content: flex-start !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+  .mrx-tab {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+  .mrx-image-gallery.is-sojourner-gallery,
+  .mrx-image-gallery.is-spirit-gallery {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+  .mrx-image-gallery.is-sojourner-gallery .mrx-image-frame,
+  .mrx-image-gallery.is-spirit-gallery .mrx-image-frame {
+    height: clamp(205px, 60vw, 290px) !important;
+  }
+
+  /* Sojourner, Spirit and Ingenuity return actions stay at the left edge. */
+  .mrx-record-actions.is-sojourner-actions,
+  .mrx-record-actions.is-spirit-actions,
+  .mrx-record-actions.is-ingenuity-actions {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-inline: 0 !important;
+  }
+  .mrx-record-actions.is-sojourner-actions button,
+  .mrx-record-actions.is-spirit-actions button,
+  .mrx-record-actions.is-ingenuity-actions button {
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    flex: 0 1 auto !important;
+  }
+
+  /* Opportunity's restored Trace 7 action is the only centered return CTA. */
+  .mrx-record-actions.is-opportunity-actions {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-inline: auto !important;
+  }
+  .mrx-record-actions.is-opportunity-actions button {
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    flex: 0 1 auto !important;
+    text-align: center !important;
+  }
+}
+
+/* Opportunity motto separators use the Mars/ember orange, not archive green. */
+.mars-abandoned {
+  border-top-color: rgba(240, 145, 91, .72) !important;
+  border-bottom-color: rgba(240, 145, 91, .72) !important;
+  box-shadow: 0 1px 0 rgba(240, 145, 91, .08), 0 -1px 0 rgba(240, 145, 91, .08);
+}
+
+
+/* Sojourner / Spirit: separate the reveal trigger from the Discover / Explore tabs. */
+.mrx-reveal-section.mrx-reveal-sojourner .mrx-reveal-trigger,
+.mrx-reveal-section.mrx-reveal-spirit .mrx-reveal-trigger {
+  margin-bottom: 16px !important;
+}
+.mrx-reveal-section.mrx-reveal-sojourner .mrx-reveal-body,
+.mrx-reveal-section.mrx-reveal-spirit .mrx-reveal-body {
+  margin-top: 0 !important;
+}
+
+/* FINAL INTERACTION GUARANTEE — Sojourner / Spirit reveal sequence.
+   The return action is not rendered visually until the CTA opens all layers
+   and the story. This explicit rule wins against all responsive display rules. */
+.mrx-reveal-body[hidden],
+.mrx-story-card[hidden],
+.mrx-record-actions[hidden] {
+  display: none !important;
+}
+
+/* On phones, the three requested rover return buttons share Opportunity's
+   centered alignment; desktop alignment is left untouched. */
+@media (max-width: 760px) {
+  .mrx-record-actions.is-sojourner-actions,
+  .mrx-record-actions.is-spirit-actions,
+  .mrx-record-actions.is-ingenuity-actions {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .mrx-record-actions.is-sojourner-actions button,
+  .mrx-record-actions.is-spirit-actions button,
+  .mrx-record-actions.is-ingenuity-actions button {
+    margin-inline: auto !important;
+  }
+}

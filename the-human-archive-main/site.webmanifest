@@ -1,0 +1,21 @@
+{
+  "name": "The Human Archive",
+  "short_name": "Human Archive",
+  "description": "An interactive space-archaeology experience exploring 11 human-made traces across the Moon, Mars, and deep space.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#020604",
+  "theme_color": "#020604",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

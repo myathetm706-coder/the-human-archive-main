@@ -1,0 +1,883 @@
+/* THE HUMAN ARCHIVE — MAP SYSTEMS
+   Shared layer for lunar and Martian map frames, terrain, markers and waypoints.
+   Map-specific responsive adjustments are consolidated in this stylesheet. */
+
+.tha-moon-map-panel { width: 100%; }
+
+
+.tha-moon-panel-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 2px 2px 12px; border-bottom: 1px solid var(--moon-line); }
+
+
+.tha-moon-kicker,
+.tha-moon-record-count { color: #b4c8be; font-size: .58rem; letter-spacing: .12em; }
+
+
+.tha-moon-record-count { color: var(--moon-green); }
+
+
+.tha-moon-map-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 245px;
+  margin-top: 12px;
+  border: 1px solid rgba(196,218,205,.2);
+  background: #11191c;
+}
+
+
+.tha-moon-map-frame > .tha-lunar-map-svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; transform: scale(1); transform-origin: var(--tha-zoom-x, 54.4%) var(--tha-zoom-y, 49%); transition: transform 2s cubic-bezier(.18,.72,.2,1), filter 2s ease; filter: saturate(.78) contrast(1.03); }
+
+
+.tha-moon-map-frame.is-zooming > .tha-lunar-map-svg { transform: scale(2.05); filter: saturate(.95) contrast(1.1) brightness(1.12); }
+
+
+.tha-moon-map-frame.is-zooming .tha-moon-marker {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(2.35);
+  transition: opacity 1.15s ease .55s, transform 2s cubic-bezier(.18,.72,.2,1);
+}
+
+
+.tha-moon-map-frame.is-zooming .tha-map-hud { opacity: 0; transition: opacity .28s ease; }
+
+
+.tha-moon-map-frame.is-zooming .tha-map-scan-lines { opacity: .04; }
+
+
+.tha-map-scan-lines { position: absolute; inset: 0; z-index: 1; opacity: .14; pointer-events: none; background: repeating-linear-gradient(0deg, transparent 0 4px, rgba(210,241,223,.18) 5px); mix-blend-mode: screen; }
+
+
+.tha-map-vignette { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse at 51% 49%, transparent 16%, rgba(1,5,7,.13) 70%, rgba(1,5,7,.55) 100%); }
+
+
+.tha-moon-marker {
+  position: absolute;
+  z-index: 4;
+  left: 54.4%;
+  top: 49%;
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+
+/* High-visibility beacon: a broad soft aura, two expanding rings and a hot white core. */
+.tha-moon-marker::before,
+.tha-moon-marker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.tha-moon-marker::before {
+  z-index: 0;
+  width: 132px;
+  height: 132px;
+  background: radial-gradient(circle, rgba(222,255,231,.72) 0%, rgba(163,255,190,.38) 17%, rgba(104,255,159,.16) 38%, rgba(104,255,159,0) 72%);
+  filter: blur(2px);
+  animation: thaMoonBeaconGlow 1.45s ease-in-out infinite;
+}
+
+
+.tha-moon-marker::after {
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background: rgba(248,255,250,.9);
+  box-shadow: 0 0 9px 4px #f4fff6, 0 0 23px 12px rgba(159,255,184,.95), 0 0 48px 24px rgba(100,255,150,.46);
+  animation: thaMoonBeaconFlash 1.45s ease-in-out infinite;
+}
+
+
+.tha-marker-pulse,
+.tha-marker-core { position: absolute; left: 50%; top: 50%; border-radius: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+
+
+.tha-marker-pulse { z-index: 2; width: 54px; height: 54px; border: 2px solid rgba(225,255,233,.98); box-shadow: 0 0 13px rgba(205,255,219,.72), inset 0 0 12px rgba(178,255,200,.2); animation: thaMoonPing 1.9s ease-out infinite; }
+
+
+.tha-marker-core { z-index: 3; width: 14px; height: 14px; background: #fff; border: 2px solid #c9ffda; box-shadow: 0 0 8px 4px #fff, 0 0 20px 10px rgba(174,255,196,.98), 0 0 43px 22px rgba(112,255,157,.7); animation: thaMoonCoreBlink 1.45s steps(2, end) infinite; }
+
+
+.tha-marker-label { position: absolute; z-index: 4; top: -2px; left: 48px; padding: 7px 9px; border: 1px solid rgba(214,255,224,.82); color: #f1fff4; background: rgba(2,12,7,.96); box-shadow: 0 0 18px rgba(126,255,160,.42); font-size: .56rem; font-weight: 600; letter-spacing: .1em; white-space: nowrap; }
+
+
+.tha-moon-marker:hover .tha-marker-label,
+.tha-moon-marker:focus-visible .tha-marker-label { background: rgba(12,42,23,.98); border-color: #fff; }
+
+
+.tha-map-hud { position: absolute; z-index: 3; inset: 12px 12px auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; pointer-events: none; }
+
+
+.tha-map-tag,
+.tha-map-coordinates { padding: 5px 7px; color: #e1e9e4; background: rgba(2,8,10,.66); font-size: .49rem; letter-spacing: .08em; }
+
+
+.tha-map-coordinates { text-align: right; }
+
+
+.tha-vector-map-caption { padding: 8px 2px 1px; color: #82928b; font-size: .49rem; line-height: 1.6; letter-spacing: .07em; }
+
+
+.tha-image-credit { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 5px 10px; padding: 8px 2px 2px; color: #84958f; font-size: .5rem; line-height: 1.6; letter-spacing: .04em; }
+
+
+.tha-image-source { color: #c1e8cb; text-decoration: underline; text-decoration-color: rgba(193,232,203,.35); text-underline-offset: 3px; }
+
+
+.tha-image-source:hover { color: #fff; }
+
+
+.tha-moon-legend { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; margin-top: 13px; color: #9eb3a8; font-size: .54rem; letter-spacing: .07em; }
+
+
+.tha-moon-legend span:first-child { color: #c9f7d2; }
+
+
+.tha-moon-map-caption { margin: 15px 0 0; color: #b4c3bc; text-align: center; font-size: .61rem; letter-spacing: .09em; line-height: 1.7; }
+
+
+
+@keyframes thaMoonPing { 0% { opacity: 1; transform: translate(-50%,-50%) scale(.38); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(2.65); } }
+
+
+@keyframes thaMoonBeaconGlow { 0%, 100% { opacity: .58; transform: translate(-50%,-50%) scale(.78); } 48% { opacity: 1; transform: translate(-50%,-50%) scale(1.18); } }
+
+
+@keyframes thaMoonBeaconFlash { 0%, 100% { opacity: .72; transform: translate(-50%,-50%) scale(.78); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.22); } }
+
+
+@keyframes thaMoonCoreBlink { 0%, 100% { opacity: .78; filter: brightness(1); } 50% { opacity: 1; filter: brightness(1.65); } }
+
+
+/* MAP LAYER — migrated map-specific rules from moon.css. */
+.tha-moon-map-figure { margin: 0; }
+
+@media (max-width: 700px){
+.tha-moon-map-frame { aspect-ratio: 16 / 10; min-height: 205px; }
+.tha-map-hud { inset: 8px 7px auto; }
+.tha-map-tag,
+.tha-map-coordinates { padding: 4px 5px; font-size: .4rem; letter-spacing: .035em; }
+.tha-moon-marker { left: 54.4%; width: 68px; height: 68px; }
+.tha-moon-marker::before { width: 116px; height: 116px; }
+.tha-marker-pulse { width: 48px; height: 48px; }
+.tha-marker-label { top: -1px; left: 42px; padding: 5px 6px; font-size: .48rem; }
+.tha-image-credit { justify-content: flex-start; font-size: .45rem; }
+.tha-vector-map-caption { font-size: .43rem; }
+.tha-moon-legend { display: grid; gap: 6px; font-size: .48rem; }
+.tha-moon-map-caption { font-size: .55rem; }
+}
+
+@media (max-width: 360px){
+.tha-moon-map-frame { min-height: 220px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+.tha-moon-marker::before,
+.tha-moon-marker::after,
+.tha-marker-pulse,
+.tha-marker-core { animation: none !important; }
+.tha-marker-pulse { opacity: .9; transform: translate(-50%,-50%) scale(1.55); }
+}
+
+@media (max-width: 700px){
+.tha-map-hud { align-items: flex-start; gap: 5px; }
+.tha-map-tag,
+.tha-map-coordinates {
+    max-width: 47%;
+    padding: 4px 5px;
+    font-size: clamp(.38rem, 1.55vw, .44rem);
+    line-height: 1.35;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+.tha-marker-label-left .tha-marker-label { right: 42px; left: auto; }
+}
+
+.tha-moon-screen .tha-map-caption,
+.tha-moon-screen .tha-vector-map-caption {
+  font-size: .92rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px){
+.tha-moon-screen .tha-map-caption,
+.tha-moon-screen .tha-vector-map-caption { font-size: .9rem; line-height: 1.68; }
+}
+
+/* 2026 mobile readability pass: metadata stays legible instead of shrinking to microtype. */
+
+.tha-moon-map-title {
+  max-width: 100%;
+  font-size: clamp(1.65rem, 5vw, 3.2rem) !important;
+  line-height: 1.16 !important;
+  letter-spacing: .045em !important;
+  overflow-wrap: anywhere;
+}
+
+.tha-moon-map-caption { font-size: .72rem; line-height: 1.6; }
+
+.tha-vector-map-caption { font-size: .62rem; line-height: 1.55; }
+
+.tha-map-tag,
+.tha-map-coordinates { font-size: .58rem; line-height: 1.5; }
+
+.tha-moon-legend { font-size: .62rem; line-height: 1.55; }
+
+.tha-image-credit { font-size: .58rem; line-height: 1.55; }
+
+.tha-image-source { font-size: .58rem; }
+
+@media (max-width: 700px){
+.tha-moon-map-title { font-size: clamp(1.45rem, 6.5vw, 2.1rem) !important; letter-spacing: .025em !important; }
+.tha-map-tag,
+.tha-map-coordinates { font-size: .62rem; padding: 6px 7px; }
+.tha-moon-legend { font-size: .62rem; gap: 8px; }
+.tha-moon-map-caption,
+.tha-vector-map-caption { font-size: .68rem; }
+}
+
+@media (max-width: 380px){
+.tha-moon-map-title { font-size: 1.38rem !important; }
+.tha-map-tag,
+.tha-map-coordinates { font-size: .56rem; padding: 5px; }
+}
+
+/* MOBILE MAP OVERLAY REPAIR — desktop map geometry remains untouched. */
+
+.tha-mobile-map-notes {display:none;}
+
+@media (max-width:700px){
+.tha-moon-map-frame {min-height:clamp(250px,68vw,390px);aspect-ratio:4/3;}
+.tha-moon-map-frame .tha-map-internal-labels,
+.tha-moon-map-frame .tha-map-scale-labels,
+.tha-moon-map-frame .tha-map-scale-lines {display:none;}
+.tha-mobile-map-notes {position:absolute;z-index:3;inset:10px 10px auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 8px;pointer-events:none;text-shadow:0 1px 4px #000;}
+.tha-mobile-map-name {grid-column:1/-1;color:#f1f3eb;font-size:clamp(.48rem,2vw,.65rem);letter-spacing:.08em;white-space:normal;}
+.tha-mobile-map-sub {grid-column:1/-1;color:#c7d0c8;font-size:clamp(.43rem,1.7vw,.56rem);letter-spacing:.05em;}
+.tha-mobile-map-lat {grid-column:2;grid-row:3;justify-self:end;align-self:start;color:#f1f3eb;font-size:clamp(.44rem,1.8vw,.58rem);letter-spacing:.04em;white-space:nowrap;}
+.tha-mobile-map-scale {grid-column:1;grid-row:4;justify-self:start;color:#d9dfd5;font-size:clamp(.43rem,1.7vw,.55rem);letter-spacing:.04em;display:flex;align-items:center;gap:8px;}
+.tha-mobile-map-scale:after {content:"";display:block;width:42px;height:5px;border-top:1px solid #d9dfd5;border-bottom:1px solid #d9dfd5;}
+.tha-map-hud {inset:auto 8px 8px;align-items:flex-end;gap:5px;}
+.tha-map-tag,
+.tha-map-coordinates {max-width:100%;padding:5px 6px;font-size:clamp(.43rem,1.75vw,.56rem);letter-spacing:.025em;line-height:1.35;}
+.tha-map-tag {white-space:normal;}
+.tha-map-coordinates {white-space:nowrap;overflow:visible;text-align:right;font-variant-numeric:tabular-nums;}
+.tha-moon-map-caption,
+.tha-vector-map-caption {font-size:.62rem;line-height:1.55;overflow-wrap:anywhere;}
+.tha-moon-map-frame,
+.tha-moon-map-panel {border-radius:0!important;}
+}
+
+@media (max-width:380px){
+.tha-mobile-map-notes {inset:8px 8px auto;gap:4px 6px;}
+.tha-map-hud {inset:auto 6px 6px;}
+.tha-map-tag,
+.tha-map-coordinates {font-size:.43rem;padding:4px;}
+}
+
+/* FINAL MOBILE MAP LABEL ORDER: coordinates occupy the former latitude slot;
+   the latitude band moves to the bottom-right HUD. No scale key on phones. */
+
+.tha-map-latitude-band {display:none;}
+
+.tha-mobile-map-coordinate {display:none;}
+
+@media (max-width:700px){
+.tha-mobile-map-notes {position:absolute;inset:auto auto 9px 9px;display:grid;grid-template-columns:minmax(0,1fr);gap:3px;max-width:calc(100% - 18px);}
+.tha-mobile-map-name {grid-column:1;grid-row:1;font-size:clamp(.55rem,2.25vw,.68rem);line-height:1.35;letter-spacing:.06em;white-space:normal;color:#f1f3eb;}
+.tha-mobile-map-sub {grid-column:1;grid-row:2;font-size:clamp(.49rem,2vw,.6rem);line-height:1.4;letter-spacing:.035em;white-space:normal;color:#c7d0c8;}
+.tha-mobile-map-coordinate {display:none!important;}
+.tha-mobile-map-scale {display:none!important;}
+.tha-map-hud {inset:8px 8px auto;display:flex;align-items:flex-start;justify-content:space-between;gap:6px;}
+.tha-map-hud .tha-map-coordinates {display:block!important;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums;}
+.tha-map-latitude-band {display:none!important;}
+.tha-map-tag {font-size:clamp(.52rem,1.95vw,.62rem);padding:5px 7px;line-height:1.4;white-space:nowrap;}
+}
+
+@media (max-width:380px){
+.tha-mobile-map-notes {inset:8px 8px auto;gap:4px 5px;}
+.tha-mobile-map-name {font-size:.54rem;}
+.tha-mobile-map-sub {font-size:.48rem;}
+.tha-mobile-map-coordinate,
+.tha-map-latitude-band {font-size:.5rem;padding:4px 5px;}
+}
+
+@media (max-width:700px){
+.tha-moon-screen .tha-laser-hero-evidence .tha-image-credit {display:flex;justify-content:flex-end;text-align:right;width:100%;}
+.tha-moon-screen .tha-laser-hero-evidence .tha-image-source {margin-left:auto;text-align:right;}
+}
+
+/* MOBILE-ONLY MOON MAP LABEL POSITION */
+
+@media (max-width: 700px){
+.tha-moon-screen .tha-mobile-map-notes {
+    inset: auto auto 9px 9px !important;
+    z-index: 2;
+    max-width: calc(100% - 18px);
+  }
+}
+
+
+/* MAP LAYER — migrated map-specific rules from mars.css. */
+.mars-map-intro {position:relative;max-width:1080px;margin:clamp(28px,5vw,64px) auto 24px;}
+
+.mars-map-intro h1 {margin:0;color:#ffe1ce;font-family:Orbitron,sans-serif;font-size:clamp(2.1rem,6vw,4.6rem);letter-spacing:.05em;}
+
+.mars-map-intro>p:not(.mars-overline):not(.mars-record-counter) {color:#d9b7a5;line-height:1.7;}
+
+.mars-map-frame {position:relative;isolation:isolate;overflow:hidden;width:min(100%,1120px);aspect-ratio:1000/590;margin:22px auto 0;border:1px solid #b15d3d;background:#301710;box-shadow:0 18px 80px #08030299;}
+
+.mars-map-frame>svg {display:block;width:100%;height:100%;}
+
+.mars-marker {position:absolute;z-index:2;display:grid;place-items:center;width:54px;height:54px;padding:0;border:0;background:transparent;transform:translate(-50%,-50%);cursor:pointer;}
+
+.mars-marker-pulse,
+.mars-marker-core {position:absolute;border-radius:50%;pointer-events:none;}
+
+.mars-marker-pulse {width:44px;height:44px;border:2px solid #ffb18b;animation:marsPulse 1.8s ease-out infinite;}
+
+.mars-marker-core {width:13px;height:13px;background:#fff1e7;box-shadow:0 0 9px 5px #ffb18b,0 0 26px 12px #c4512e;}
+
+.mars-marker-label {position:absolute;left:42px;padding:5px 8px;background:#1c0c08;border:1px solid #e58a5d;color:#ffe3d2;font-size:.65rem;}
+
+.mars-marker.is-recovered .mars-marker-core {background:#b7edb9;box-shadow:0 0 9px 5px #b7edb9,0 0 26px 12px #69a879;}
+
+.mars-map-legend {position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:1120px;margin:16px auto;}
+
+.mars-map-record {min-height:54px;padding:10px 12px;text-align:left;border:1px solid #81422e;background:#25120d;color:#f0c4ad;font:inherit;font-size:.68rem;letter-spacing:.04em;cursor:pointer;}
+
+.mars-map-record:hover,
+.mars-map-record:focus-visible {border-color:#f4a77e;background:#472116;}
+
+.mars-map-footnote {position:relative;max-width:1120px;margin:22px auto;color:#a67b68;font-size:.62rem;letter-spacing:.13em;}
+
+@keyframes marsPulse{0%{opacity:1;transform:scale(.5)}100%{opacity:0;transform:scale(2.5)}}
+
+@media (max-width:700px){
+.mars-map-frame {aspect-ratio:4/3;min-height:280px;}
+.mars-map-legend {grid-template-columns:repeat(2,minmax(0,1fr));}
+.mars-marker {width:48px;height:48px;}
+.mars-marker-label {left:34px;font-size:.6rem;}
+}
+
+@media (max-width:380px){
+.mars-map-intro h1 {font-size:1.8rem;}
+.mars-map-frame {min-height:250px;}
+.mars-map-record {font-size:.61rem;padding:9px 7px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+.mars-marker-pulse {animation:none;opacity:.65;}
+}
+
+.mars-map-frame>svg {transition:transform 1.25s cubic-bezier(.2,.7,.2,1),filter 1.25s ease;transform-origin:50% 50%;}
+
+.mars-map-frame.is-zooming>svg {transform:scale(1.55);filter:brightness(1.22) saturate(1.2);}
+
+.mars-map-frame.is-zooming .mars-marker {opacity:0;transition:opacity .45s ease;}
+
+@media (prefers-reduced-motion:reduce){
+.mars-map-frame>svg {transition:none;}
+}
+
+.mars-map-chapter-title {margin:10px 0 0;color:#e99a73;font-size:.78rem;letter-spacing:.16em;}
+
+.mars-map-intro {margin:38px auto 22px;max-width:1320px;}
+
+.mars-map-intro h1 {font-size:clamp(2.4rem,6.2vw,5rem);letter-spacing:.035em;}
+
+.mars-map-subtitle {max-width:760px;color:#f1c1a8;font-size:clamp(1rem,2vw,1.32rem);line-height:1.55;}
+
+.mars-map-intro-copy {max-width:760px;color:#b98b75;font-size:.83rem;line-height:1.7;}
+
+.mars-recovery-counter {display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:26px;padding:13px 16px;border:1px solid rgba(211,121,82,.45);background:rgba(20,9,6,.58);color:#f1b391;}
+
+.mars-counter-label {font-size:.69rem;letter-spacing:.13em;}
+
+.mars-recovery-counter strong {font-family:Orbitron,sans-serif;font-size:.8rem;letter-spacing:.1em;color:#ffe5d5;}
+
+.mars-map-layout {position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,.75fr);gap:22px;max-width:1320px;margin:0 auto;align-items:stretch;}
+
+.mars-map-frame {width:100%;aspect-ratio:4/3;max-height:none;margin:0;border:1px solid rgba(214,126,88,.62);background:#3a1a11;box-shadow:0 25px 70px rgba(0,0,0,.5),inset 0 0 70px rgba(255,151,103,.06);}
+
+.mars-terrain-svg {display:block;width:100%;height:100%;transform:scale(1);transform-origin:50% 50%;transition:transform .95s cubic-bezier(.18,.75,.2,1),filter .95s ease;}
+
+.mars-map-frame.is-zooming .mars-terrain-svg {transform:scale(1.72);transform-origin:var(--mars-focus-x,17%) var(--mars-focus-y,75%);filter:brightness(1.22) saturate(1.16);}
+
+.mars-marker {width:56px;height:56px;z-index:4;display:grid;place-items:center;transform:translate(-50%,-50%);border:0;background:transparent;}
+
+.mars-marker-halo {position:absolute;width:50px;height:50px;border:1px solid rgba(255,193,158,.8);border-radius:50%;opacity:0;}
+
+.mars-marker-symbol {position:relative;display:grid;place-items:center;width:36px;height:36px;background:rgba(41,13,7,.9);border:1px solid #e79a74;color:#ffe4d3;font-family:Orbitron,sans-serif;font-size:.72rem;transform:rotate(45deg);box-shadow:0 7px 20px rgba(0,0,0,.38);}
+
+.mars-marker-symbol::first-letter {transform:rotate(-45deg);}
+
+.mars-marker-caption {position:absolute;top:43px;left:50%;transform:translateX(-50%);padding:4px 6px;background:rgba(24,9,5,.83);color:#f7c5a9;font-size:.55rem;letter-spacing:.08em;white-space:nowrap;}
+
+.mars-marker.is-current .mars-marker-symbol {width:26px;height:26px;border-radius:50%;transform:none;background:#ffe9dd;color:#6e2717;border:2px solid #fff3eb;box-shadow:0 0 12px 7px rgba(255,217,194,.4),0 0 42px 18px rgba(255,124,80,.54);}
+
+.mars-marker.is-current .mars-marker-halo {opacity:1;animation:marsPulse 1.7s ease-out infinite;}
+
+.mars-marker.is-current .mars-marker-caption {color:#fff0e8;}
+
+.mars-marker.is-complete .mars-marker-symbol {transform:none;border-radius:50%;background:#b4d8a3;color:#19351c;border-color:#d6efc8;}
+
+.mars-marker.is-complete .mars-marker-caption {color:#cbe5b9;}
+
+.mars-marker.is-locked {cursor:not-allowed;opacity:.55;}
+
+.mars-marker.is-locked .mars-marker-symbol {background:rgba(25,12,10,.8);border-color:#805340;color:#bd8d75;box-shadow:none;}
+
+.mars-marker.is-locked .mars-marker-caption {color:#9b7361;}
+
+.mars-expedition-list {display:flex;flex-direction:column;min-width:0;padding:26px 23px;border:1px solid rgba(201,111,75,.48);background:linear-gradient(155deg,rgba(57,25,16,.94),rgba(19,10,7,.96));}
+
+.mars-expedition-list h2 {margin:0 0 16px;color:#ffe0ce;font-family:Orbitron,sans-serif;font-size:clamp(1.1rem,2vw,1.55rem);}
+
+.mars-expedition-row {display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:10px;min-height:72px;padding:10px 0;border:0;border-top:1px solid rgba(190,115,82,.3);background:transparent;color:#efc3aa;text-align:left;font:inherit;cursor:pointer;}
+
+.mars-expedition-no {font-family:Orbitron,sans-serif;font-size:.7rem;color:#d9906d;}
+
+.mars-expedition-copy strong {display:block;color:#ffdec9;font-size:.73rem;letter-spacing:.06em;}
+
+.mars-expedition-status {font-size:.54rem;letter-spacing:.1em;color:#c28d73;}
+
+.mars-expedition-row.is-locked {opacity:.42;cursor:not-allowed;}
+
+.mars-expedition-row.is-complete .mars-expedition-status {color:#b8d9a3;}
+
+.mars-expedition-row.is-unlocked {background:linear-gradient(90deg,rgba(188,78,42,.18),transparent);}
+
+.mars-expedition-row.is-unlocked .mars-expedition-status {color:#ffb38e;}
+
+.mars-expedition-note {margin:auto 0 0;padding-top:20px;color:#b58a76;font-size:.7rem;line-height:1.7;}
+
+.mars-map-footnote {position:relative;z-index:1;max-width:1320px;margin:14px auto;color:#bb8b75;font-size:.62rem;line-height:1.65;letter-spacing:.07em;}
+
+.mars-map-frame.is-zooming .mars-marker {opacity:0;transition:opacity .6s ease;}
+
+.mars-map-layout:has(.mars-map-frame.is-zooming) .mars-expedition-list {opacity:.3;transition:opacity .6s ease;}
+
+@media (max-width:900px){
+.mars-map-layout {grid-template-columns:minmax(0,1.35fr) minmax(230px,.85fr);gap:14px;}
+.mars-expedition-list {padding:20px 16px;}
+.mars-expedition-row {grid-template-columns:30px minmax(0,1fr);gap:8px;}
+.mars-expedition-status {grid-column:2;}
+.mars-map-frame {aspect-ratio:4/3;}
+}
+
+@media (max-width:700px){
+.mars-map-intro {margin:30px auto 18px;}
+.mars-map-intro h1 {font-size:clamp(2rem,10vw,3.5rem);line-height:1.12;}
+.mars-recovery-counter {align-items:flex-start;flex-direction:column;gap:6px;padding:12px;}
+.mars-map-layout {grid-template-columns:minmax(0,1fr);gap:14px;}
+.mars-map-frame {aspect-ratio:4/3;min-height:260px;}
+.mars-marker {width:46px;height:46px;}
+.mars-marker-symbol {width:30px;height:30px;font-size:.64rem;}
+.mars-marker.is-current .mars-marker-symbol {width:23px;height:23px;}
+.mars-marker-halo {width:40px;height:40px;}
+.mars-marker-caption {top:37px;font-size:.47rem;padding:3px 4px;}
+.mars-expedition-list {padding:17px 15px;}
+.mars-expedition-row {grid-template-columns:34px minmax(0,1fr) auto;min-height:60px;}
+.mars-expedition-status {grid-column:auto;font-size:.5rem;}
+.mars-map-footnote {font-size:.57rem;line-height:1.65;}
+}
+
+@media (max-width:380px){
+.mars-map-frame {min-height:238px;}
+.mars-marker-caption {font-size:.42rem;letter-spacing:.035em;}
+.mars-expedition-row {grid-template-columns:28px minmax(0,1fr) auto;gap:6px;}
+.mars-expedition-copy strong {font-size:.65rem;}
+.mars-expedition-status {font-size:.44rem;}
+}
+
+/* Keep waypoint numerals upright inside the rotated diamond markers. */
+
+.mars-marker-number {display:block;transform:rotate(-45deg);font-family:Orbitron,sans-serif;font-size:.68rem;line-height:1;}
+
+.mars-marker.is-current .mars-marker-number,
+.mars-marker.is-complete .mars-marker-number {transform:none;}
+
+@media (max-width:700px){
+.mars-marker-number {font-size:.62rem;}
+}
+
+@media (max-width:700px){
+.tha-moon-screen .tha-laser-hero-evidence .tha-image-credit {justify-content:space-between;}
+}
+
+/* Match the shorter map-marker handoff delay with its visual camera zoom. */
+
+.mars-terrain-svg,
+.mars-map-frame>svg {transition-duration:.62s!important;}
+
+
+/* ========================================================================
+   IREM REVIEW PASS — readability, discovery flow and progress consistency.
+   Added after the existing stylesheets so the original visual identities
+   remain intact: Moon = memory, Mars = field recovery, Other Traces = deep space.
+   ======================================================================== */
+/* Mars: use the supplied surface photograph as the exploration field map. */
+.mars-map-frame {
+  aspect-ratio: 1216 / 796;
+  min-height: 0;
+  background: #291710 url("../assets/images/mars-surface-map.webp") center / cover no-repeat;
+  border-color: rgba(237, 157, 119, .72);
+}
+.mars-map-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(18, 8, 5, .48), rgba(14, 7, 5, .12) 42%, rgba(12, 6, 4, .58)),
+    linear-gradient(90deg, rgba(16, 7, 4, .3), transparent 55%, rgba(16, 7, 4, .2));
+}
+.mars-surface-image {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 54%;
+  filter: saturate(.9) contrast(1.08) brightness(.76);
+  transition: transform 1.25s cubic-bezier(.2, .7, .2, 1), filter 1.25s ease;
+  transform-origin: var(--mars-focus-x, 17%) var(--mars-focus-y, 75%);
+}
+.mars-map-frame > .mars-terrain-svg {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: transform 1.25s cubic-bezier(.2, .7, .2, 1), opacity .6s ease;
+  transform-origin: var(--mars-focus-x, 17%) var(--mars-focus-y, 75%);
+}
+.mars-map-frame.is-zooming .mars-surface-image {
+  transform: scale(1.62);
+  filter: saturate(1.05) contrast(1.1) brightness(.9);
+}
+.mars-map-frame.is-zooming .mars-terrain-svg { transform: scale(1.62); opacity: .2; }
+.mars-map-frame .mars-marker { z-index: 4; }
+.mars-marker.is-current .mars-marker-halo,
+.mars-marker.is-complete .mars-marker-halo {
+  opacity: 1;
+  animation: marsReviewBeacon 2.4s ease-out infinite;
+}
+.mars-marker.is-complete .mars-marker-halo { border-color: rgba(197, 233, 177, .72); }
+.mars-marker:focus-visible { outline: 2px solid #fff0e4; outline-offset: 4px; }
+.mars-marker-caption { font-size: .66rem; font-weight: 700; text-shadow: 0 1px 5px #170905; }
+.mars-expedition-row { min-height: 60px; }
+.mars-expedition-row:disabled { cursor: not-allowed; }
+.mars-expedition-row:not(:disabled):focus-visible { outline: 2px solid #ffe1ce; outline-offset: 3px; }
+/* Better touch targets and reading sizes while preserving each chapter palette. */
+@media (max-width: 700px){
+.tha-mars-screen .mars-map-frame { aspect-ratio: 4 / 3; min-height: 260px; }
+.tha-mars-screen .mars-marker { width: 50px; height: 50px; }
+.tha-mars-screen .mars-marker-caption { top: 40px; font-size: .58rem; padding: 5px 7px; }
+.tha-mars-screen .mars-marker-symbol { width: 33px; height: 33px; }
+}
+@keyframes marsReviewBeacon {
+  0% { transform: scale(.72); opacity: .8; }
+  70% { transform: scale(1.22); opacity: .15; }
+  100% { transform: scale(1.22); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce){
+.mars-surface-image,
+.mars-terrain-svg,
+.mars-marker-halo { transition: none !important; animation: none !important; }
+.mars-map-frame.is-zooming .mars-surface-image,
+.mars-map-frame.is-zooming .mars-terrain-svg { transform: none !important; }
+}
+.mars-audio-source { display:inline-block;margin:0 0 16px;color:#ffd0b5;text-decoration:underline;text-underline-offset:4px;font-size:.68rem;line-height:1.6; }
+/* The next available Mars trace is clearly brighter and blinks more strongly. */
+.mars-marker.is-new-unlock .mars-marker-halo {
+  opacity: 1;
+  border: 2px solid rgba(255, 224, 205, .98);
+  box-shadow: 0 0 18px 7px rgba(255, 176, 135, .38), 0 0 42px 18px rgba(226, 91, 52, .48);
+  animation: marsNewTraceHalo .95s ease-out infinite !important;
+}
+.mars-marker.is-new-unlock .mars-marker-symbol {
+  background: #fff3e9;
+  color: #6e2717;
+  border: 2px solid #fff8f2;
+  box-shadow: 0 0 12px 6px rgba(255, 229, 211, .92), 0 0 30px 14px rgba(255, 125, 77, .82);
+  animation: marsNewTraceCore .78s steps(2, end) infinite;
+}
+.mars-marker.is-new-unlock .mars-marker-caption {
+  color: #fff4ed;
+  border-color: #ffd2b9;
+  text-shadow: 0 0 10px rgba(255, 170, 128, .9), 0 1px 5px #170905;
+}
+.mars-expedition-row.is-unlocked:not(.is-complete) {
+  border-color: rgba(255, 172, 130, .9);
+  box-shadow: inset 0 0 24px rgba(222, 91, 49, .18), 0 0 18px rgba(224, 106, 66, .16);
+  animation: marsNewTraceRow 1.25s ease-in-out infinite alternate;
+}
+@keyframes marsNewTraceHalo {
+  0% { transform: scale(.52); opacity: .98; }
+  100% { transform: scale(2.05); opacity: 0; }
+}
+@keyframes marsNewTraceCore {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.8); }
+}
+@keyframes marsNewTraceRow {
+  from { background-color: rgba(188,78,42,.12); }
+  to { background-color: rgba(230,104,62,.31); }
+}
+@media (prefers-reduced-motion: reduce){
+.mars-marker.is-new-unlock .mars-marker-halo,
+.mars-marker.is-new-unlock .mars-marker-symbol,
+.mars-expedition-row.is-unlocked:not(.is-complete) {
+    animation: none !important;
+  }
+.mars-marker.is-new-unlock .mars-marker-symbol {
+    box-shadow: 0 0 16px 8px rgba(255, 180, 135, .86);
+  }
+}
+
+
+.mars-map-intro { max-width:1180px; margin:clamp(24px,4vw,48px) auto 22px; }
+.mars-map-intro > .mars-overline { color:#e9a17e; font-size:.66rem; letter-spacing:.2em; }
+.mars-map-intro h1 { max-width:900px; font-size:clamp(2rem,5.2vw,4.8rem); line-height:1.03; letter-spacing:.035em; }
+.mars-map-subtitle { margin:13px 0 0; color:#f3c4a7!important; font-size:clamp(1rem,1.8vw,1.35rem); }
+.mars-map-intro-copy { max-width:760px; margin:8px 0 0; color:#cba48f!important; font-size:clamp(.78rem,1.15vw,.94rem); line-height:1.7; }
+.mars-recovery-counter { display:flex; align-items:center; gap:12px; margin-top:20px; padding:10px 0; border-top:1px solid rgba(222,145,105,.22); color:#d8ad95; }
+.mars-counter-label { font-size:.62rem; letter-spacing:.15em; }
+.mars-recovery-counter strong { margin-left:auto; color:#ffe0ca; font-family:var(--tha-font-display); font-size:.85rem; letter-spacing:.1em; }
+.mars-map-layout { display:block; width:100%; max-width:1240px; margin:0 auto; }
+.mars-map-frame {
+  width:100%; max-width:none; aspect-ratio: 1.72 / 1; min-height:400px;
+  margin:0 auto; border:1px solid rgba(245,166,125,.46); border-radius:3px;
+  background:#29150e; box-shadow:0 28px 90px rgba(0,0,0,.52),0 0 45px rgba(204,91,48,.12);
+}
+.mars-map-frame::after { content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(13,7,5,.34),transparent 24%,transparent 70%,rgba(13,7,5,.28)); }
+.mars-map-frame > .mars-surface-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 53%; filter:saturate(.88) contrast(1.08) brightness(.82); }
+.mars-map-frame > svg { position:absolute; z-index:2; inset:0; width:100%; height:100%; pointer-events:none; }
+.mars-map-hud-top,
+.mars-map-hud-bottom {
+  position:absolute; z-index:5; display:block; max-width:calc(100% - 28px);
+  padding:9px 12px; color:#ffe5d4; background:rgba(22,10,7,.78);
+  border:1px solid rgba(241,164,123,.32); font-size:clamp(.48rem,.72vw,.65rem);
+  letter-spacing:.16em; line-height:1.5; backdrop-filter:blur(8px);
+}
+.mars-map-hud-top { top:16px; left:16px; }
+.mars-map-hud-bottom { right:16px; bottom:16px; text-align:right; color:#f0b28f; }
+.mars-marker { z-index:6; width:52px; height:52px; }
+.mars-marker-halo { position:absolute; inset:0; border:1px solid rgba(255,208,178,.72); border-radius:50%; background:radial-gradient(circle,rgba(255,228,208,.34),rgba(228,112,68,.12) 50%,transparent 72%); opacity:.0; }
+.mars-marker-symbol { position:relative; z-index:2; display:grid; place-items:center; width:38px; height:38px; border:1px solid rgba(255,211,186,.8); border-radius:50%; color:#ffe7d7; background:rgba(35,15,9,.92); box-shadow:0 0 0 5px rgba(237,139,96,.12),0 0 22px rgba(247,148,102,.35); font-family:var(--tha-font-display); font-size:.65rem; }
+.mars-marker-caption { position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); width:max-content; max-width:140px; padding:6px 8px; border:1px solid rgba(232,153,112,.52); color:#f8d1b9; background:rgba(23,10,7,.92); font-size:.52rem; letter-spacing:.09em; text-align:center; white-space:normal; line-height:1.4; }
+.mars-marker.is-current .mars-marker-halo { opacity:1; animation:marsNewPulse 1.8s ease-out infinite; }
+.mars-marker.is-current .mars-marker-symbol { color:#3a160b; background:#ffe5d4; border-color:#fff3e9; box-shadow:0 0 0 7px rgba(255,209,177,.16),0 0 35px 15px rgba(255,155,104,.58); }
+.mars-marker.is-current .mars-marker-caption { color:#fff0e7; border-color:#ffc19d; }
+.mars-marker.is-locked { opacity:.75; cursor:not-allowed; }
+.mars-marker.is-locked .mars-marker-symbol { color:#a98572; background:rgba(24,13,10,.92); border-color:rgba(179,127,104,.42); box-shadow:none; }
+.mars-marker.is-locked .mars-marker-caption { color:#b18a75; border-color:rgba(179,127,104,.28); }
+.mars-marker.is-complete .mars-marker-symbol { color:#25130c; background:#e8b18d; border-color:#ffe0c9; box-shadow:0 0 18px rgba(255,192,147,.28); }
+.mars-marker.is-complete .mars-marker-caption { color:#f8d9c4; }
+.mars-audio-source { display:inline-block; margin:14px 0 0; color:#f0b18d; font-size:.61rem; letter-spacing:.08em; text-underline-offset:4px; }
+.mars-map-footnote { max-width:1240px; margin:10px auto 0; color:#a88470; font-size:.53rem; line-height:1.7; letter-spacing:.07em; }
+/* Tablet and phone layouts: reflow, never shrink desktop columns. */
+@media (max-width:760px){
+.mars-map-intro { margin:24px auto 16px; }
+.mars-map-intro h1 { font-size:clamp(1.9rem,9vw,3.1rem); }
+.mars-recovery-counter { align-items:flex-start; flex-wrap:wrap; }
+.mars-recovery-counter strong { margin-left:0; width:100%; }
+.mars-map-frame { aspect-ratio:1.12 / 1; min-height:0; }
+.mars-map-frame > .mars-surface-image { object-position:center; }
+.mars-map-hud-top { top:9px; left:9px; padding:7px 8px; font-size:.48rem; letter-spacing:.11em; }
+.mars-map-hud-bottom { right:9px; bottom:9px; max-width:calc(100% - 18px); padding:7px 8px; font-size:.46rem; letter-spacing:.06em; }
+.mars-marker { width:42px; height:42px; }
+.mars-marker-symbol { width:31px; height:31px; font-size:.57rem; }
+.mars-marker-caption { top:calc(100% + 5px); max-width:102px; padding:5px 6px; font-size:.44rem; }
+}
+@media (max-width:390px){
+.mars-map-frame { min-height:0; aspect-ratio:1 / 1.02; }
+.mars-marker-caption { max-width:84px; font-size:.4rem; }
+.mars-map-hud-top { max-width:calc(100% - 18px); }
+.mars-map-hud-bottom { max-width:calc(100% - 18px); }
+}
+.mars-map-intro {
+  width: min(1180px, calc(100% - 48px));
+  margin: clamp(28px, 4vw, 46px) auto 18px !important;
+}
+.mars-map-intro > .mars-overline { margin-bottom: 12px; color: #e99a74 !important; font-size: .66rem; letter-spacing: .2em; line-height: 1.6; }
+.mars-map-intro h1 {
+  max-width: 900px; margin: 0; color: #ffe1ce !important;
+  font-size: clamp(2rem, 5.3vw, 4.6rem) !important; line-height: 1.04; letter-spacing: .035em;
+}
+.mars-map-subtitle { margin: 13px 0 0 !important; color: #f0c1a6 !important; font-size: clamp(1rem, 1.8vw, 1.32rem) !important; line-height: 1.6 !important; }
+.mars-map-intro-copy { max-width: 760px; margin: 8px 0 0 !important; color: #cba48f !important; font-size: clamp(.8rem, 1.15vw, .94rem) !important; line-height: 1.75 !important; }
+.mars-map-layout { display: block; width: min(1240px, calc(100% - 48px)); margin: 0 auto; }
+.mars-recovery-counter {
+  display: flex !important; align-items: baseline !important; justify-content: space-between !important;
+  gap: 14px; width: 100%; margin: 4px 0 9px !important; padding: 0 !important;
+  border: 0 !important; background: transparent !important; box-shadow: none !important;
+}
+.mars-counter-label { color: #d99a79 !important; font-size: clamp(.58rem, .8vw, .68rem) !important; letter-spacing: .14em; line-height: 1.5; }
+.mars-recovery-counter strong {
+  flex: 0 0 auto; margin: 0 0 0 auto !important; width: auto !important;
+  color: #ffe0ce !important; font-family: Orbitron, sans-serif; font-size: clamp(.72rem, 1vw, .9rem) !important;
+  letter-spacing: .09em; white-space: nowrap;
+}
+.mars-map-frame {
+  width: 100% !important; max-width: none !important; min-height: 0 !important;
+  aspect-ratio: 1.72 / 1 !important; margin: 0 auto !important;
+  overflow: hidden; border: 1px solid rgba(226,139,99,.38) !important; border-radius: 2px !important;
+  box-shadow: 0 28px 90px rgba(0,0,0,.48), 0 0 45px rgba(204,91,48,.1) !important;
+}
+.mars-map-frame > .mars-surface-image { object-fit: cover !important; object-position: center 53% !important; filter: saturate(.92) contrast(1.08) brightness(.86) !important; }
+.mars-map-frame > svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.mars-map-hud-top,
+.mars-map-hud-bottom {
+  position: absolute; z-index: 8; display: block; width: max-content; max-width: calc(100% - 22px);
+  padding: 5px 8px; border: 0 !important; border-radius: 1px;
+  background: rgba(21,9,5,.72) !important; color: #ffe6d6 !important;
+  font-size: clamp(.43rem, .65vw, .59rem) !important; letter-spacing: .12em !important;
+  line-height: 1.45 !important; white-space: nowrap !important; backdrop-filter: blur(6px);
+}
+.mars-map-hud-top { top: 13px !important; left: 13px !important; }
+.mars-map-hud-bottom { right: 13px !important; bottom: 13px !important; text-align: right; color: #f2b38f !important; }
+.mars-marker { z-index: 9; width: 52px !important; height: 52px !important; }
+.mars-marker-caption {
+  top: calc(100% + 7px) !important; left: 50% !important; right: auto !important;
+  transform: translateX(-50%) !important; width: max-content !important; max-width: none !important;
+  padding: 5px 7px !important; border: 1px solid rgba(232,153,112,.42) !important;
+  background: rgba(25,10,6,.88) !important; color: #ffe0cd !important;
+  font-size: clamp(.39rem, .56vw, .5rem) !important; letter-spacing: .075em !important;
+  line-height: 1.35 !important; text-align: center; white-space: nowrap !important;
+}
+.mars-marker.is-edge-right .mars-marker-caption { left: auto !important; right: -1px !important; transform: none !important; }
+.mars-marker.is-current .mars-marker-caption { color: #fff2e9 !important; border-color: rgba(255,193,157,.76) !important; }
+.mars-marker.is-locked .mars-marker-caption { color: #d2a48c !important; border-color: rgba(179,127,104,.28) !important; }
+.mars-marker.is-complete .mars-marker-caption { color: #f8d9c4 !important; }
+.mars-audio-source { display: inline-block; width: min(1240px, calc(100% - 48px)); margin: 13px auto 0 !important; color: #efad89 !important; font-size: .61rem; line-height: 1.7; }
+.mars-map-footnote { width: min(1240px, calc(100% - 48px)); margin: 8px auto 0 !important; color: #9f7966 !important; font-size: .53rem; line-height: 1.7; }
+/* Header + content layout at tablet and phone widths. */
+@media (max-width:760px){
+.mars-map-intro { width:calc(100% - 28px); margin:23px auto 13px !important; }
+.mars-map-intro h1 { max-width:100%; font-size:clamp(1.9rem,8.6vw,3.2rem) !important; line-height:1.04; }
+.mars-map-subtitle { font-size:clamp(.94rem,4vw,1.15rem) !important; line-height:1.55 !important; }
+.mars-map-intro-copy { font-size:.75rem !important; line-height:1.7 !important; }
+.mars-map-layout { width:calc(100% - 28px); }
+.mars-recovery-counter { align-items:baseline !important; flex-wrap:nowrap !important; gap:8px; margin:0 0 8px !important; }
+.mars-counter-label { font-size:clamp(.56rem,2.2vw,.65rem) !important; letter-spacing:.08em; }
+.mars-recovery-counter strong { width:auto !important; margin-left:auto !important; font-size:clamp(.58rem,2.35vw,.72rem) !important; letter-spacing:.045em; }
+.mars-map-frame { aspect-ratio:1.1 / 1 !important; min-height:0 !important; }
+.mars-map-hud-top,
+.mars-map-hud-bottom { max-width:calc(100% - 14px); padding:4px 5px; font-size:clamp(.41rem,1.55vw,.48rem) !important; letter-spacing:.065em !important; }
+.mars-map-hud-top { top:7px !important; left:7px !important; }
+.mars-map-hud-bottom { right:7px !important; bottom:7px !important; }
+.mars-marker { width:43px !important; height:43px !important; }
+.mars-marker-symbol { width:31px !important; height:31px !important; font-size:.55rem !important; }
+.mars-marker-caption { top:calc(100% + 4px) !important; padding:4px 5px !important; font-size:clamp(.37rem,1.3vw,.44rem) !important; letter-spacing:.045em !important; }
+.mars-marker.is-edge-right .mars-marker-caption { right:0 !important; }
+.mars-audio-source,
+.mars-map-footnote { width:calc(100% - 28px); }
+}
+@media (max-width:390px){
+.mars-map-layout,
+.mars-map-intro,
+.mars-audio-source,
+.mars-map-footnote { width:calc(100% - 22px); }
+.mars-map-frame { aspect-ratio:1 / 1.03 !important; }
+.mars-map-hud-top,
+.mars-map-hud-bottom { font-size:.40rem !important; letter-spacing:.035em !important; }
+.mars-marker-caption { font-size:.36rem !important; padding:3px 4px !important; }
+}
+
+
+/* ============================================================================
+   FOLLOW-UP RESPONSIVE POLISH — Mars records, Voyager artwork and Hidden Records
+   Added after the existing chapter styles so these fixes remain isolated.
+   ============================================================================ */
+/* MARS MAP: keep record count and recovery count on one shared row. */
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-recovery-counter {
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  align-items:center !important;
+  column-gap:14px !important;
+  width:100% !important;
+  margin:4px 0 8px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-counter-label {
+  min-width:0;
+  margin:0 !important;
+  white-space:nowrap !important;
+  font-size:clamp(.56rem, .8vw, .68rem) !important;
+  letter-spacing:.105em !important;
+}
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-recovery-counter strong {
+  width:auto !important;
+  min-width:0;
+  margin:0 !important;
+  justify-self:end;
+  white-space:nowrap !important;
+  font-size:clamp(.66rem, .95vw, .88rem) !important;
+  letter-spacing:.055em !important;
+}
+.tha-mars-screen:not(.is-record) .mars-marker-caption {
+  width:max-content !important; max-width:none !important; white-space:nowrap !important;
+  line-height:1.2 !important;
+}
+.mars-audio-source {
+  display:block !important;
+  width:min(1240px,calc(100% - 48px)) !important;
+  margin:13px auto 0 !important;
+  text-align:center !important;
+  line-height:1.65 !important;
+}
+.mars-map-footnote {
+  text-align:center !important;
+  overflow-wrap:anywhere;
+}
+@media (max-width:760px){
+/* Count row stays horizontal even at 360px. */
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-recovery-counter { grid-template-columns:minmax(0,1fr) auto !important; gap:7px !important; }
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-counter-label { font-size:clamp(.50rem,1.9vw,.58rem) !important; letter-spacing:.065em !important; }
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-recovery-counter strong { font-size:clamp(.56rem,2vw,.68rem) !important; letter-spacing:.025em !important; }
+.mars-audio-source { width:calc(100% - 28px) !important; padding-inline:4px; font-size:.59rem !important; }
+.mars-map-footnote { width:calc(100% - 28px) !important; margin-inline:auto !important; text-align:center !important; }
+}
+@media (max-width:390px){
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-counter-label { font-size:.48rem !important; letter-spacing:.035em !important; }
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-recovery-counter strong { font-size:.53rem !important; }
+}
+
+
+/* Mobile-only behaviours. Desktop tabs remain in document flow. */
+@media (max-width: 700px){
+.mars-audio-source { display:block !important; width:100% !important; max-width:100% !important; margin:0 auto !important; text-align:center !important; overflow-wrap:anywhere !important; }
+}
+
+
+@media (max-width: 700px){
+/* A small breathing gap only on phones; desktop map spacing is untouched. */
+.tha-mars-screen:not(.is-record):not(.mars-completion) .mars-map-layout + .mars-audio-source {
+    margin-top: 10px !important;
+  }
+}

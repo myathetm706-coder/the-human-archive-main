@@ -1,0 +1,97 @@
+/* ============================================================================
+   CHAPTER SIX — 99% / CINEMATIC GREEN RECOVERY CLIMAX
+   ============================================================================ */
+.tha99-screen {
+  --c99-bg: #020804;
+  --c99-ink: #e7ffeb;
+  --c99-green: #a6efb4;
+  --c99-dim: #7ba987;
+  --c99-line: rgba(132, 226, 151, .22);
+  position: relative; isolation: isolate; min-height: 100vh; min-height: 100dvh;
+  overflow: hidden; color: var(--c99-ink);
+  background: radial-gradient(ellipse at 50% 35%, rgba(28, 94, 43, .25), transparent 43%),
+              radial-gradient(ellipse at 7% 90%, rgba(24, 76, 43, .16), transparent 35%), var(--c99-bg);
+  font-family: var(--tha-font-mono, "Fira Code", monospace);
+}
+.tha99-screen::before { content:""; position:absolute; inset:0; z-index:-1; opacity:.21; pointer-events:none;
+  background-image:linear-gradient(rgba(150,255,170,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(150,255,170,.035) 1px,transparent 1px);
+  background-size:62px 62px; mask-image:linear-gradient(transparent,#000 18%,#000 85%,transparent); }
+.tha99-grain { position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.15; background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(190,255,198,.025) 4px); }
+.tha99-topbar { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:68px; padding:12px clamp(18px,4vw,58px); border-bottom:1px solid var(--c99-line); background:rgba(2,10,4,.78); backdrop-filter:blur(14px); }
+.tha99-brand { display:flex; align-items:center; gap:12px; min-width:0; }
+.tha99-brand-mark { display:grid; place-items:center; flex:0 0 36px; width:36px; height:36px; border:1px solid rgba(166,239,180,.55); color:#e4ffe8; font:700 .7rem var(--tha-font-display); box-shadow:0 0 22px rgba(102,220,126,.1),inset 0 0 14px rgba(100,220,125,.1); }
+.tha99-brand strong,.tha99-brand small { display:block; }
+.tha99-brand strong { color:#dfffe5; font-size:.76rem; letter-spacing:.13em; }
+.tha99-brand small { margin-top:4px; color:#759e7d; font-size:.58rem; letter-spacing:.1em; }
+.tha99-chapter-state { display:flex; align-items:center; gap:9px; color:#8dbb97; font-size:.62rem; letter-spacing:.12em; text-align:right; }
+.tha99-chapter-state i { width:7px; height:7px; border-radius:50%; background:#a5ffb5; box-shadow:0 0 12px #79e890; animation:tha99Pulse 2s ease-in-out infinite; }
+.tha99-main { width:min(1120px,calc(100% - 44px)); margin:0 auto; padding:clamp(32px,5vh,60px) 0 62px; }
+.tha99-heading { margin:0 0 28px; text-align:center; }
+.tha99-overline { margin:0 0 10px; color:#86c895; font-size:.64rem; letter-spacing:.24em; }
+.tha99-heading h1 { margin:0; color:#e7ffeb; font:700 clamp(1.35rem,3vw,2.1rem)/1.3 var(--tha-font-display); letter-spacing:.13em; text-shadow:0 0 30px rgba(124,239,148,.12); }
+.tha99-subtitle { margin:11px 0 0; color:#709d7a; font-size:.6rem; letter-spacing:.17em; }
+.tha99-instrument-layout { display:grid; grid-template-columns:minmax(300px,.92fr) minmax(360px,1.08fr); align-items:center; gap:clamp(28px,5vw,68px); }
+.tha99-orbit-instrument { position:relative; display:grid; place-items:center; width:min(100%,400px); aspect-ratio:1; margin:0 auto; }
+.tha99-orbit { position:absolute; border:1px solid rgba(127,231,150,.24); border-radius:50%; }
+.tha99-orbit-a { inset:7%; box-shadow:0 0 36px rgba(62,205,93,.07),inset 0 0 30px rgba(62,205,93,.045); animation:tha99Orbit 38s linear infinite; }
+.tha99-orbit-b { inset:17%; border-style:dashed; border-color:rgba(135,245,157,.26); animation:tha99OrbitReverse 56s linear infinite; }
+.tha99-orbit-a::before,.tha99-orbit-a::after { content:""; position:absolute; border-radius:50%; background:#a3fbb0; box-shadow:0 0 16px #79e88a; }
+.tha99-orbit-a::before { width:7px;height:7px;top:16%;left:16%; }.tha99-orbit-a::after { width:4px;height:4px;right:8%;bottom:25%; }
+.tha99-orbit-core { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; width:66%; aspect-ratio:1; border:1px solid rgba(156,244,173,.39); border-radius:50%; background:radial-gradient(circle,rgba(35,104,52,.45),rgba(2,12,5,.93) 68%); box-shadow:0 0 0 12px rgba(100,221,123,.025),0 0 62px rgba(75,206,101,.15),inset 0 0 45px rgba(83,212,107,.14); }
+.tha99-index-label { color:#87b991; font-size:.57rem; letter-spacing:.2em; }
+.tha99-orbit-core strong { display:block; margin:4px 0; color:#edfff0; font:700 clamp(4rem,10vw,6.7rem)/1 var(--tha-font-display); letter-spacing:-.04em; text-shadow:0 0 35px rgba(129,239,149,.36); animation:tha99IndexReveal 1.7s cubic-bezier(.18,.72,.2,1) both; }
+.tha99-orbit-core strong span { color:#a3eeb1; font-size:.46em; }
+.tha99-orbit-core small { color:#719f7a; font-size:.52rem; letter-spacing:.16em; }
+.tha99-orbit-point { position:absolute; border-radius:50%; background:#b3ffc0; box-shadow:0 0 15px rgba(152,255,175,.75); }
+.tha99-point-a { width:5px;height:5px;top:17%;right:20%; }.tha99-point-b { width:4px;height:4px;bottom:15%;left:22%; }
+.tha99-ledger { position:relative; padding:22px clamp(18px,3vw,30px) 17px; border:1px solid rgba(133,223,151,.28); background:linear-gradient(145deg,rgba(9,27,13,.94),rgba(3,12,6,.91)); box-shadow:0 24px 70px rgba(0,0,0,.28),inset 0 0 38px rgba(57,145,73,.06); }
+.tha99-ledger-head { display:flex; justify-content:space-between; gap:12px; padding-bottom:16px; color:#8bbd96; font-size:.57rem; letter-spacing:.14em; }
+.tha99-status-row { display:grid; grid-template-columns:33px minmax(0,1fr) 58px 23px; align-items:center; gap:10px; min-height:53px; border-top:1px solid rgba(137,221,151,.14); }
+.tha99-status-icon { font-size:1.02rem; }.tha99-status-row strong { color:#d9f9df; font-size:.67rem; font-weight:500; letter-spacing:.1em; }.tha99-status-count { color:#a2cdaa; font-size:.67rem; text-align:right; font-variant-numeric:tabular-nums; }.tha99-status-row b { color:#a7f4b6; font-size:1.05rem; text-align:right; text-shadow:0 0 12px rgba(116,239,140,.5); }
+.tha99-ledger-foot { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:6px 14px; margin-top:11px; padding-top:17px; border-top:1px solid rgba(145,224,156,.28); }
+.tha99-ledger-foot span { color:#80b58b; font-size:.57rem; letter-spacing:.16em; }.tha99-ledger-foot strong { color:#e5ffe9; font:700 .95rem var(--tha-font-display); letter-spacing:.09em; text-align:right; }.tha99-ledger-foot i { grid-column:1/-1; color:#638e6e; font-size:.55rem; font-style:normal; letter-spacing:.13em; }
+.tha99-transmission { position:relative; width:min(890px,100%); margin:clamp(35px,5vh,58px) auto 0; padding:18px clamp(18px,3.5vw,32px) 22px; border-top:1px solid rgba(138,227,155,.23); border-bottom:1px solid rgba(138,227,155,.23); background:linear-gradient(90deg,transparent,rgba(21,70,32,.17),transparent); text-align:center; }
+.tha99-transmission-head { display:flex; justify-content:space-between; gap:12px; margin-bottom:17px; color:#75a781; font-size:.57rem; letter-spacing:.18em; text-align:left; }.tha99-transmission-state { color:#a0dba9; }
+.tha99-intro-lines { display:grid; gap:9px; }.tha99-intro-lines p { margin:0; color:#badfc1; font-size:clamp(.78rem,1.55vw,.98rem); line-height:1.8; opacity:0; filter:blur(4px); transform:translateY(7px); transition:opacity 1.15s ease,filter 1.15s ease,transform 1.15s ease; }.tha99-intro-lines p.is-revealed { opacity:1;filter:blur(0);transform:translateY(0); }
+.tha99-question { margin:22px 0 0; color:#eaffed; font:700 clamp(1.15rem,3vw,1.7rem) var(--tha-font-display); letter-spacing:.2em; opacity:0; filter:blur(7px); transform:scale(.97); transition:opacity 1.3s ease,filter 1.3s ease,transform 1.3s ease; text-shadow:0 0 30px rgba(141,245,161,.34); }.tha99-question.is-revealed { opacity:1;filter:blur(0);transform:scale(1); }
+.tha99-screen.is-heartbeat-phase .tha99-orbit-core { animation:tha99Heart 1.4s ease-in-out 2; }
+.tha99-continue { display:flex; align-items:center; justify-content:center; gap:20px; width:max-content; max-width:100%; margin:30px auto 0; padding:16px 22px; border:1px solid rgba(158,244,175,.62); color:#e5ffea; background:rgba(13,49,21,.64); font-size:.68rem; letter-spacing:.15em; cursor:pointer; opacity:0; transform:translateY(10px); transition:opacity .8s ease,transform .8s ease,background .2s ease,box-shadow .2s ease; }.tha99-continue.is-revealed { opacity:1;transform:translateY(0); }.tha99-continue:hover { background:rgba(34,94,46,.7);box-shadow:0 0 30px rgba(106,231,129,.16); }.tha99-continue span { color:#a6f4b5; font-size:1.2rem; }
+.tha99-footnote { margin:28px 0 0; color:rgba(127,174,137,.56); font-size:.54rem; letter-spacing:.17em; text-align:center; }
+@keyframes tha99Pulse {50%{opacity:.38;box-shadow:0 0 3px #79e890}}@keyframes tha99Orbit {to{transform:rotate(360deg)}}@keyframes tha99OrbitReverse {to{transform:rotate(-360deg)}}@keyframes tha99IndexReveal {from{opacity:0;filter:blur(15px);transform:scale(.82)}to{opacity:1;filter:blur(0);transform:scale(1)}}@keyframes tha99Heart {0%,100%{transform:scale(1)}20%{transform:scale(1.055)}38%{transform:scale(1)}58%{transform:scale(1.045)}74%{transform:scale(1)}}
+@media(max-width:780px){.tha99-topbar{align-items:flex-start;flex-direction:column;gap:8px;padding:12px 16px}.tha99-chapter-state{font-size:.54rem}.tha99-main{width:calc(100% - 30px);padding-top:34px}.tha99-instrument-layout{grid-template-columns:1fr;gap:18px}.tha99-orbit-instrument{width:min(74vw,310px)}.tha99-ledger{padding:17px 15px}.tha99-status-row{grid-template-columns:27px minmax(0,1fr) 51px 18px;gap:7px;min-height:47px}.tha99-status-row strong{font-size:.61rem}.tha99-ledger-head{font-size:.5rem}.tha99-transmission{margin-top:30px;padding:16px 10px 19px}.tha99-transmission-head{font-size:.48rem}.tha99-intro-lines p{font-size:.76rem}.tha99-question{letter-spacing:.12em}.tha99-footnote{line-height:1.8}}
+@media(prefers-reduced-motion:reduce){.tha99-orbit,.tha99-chapter-state i,.tha99-orbit-core strong,.tha99-screen.is-heartbeat-phase .tha99-orbit-core{animation:none!important}.tha99-intro-lines p,.tha99-question,.tha99-continue{transition:none!important}}
+
+/* Chapter Six uses the exact archive-map header system at desktop and mobile. */
+.tha99-menu-header{position:sticky;top:0;z-index:30;width:100%;}
+.tha99-menu-header .tha-menu-system{white-space:nowrap;}
+.tha99-question{scroll-margin-top:84px;}
+.tha99-intro-lines p{scroll-margin-top:84px;}
+.tha99-screen.is-departing{opacity:0;filter:brightness(.25);transition:opacity 1.2s ease,filter 1.2s ease;}
+.tha99-screen{overflow-x:clip;overflow-y:visible;}
+
+/* Chapter Six header: reserve a real in-flow badge slot, exactly like Menu. */
+.tha99-menu-header .tha-menu-topbar-actions { gap: clamp(12px, 2vw, 24px); }
+.tha99-menu-header .tha-menu-identity-slot { flex: 0 0 auto; width: max-content; max-width: 260px; }
+.tha99-menu-header .tha-menu-system { margin-left: auto; }
+.tha99-menu-header .tha-menu-identity-slot .tha-global-identity-badge { position: static; }
+.tha99-screen { overflow-x: clip; overflow-y: visible; }
+@media (max-width: 760px) {
+  .tha99-menu-header.tha-menu-topbar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) clamp(135px, 43vw, 188px) !important;
+    align-items: center !important;
+    gap: 8px !important;
+    min-height: 58px;
+    padding: max(8px, env(safe-area-inset-top)) 10px 8px !important;
+    flex-direction: initial !important;
+  }
+  .tha99-menu-header .tha-menu-system { display: none !important; }
+  .tha99-menu-header .tha-menu-topbar-actions {
+    grid-column: 2;
+    width: 100%;
+    max-width: 188px;
+    margin: 0;
+    justify-content: flex-end;
+  }
+  .tha99-menu-header .tha-menu-identity-slot { width: 100%; max-width: 188px; }
+}
