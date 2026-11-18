@@ -125,7 +125,7 @@ The exported log records the visitor's reflection and marks the archive as **100
 | Experience format | Interactive, narrative-driven archive / scrollytelling |
 | Technology | HTML5, CSS3, and vanilla JavaScript |
 | Deployment | Static website · No build step or server-side database required |
-| Live application | **https://esha-sabir.github.io/the-human-archive/** |
+| Live application | **** |
 
 ---
 
